@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://jg17n7fkbfc6" path="res://ShaderCastleForGodot/Assets/ShaderCastle/Light.blend" id="4_ycgrn"]
 [ext_resource type="PackedScene" uid="uid://dj40h7riiybdp" path="res://ShaderCastleForGodot/Assets/ShaderCastle/Buffer.blend" id="5_r8aig"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Tree.blend" id="6_kkpaq"]
+[ext_resource type="Shader" uid="uid://db07q8pj6kmrw" path="res://ShaderCastleForGodot/Tutorials/JustRed.gdshader" id="7_otk75"]
+[ext_resource type="PackedScene" uid="uid://bt8otoejerb66" path="res://ShaderCastleForGodot/Prefabs/2DDisplay.tscn" id="7_ycgrn"]
+[ext_resource type="Shader" uid="uid://ccginpwlkxipj" path="res://ShaderCastleForGodot/Tutorials/ColorPicker.gdshader" id="8_ycgrn"]
+[ext_resource type="Shader" uid="uid://cwy8rayua18nv" path="res://ShaderCastleForGodot/Tutorials/UVCoordinate.gdshader" id="9_r8aig"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -711,6 +715,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bwniq")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkpaq"]
+render_priority = 0
+shader = ExtResource("7_otk75")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
+render_priority = 0
+shader = ExtResource("8_ycgrn")
+shader_parameter/red = 1.0
+shader_parameter/green = 1.0
+shader_parameter/blue = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gogb"]
+render_priority = 0
+shader = ExtResource("9_r8aig")
+
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1469896497]
@@ -810,3 +829,43 @@ mesh = SubResource("ArrayMesh_okxkm")
 
 [node name="Tree2" parent="." unique_id=239158485 instance=ExtResource("6_kkpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 10.695, -27.756)
+
+[node name="3D display" type="Node3D" parent="." unique_id=1314770467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039717436, 12.7, 26.54673)
+
+[node name="Base" type="CSGBox3D" parent="3D display" unique_id=149464740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(0.5, 1, 0.5)
+
+[node name="DisplayOrigin" type="Node3D" parent="3D display" unique_id=183634773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000002, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="3D display/DisplayOrigin" unique_id=731877094]
+radius = 0.2
+radial_segments = 32
+rings = 16
+
+[node name="Just red" parent="." unique_id=1555241329 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 12.7, 27.262693)
+
+[node name="Quad" parent="Just red/DisplayOrigin/Quad" parent_id_path=PackedInt32Array(1555241329, 1176267524) index="0" unique_id=720885846]
+surface_material_override/0 = SubResource("ShaderMaterial_kkpaq")
+
+[node name="ColorPicker" parent="." unique_id=749830982 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 12.7, 28.074915)
+
+[node name="Quad" parent="ColorPicker/DisplayOrigin/Quad" parent_id_path=PackedInt32Array(749830982, 1176267524) index="0" unique_id=720885846]
+surface_material_override/0 = SubResource("ShaderMaterial_0ocln")
+
+[node name="UVCoordinate" parent="." unique_id=1518997771 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3, 12.7, 28.847662)
+
+[node name="Quad" parent="UVCoordinate/DisplayOrigin/Quad" parent_id_path=PackedInt32Array(1518997771, 1176267524) index="0" unique_id=720885846]
+surface_material_override/0 = SubResource("ShaderMaterial_7gogb")
+
+[editable path="Just red"]
+[editable path="Just red/DisplayOrigin/Quad"]
+[editable path="ColorPicker"]
+[editable path="ColorPicker/DisplayOrigin/Quad"]
+[editable path="UVCoordinate"]
+[editable path="UVCoordinate/DisplayOrigin/Quad"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bt8otoejerb66"]
+
+[ext_resource type="PackedScene" uid="uid://skcd1hjmv882" path="res://ShaderCastleForGodot/Assets/Quad.blend" id="1_3tle5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6sgsv"]
+
+[node name="Just red" type="Node3D" unique_id=1555241329]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="DisplayOrigin" type="Node3D" parent="." unique_id=595881598]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000002, -0.001)
+
+[node name="Quad" parent="DisplayOrigin" unique_id=1176267524 instance=ExtResource("1_3tle5")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Quad" parent="DisplayOrigin/Quad" index="0" unique_id=711496000]
+surface_material_override/0 = SubResource("StandardMaterial3D_6sgsv")
+
+[editable path="DisplayOrigin/Quad"]
