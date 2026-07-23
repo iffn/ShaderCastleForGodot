@@ -6,13 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://jg17n7fkbfc6" path="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/Light.blend" id="4_ycgrn"]
 [ext_resource type="PackedScene" uid="uid://dj40h7riiybdp" path="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/Buffer.blend" id="5_r8aig"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="6_kkpaq"]
-[ext_resource type="Shader" uid="uid://db07q8pj6kmrw" path="res://ShaderCastleForGodot/Tutorials/Basics/JustRed.gdshader" id="8_kkpaq"]
-[ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Assets/UI/3D UI.tscn" id="8_ycgrn"]
+[ext_resource type="PackedScene" uid="uid://bt8otoejerb66" path="res://ShaderCastleForGodot/Prefabs/2DDisplay.tscn" id="7_ycgrn"]
 [ext_resource type="Shader" uid="uid://ccginpwlkxipj" path="res://ShaderCastleForGodot/Tutorials/Basics/ColorPicker.gdshader" id="9_0ocln"]
 [ext_resource type="Shader" uid="uid://cwy8rayua18nv" path="res://ShaderCastleForGodot/Tutorials/Basics/UVCoordinate.gdshader" id="10_7gogb"]
 [ext_resource type="Shader" uid="uid://cw4cg8mfgjygc" path="res://ShaderCastleForGodot/Tutorials/Basics/TextureLookup.gdshader" id="11_7gogb"]
 [ext_resource type="Texture2D" uid="uid://by5vi4enm0ny7" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="12_660i6"]
-[ext_resource type="Shader" uid="uid://dbhuidw682whj" path="res://ShaderCastleForGodot/Tutorials/Basics/Time.gdshader" id="13_660i6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -718,23 +716,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bwniq")
 
-[sub_resource type="QuadMesh" id="QuadMesh_3tle5"]
-flip_faces = true
-size = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8aig"]
-render_priority = 0
-shader = ExtResource("8_kkpaq")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_kkpaq"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ocln"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_kkpaq")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_660i6"]
 render_priority = 0
 shader = ExtResource("9_0ocln")
@@ -742,55 +723,23 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_7gogb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xewg6"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_660i6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbvmd"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_7gogb")
+albedo_texture = SubResource("ViewportTexture_xewg6")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xewg6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
 shader = ExtResource("10_7gogb")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jbvmd"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6je3"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_jbvmd")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbamv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gogb"]
 render_priority = 0
 shader = ExtResource("11_7gogb")
 shader_parameter/image = ExtResource("12_660i6")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_q65ym"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3gpvc"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_q65ym")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aptjt"]
-render_priority = 0
-shader = ExtResource("13_660i6")
-shader_parameter/image = ExtResource("12_660i6")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_5s0qr"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gf47"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_5s0qr")
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
@@ -907,198 +856,57 @@ radius = 0.2
 radial_segments = 32
 rings = 16
 
-[node name="Just red" type="Node3D" parent="." unique_id=1555241329]
+[node name="Just red" parent="." unique_id=1555241329 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 27.329926)
+title = "Displaying a mesh with a color"
+description = "Shaders define what color a pixel on your screen has.The easiest way to display a mesh in a shader is to use the standard position converion and output a hard coded color to the screen."
+click_to_apply = false
+click_to_get_material = false
 
-[node name="DisplayOrigin" type="Node3D" parent="Just red" unique_id=595881598]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.001)
+[node name="Color picker" parent="." unique_id=784542166 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 28.383146)
+title = "Shader inputs to pick a color"
+description = "Colors are returned in the visible red, green and blue channels betwen 0...1."
+material = SubResource("ShaderMaterial_660i6")
+click_to_apply = false
+click_to_get_material = false
 
-[node name="DisplayQuad" type="MeshInstance3D" parent="Just red/DisplayOrigin" unique_id=1420667322]
-transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 0, -8.742278e-08, 7.642742e-15, -1, 0, 0, 0)
-mesh = SubResource("QuadMesh_3tle5")
-surface_material_override/0 = SubResource("ShaderMaterial_r8aig")
-
-[node name="3D UI" parent="Just red" unique_id=498438476 instance=ExtResource("8_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Just red/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(498438476, 600475954) index="0" unique_id=1806436609]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 50.0
-
-[node name="Label" type="Label" parent="Just red/3D UI/SubViewport/Control/VBoxContainer" unique_id=1954479272]
-layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
-
-[node name="Description" type="Label" parent="Just red/3D UI/SubViewport/Control/VBoxContainer" unique_id=410209021]
-layout_mode = 2
-text = "Description"
-
-[node name="Panel" type="Panel" parent="Just red/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(498438476, 600475954) index="1" unique_id=708718806]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MeshInstance3D" parent="Just red/3D UI" index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_0ocln")
-
-[node name="Color picker" type="Node3D" parent="." unique_id=1424403371]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 28.469631)
-
-[node name="DisplayOrigin" type="Node3D" parent="Color picker" unique_id=1989516909]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.001)
-
-[node name="DisplayQuad" type="MeshInstance3D" parent="Color picker/DisplayOrigin" unique_id=383722042]
-transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 0, -8.742278e-08, 7.642742e-15, -1, 0, 0, 0)
-mesh = SubResource("QuadMesh_3tle5")
+[node name="DisplayQuad" parent="Color picker/DisplayOrigin" parent_id_path=PackedInt32Array(784542166, 595881598) index="0" unique_id=1420667322]
 surface_material_override/0 = SubResource("ShaderMaterial_660i6")
 
-[node name="3D UI" parent="Color picker" unique_id=1534915159 instance=ExtResource("8_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
+[node name="Title" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="0" unique_id=1954479272]
+text = "Shader inputs to pick a color"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Color picker/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(1534915159, 600475954) index="0" unique_id=534461474]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 50.0
+[node name="Description" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="1" unique_id=410209021]
+text = "Colors are returned in the visible red, green and blue channels betwen 0...1."
 
-[node name="Label" type="Label" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" unique_id=2062110690]
+[node name="HSlider" type="HSlider" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="2" unique_id=1482539081]
 layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" unique_id=1084394175]
+[node name="HSlider2" type="HSlider" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="3" unique_id=131709120]
 layout_mode = 2
-text = "Description"
 
-[node name="Panel" type="Panel" parent="Color picker/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(1534915159, 600475954) index="1" unique_id=37086523]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MeshInstance3D" parent="Color picker/3D UI" index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_660i6")
-
-[node name="UV Coordinate" type="Node3D" parent="." unique_id=1315918737]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 29.556646)
-
-[node name="DisplayOrigin" type="Node3D" parent="UV Coordinate" unique_id=1120297095]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.001)
-
-[node name="DisplayQuad" type="MeshInstance3D" parent="UV Coordinate/DisplayOrigin" unique_id=66566535]
-transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 0, -8.742278e-08, 7.642742e-15, -1, 0, 0, 0)
-mesh = SubResource("QuadMesh_3tle5")
-surface_material_override/0 = SubResource("ShaderMaterial_xewg6")
-
-[node name="3D UI" parent="UV Coordinate" unique_id=836186039 instance=ExtResource("8_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UV Coordinate/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(836186039, 600475954) index="0" unique_id=789541124]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 50.0
-
-[node name="Label" type="Label" parent="UV Coordinate/3D UI/SubViewport/Control/VBoxContainer" unique_id=1033050602]
+[node name="HSlider3" type="HSlider" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="4" unique_id=93144613]
 layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
 
-[node name="Description" type="Label" parent="UV Coordinate/3D UI/SubViewport/Control/VBoxContainer" unique_id=1977740977]
-layout_mode = 2
-text = "Description"
+[node name="MeshInstance3D" parent="Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
+surface_material_override/0 = SubResource("StandardMaterial3D_jbvmd")
 
-[node name="Panel" type="Panel" parent="UV Coordinate/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(836186039, 600475954) index="1" unique_id=698511845]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UV" parent="Color picker" unique_id=526377955 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1638718, 0, 0)
+title = "Accessing data like UV position"
+description = "The vertices of the mesh can hold data, such as UV map coordinates. These are interpolated over the surface for each pixel.The output here is x for redand y for green"
+material = SubResource("ShaderMaterial_0ocln")
+click_to_apply = false
+click_to_get_material = false
 
-[node name="MeshInstance3D" parent="UV Coordinate/3D UI" index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_x6je3")
+[node name="UV2" parent="Color picker" unique_id=370226580 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1546516, 0, 2.3841858e-07)
+title = "Sampling data like textures"
+description = "Instead of directly returning the UV coordinates, they can be used to look up a color on a texture."
+material = SubResource("ShaderMaterial_7gogb")
+click_to_apply = false
+click_to_get_material = false
 
-[node name="Texture lookup" type="Node3D" parent="." unique_id=1046520580]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 30.536774)
-
-[node name="DisplayOrigin" type="Node3D" parent="Texture lookup" unique_id=214545732]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.001)
-
-[node name="DisplayQuad" type="MeshInstance3D" parent="Texture lookup/DisplayOrigin" unique_id=1872722689]
-transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 0, -8.742278e-08, 7.642742e-15, -1, 0, 0, 0)
-mesh = SubResource("QuadMesh_3tle5")
-surface_material_override/0 = SubResource("ShaderMaterial_lbamv")
-
-[node name="3D UI" parent="Texture lookup" unique_id=1426607340 instance=ExtResource("8_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Texture lookup/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(1426607340, 600475954) index="0" unique_id=100094868]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 50.0
-
-[node name="Label" type="Label" parent="Texture lookup/3D UI/SubViewport/Control/VBoxContainer" unique_id=1019222529]
-layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
-
-[node name="Description" type="Label" parent="Texture lookup/3D UI/SubViewport/Control/VBoxContainer" unique_id=1311997279]
-layout_mode = 2
-text = "Description"
-
-[node name="Panel" type="Panel" parent="Texture lookup/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(1426607340, 600475954) index="1" unique_id=1364687765]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MeshInstance3D" parent="Texture lookup/3D UI" index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_3gpvc")
-
-[node name="Time" type="Node3D" parent="." unique_id=1045445290]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 31.528154)
-
-[node name="DisplayOrigin" type="Node3D" parent="Time" unique_id=1531438030]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.001)
-
-[node name="DisplayQuad" type="MeshInstance3D" parent="Time/DisplayOrigin" unique_id=465441025]
-transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 0, -8.742278e-08, 7.642742e-15, -1, 0, 0, 0)
-mesh = SubResource("QuadMesh_3tle5")
-surface_material_override/0 = SubResource("ShaderMaterial_aptjt")
-
-[node name="3D UI" parent="Time" unique_id=1889342234 instance=ExtResource("8_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Time/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(1889342234, 600475954) index="0" unique_id=774547382]
-custom_minimum_size = Vector2(256, 0)
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 50.0
-
-[node name="Label" type="Label" parent="Time/3D UI/SubViewport/Control/VBoxContainer" unique_id=1525944660]
-layout_mode = 2
-text = "Title"
-horizontal_alignment = 1
-
-[node name="Description" type="Label" parent="Time/3D UI/SubViewport/Control/VBoxContainer" unique_id=1348688840]
-layout_mode = 2
-text = "Description"
-
-[node name="Panel" type="Panel" parent="Time/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(1889342234, 600475954) index="1" unique_id=367265651]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MeshInstance3D" parent="Time/3D UI" index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_5gf47")
-
-[editable path="Just red/3D UI"]
+[editable path="Color picker"]
 [editable path="Color picker/3D UI"]
-[editable path="UV Coordinate/3D UI"]
-[editable path="Texture lookup/3D UI"]
-[editable path="Time/3D UI"]
