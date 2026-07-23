@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dj40h7riiybdp"
-path="res://.godot/imported/Buffer.blend-9857d72a0e8c20475aac5b96ac045038.scn"
+uid="uid://skcd1hjmv882"
+path="res://.godot/imported/Quad.blend-3900a492a1374b7b8e540d7c33c69a86.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/ShaderCastle/Buffer.blend"
-dest_files=["res://.godot/imported/Buffer.blend-9857d72a0e8c20475aac5b96ac045038.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/Quad.blend"
+dest_files=["res://.godot/imported/Quad.blend-3900a492a1374b7b8e540d7c33c69a86.scn"]
 
 [params]
 

@@ -1,7 +1,7 @@
 shader_type spatial;
 
 uniform float red = 1;
-uniform float green = 0;
+uniform float green = 1;
 uniform float blue = 0;
 
 void vertex() {

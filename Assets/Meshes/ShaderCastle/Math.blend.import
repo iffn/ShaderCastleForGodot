@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dl3gwoxcrkyey"
-path="res://.godot/imported/Terrain.blend-3c106ec9922c1dd551b8d606e4089d5b.scn"
+uid="uid://coqhd3kewmgso"
+path="res://.godot/imported/Math.blend-0da6ef9f9125a3181062c53dafd053b8.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/Terrain.blend"
-dest_files=["res://.godot/imported/Terrain.blend-3c106ec9922c1dd551b8d606e4089d5b.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/Math.blend"
+dest_files=["res://.godot/imported/Math.blend-0da6ef9f9125a3181062c53dafd053b8.scn"]
 
 [params]
 

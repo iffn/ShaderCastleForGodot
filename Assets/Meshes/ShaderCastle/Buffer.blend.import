@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ydn7hn0eprd5"
-path="res://.godot/imported/TexturesAndColor.blend-f3a3034a99a8e1c1d76f508f009de68f.scn"
+uid="uid://dj40h7riiybdp"
+path="res://.godot/imported/Buffer.blend-7b46bf964326785a6028e08b0cb009c4.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/ShaderCastle/TexturesAndColor.blend"
-dest_files=["res://.godot/imported/TexturesAndColor.blend-f3a3034a99a8e1c1d76f508f009de68f.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/Buffer.blend"
+dest_files=["res://.godot/imported/Buffer.blend-7b46bf964326785a6028e08b0cb009c4.scn"]
 
 [params]
 

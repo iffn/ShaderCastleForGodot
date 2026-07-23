@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://coqhd3kewmgso"
-path="res://.godot/imported/Math.blend-cf5ef00e7e8c20b6809445de60bbab0d.scn"
+uid="uid://b5fk8nux5pax5"
+path="res://.godot/imported/Tree.blend-520894773fe289e71d8e986ee6b4d583.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/ShaderCastle/Math.blend"
-dest_files=["res://.godot/imported/Math.blend-cf5ef00e7e8c20b6809445de60bbab0d.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend"
+dest_files=["res://.godot/imported/Tree.blend-520894773fe289e71d8e986ee6b4d583.scn"]
 
 [params]
 

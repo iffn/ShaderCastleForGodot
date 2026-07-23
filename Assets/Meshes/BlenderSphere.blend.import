@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bfqdhnvru135h"
-path="res://.godot/imported/BlenderCube.blend-ffc6d44601ee7440b28c61346d897b12.scn"
+uid="uid://b7bestx0n86hx"
+path="res://.godot/imported/BlenderSphere.blend-a82270d884ab2e5a799cbae84fcd5ea3.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/BlenderCube.blend"
-dest_files=["res://.godot/imported/BlenderCube.blend-ffc6d44601ee7440b28c61346d897b12.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/BlenderSphere.blend"
+dest_files=["res://.godot/imported/BlenderSphere.blend-a82270d884ab2e5a799cbae84fcd5ea3.scn"]
 
 [params]
 

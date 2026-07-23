@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d2yypnmixhm1l"
-path="res://.godot/imported/DirectionArrow.blend-6455823f25122eafe4cf8a8676d80656.scn"
+uid="uid://ydn7hn0eprd5"
+path="res://.godot/imported/TexturesAndColor.blend-4c4d5545b41f719726cdfbdfea073b84.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/DirectionArrow.blend"
-dest_files=["res://.godot/imported/DirectionArrow.blend-6455823f25122eafe4cf8a8676d80656.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/TexturesAndColor.blend"
+dest_files=["res://.godot/imported/TexturesAndColor.blend-4c4d5545b41f719726cdfbdfea073b84.scn"]
 
 [params]
 

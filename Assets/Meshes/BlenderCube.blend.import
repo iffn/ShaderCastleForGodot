@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bc8l5p1bhtt5l"
-path="res://.godot/imported/TreeVertexAdjusted.blend-64b2504bfe93520b213be094d77a19f7.scn"
+uid="uid://bfqdhnvru135h"
+path="res://.godot/imported/BlenderCube.blend-7fdab25a759907495df69f4f01138dd1.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/TreeVertexAdjusted.blend"
-dest_files=["res://.godot/imported/TreeVertexAdjusted.blend-64b2504bfe93520b213be094d77a19f7.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/BlenderCube.blend"
+dest_files=["res://.godot/imported/BlenderCube.blend-7fdab25a759907495df69f4f01138dd1.scn"]
 
 [params]
 

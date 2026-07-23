@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://sbg4chyss84d"
-path="res://.godot/imported/Entrance.blend-d01d747832c57921e436837762cd81ba.scn"
+uid="uid://dl3gwoxcrkyey"
+path="res://.godot/imported/Terrain.blend-ba299ecc71fced68603d32c800d6f685.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/ShaderCastle/Entrance.blend"
-dest_files=["res://.godot/imported/Entrance.blend-d01d747832c57921e436837762cd81ba.scn"]
+source_file="res://ShaderCastleForGodot/Assets/Meshes/Terrain.blend"
+dest_files=["res://.godot/imported/Terrain.blend-ba299ecc71fced68603d32c800d6f685.scn"]
 
 [params]
 
