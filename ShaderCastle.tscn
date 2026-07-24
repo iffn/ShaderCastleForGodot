@@ -6,11 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://jg17n7fkbfc6" path="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/Light.blend" id="4_ycgrn"]
 [ext_resource type="PackedScene" uid="uid://dj40h7riiybdp" path="res://ShaderCastleForGodot/Assets/Meshes/ShaderCastle/Buffer.blend" id="5_r8aig"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="6_kkpaq"]
+[ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="7_xewg6"]
 [ext_resource type="PackedScene" uid="uid://bt8otoejerb66" path="res://ShaderCastleForGodot/Prefabs/2DDisplay.tscn" id="7_ycgrn"]
+[ext_resource type="Shader" uid="uid://db07q8pj6kmrw" path="res://ShaderCastleForGodot/Tutorials/Basics/JustRed.gdshader" id="8_660i6"]
+[ext_resource type="Shader" uid="uid://cqpe01sf4ohbm" path="res://ShaderCastleForGodot/Tutorials/VertexShader/LocalVertexOffset.gdshader" id="8_jbvmd"]
 [ext_resource type="Shader" uid="uid://ccginpwlkxipj" path="res://ShaderCastleForGodot/Tutorials/Basics/ColorPicker.gdshader" id="9_0ocln"]
+[ext_resource type="Shader" uid="uid://c21yl2r7i737v" path="res://ShaderCastleForGodot/Tutorials/VertexShader/VertexSpin.gdshader" id="9_x6je3"]
 [ext_resource type="Shader" uid="uid://cwy8rayua18nv" path="res://ShaderCastleForGodot/Tutorials/Basics/UVCoordinate.gdshader" id="10_7gogb"]
+[ext_resource type="Shader" uid="uid://cwwyitrr5pu28" path="res://ShaderCastleForGodot/Tutorials/VertexShader/Billboard.gdshader" id="10_lbamv"]
 [ext_resource type="Shader" uid="uid://cw4cg8mfgjygc" path="res://ShaderCastleForGodot/Tutorials/Basics/TextureLookup.gdshader" id="11_7gogb"]
+[ext_resource type="Shader" uid="uid://cvc484a2xttx2" path="res://ShaderCastleForGodot/Tutorials/VertexShader/VerticalBillboard.gdshader" id="11_q65ym"]
+[ext_resource type="Shader" uid="uid://c2dsbdwvbuhoj" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullBack.gdshader" id="12_5s0qr"]
+[ext_resource type="Shader" uid="uid://dbhuidw682whj" path="res://ShaderCastleForGodot/Tutorials/Basics/Time.gdshader" id="12_7gogb"]
 [ext_resource type="Texture2D" uid="uid://by5vi4enm0ny7" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="12_660i6"]
+[ext_resource type="Shader" uid="uid://7dl3t166bhvk" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullFront.gdshader" id="13_5gf47"]
+[ext_resource type="Shader" uid="uid://qlvpymemqxwj" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullOff.gdshader" id="14_52rap"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -716,6 +726,38 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bwniq")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bld8a"]
+render_priority = 0
+shader = ExtResource("8_jbvmd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbamv"]
+render_priority = 0
+shader = ExtResource("9_x6je3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q65ym"]
+render_priority = 0
+shader = ExtResource("10_lbamv")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3gpvc"]
+render_priority = 0
+shader = ExtResource("11_q65ym")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3m87l"]
+render_priority = 0
+shader = ExtResource("12_5s0qr")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kk271"]
+render_priority = 0
+shader = ExtResource("13_5gf47")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sfgd4"]
+render_priority = 0
+shader = ExtResource("14_52rap")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xewg6"]
+render_priority = 0
+shader = ExtResource("8_660i6")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_660i6"]
 render_priority = 0
 shader = ExtResource("9_0ocln")
@@ -723,14 +765,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xewg6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_x6je3"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbvmd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbamv"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_xewg6")
+albedo_texture = SubResource("ViewportTexture_x6je3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -739,6 +781,11 @@ shader = ExtResource("10_7gogb")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7gogb"]
 render_priority = 0
 shader = ExtResource("11_7gogb")
+shader_parameter/image = ExtResource("12_660i6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jbvmd"]
+render_priority = 0
+shader = ExtResource("12_7gogb")
 shader_parameter/image = ExtResource("12_660i6")
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
@@ -841,72 +888,104 @@ mesh = SubResource("ArrayMesh_okxkm")
 [node name="Tree2" parent="." unique_id=239158485 instance=ExtResource("6_kkpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 10.695, -27.756)
 
-[node name="3D display" type="Node3D" parent="." unique_id=1314770467]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039717436, 12.7, 26.206886)
+[node name="Vertex shader" type="Node3D" parent="." unique_id=477462833]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 12.7, 40)
 
-[node name="Base" type="CSGBox3D" parent="3D display" unique_id=149464740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-size = Vector3(0.5, 1, 0.5)
+[node name="Local vertex offset" parent="Vertex shader" unique_id=1185929385 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.313789, 0, -2.3958015)
+title = "Local vertex offset"
+description = "The vertex shader usually transforms the positions from model to camera space. However, before doing so, the vertex positions chan be modified. Scaling the values results in the scaling of the displayd output mesh."
+material = SubResource("ShaderMaterial_bld8a")
 
-[node name="DisplayOrigin" type="Node3D" parent="3D display" unique_id=183634773]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000002, 0)
+[node name="Vertex spin" parent="Vertex shader" unique_id=389574024 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1797528, 0, -2.3958015)
+title = "Vertex spin"
+description = "Applying trigonometric operations to the vertex positions allows spinning the cube."
+material = SubResource("ShaderMaterial_lbamv")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="3D display/DisplayOrigin" unique_id=731877094]
-radius = 0.2
-radial_segments = 32
-rings = 16
+[node name="Billboard" parent="Vertex shader" unique_id=1712680747 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1286283, 0, -2.3958015)
+title = "Billboard"
+description = "Instead of transforming the mesh normally into the camera space, the mesh can be made to always face the camera. This is often used for particle effects.This effect should be used carefully, since it can cause weird effects like grass always looking at you."
+material = SubResource("ShaderMaterial_q65ym")
 
-[node name="Just red" parent="." unique_id=1555241329 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 27.329926)
+[node name="Vertical billboard" parent="Vertex shader" unique_id=1844938133 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1318555, 0, -2.3958015)
+title = "Vertical billboard"
+description = "Instead of fully facing the camera, the mesh can be rotated around an axis to face the player. This works for some applications, but also breaks down in others."
+material = SubResource("ShaderMaterial_3gpvc")
+
+[node name="Cull back" parent="Vertex shader" unique_id=1430775943 instance=ExtResource("7_xewg6")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -7.5945106, 0, 2.3254852)
+title = "Cull Back"
+description = "Shaders is about optimization and for closed meshes, the side  of a triangle that is relevant to the user can often be defined, while the other side can be optimized away.Culling means discarding one side of the face, and there are 3 options.Cull Back means not rendering the back faces"
+material = SubResource("ShaderMaterial_3m87l")
+
+[node name="Cull front" parent="Vertex shader" unique_id=793577331 instance=ExtResource("7_xewg6")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -7.5945106, 0, 1.2050133)
+title = "Cull Front"
+description = "Cull Front means not rendering the front face.This shows the inside of the mesh, which can be used to create an outline effect for example."
+material = SubResource("ShaderMaterial_kk271")
+
+[node name="Cull off" parent="Vertex shader" unique_id=667717992 instance=ExtResource("7_xewg6")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -7.5945106, 0, -0.056365967)
+title = "Cull Off"
+description = "Cull Off means not discarding either side.This can be useful for 2d dipslays like foiliage, where both sides should be visible."
+material = SubResource("ShaderMaterial_sfgd4")
+
+[node name="Basics" type="Node3D" parent="." unique_id=284639914]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 12.7, 26)
+
+[node name="Just red" parent="Basics" unique_id=1555241329 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3299255, 0, -2.999)
 title = "Displaying a mesh with a color"
 description = "Shaders define what color a pixel on your screen has.The easiest way to display a mesh in a shader is to use the standard position converion and output a hard coded color to the screen."
-click_to_apply = false
-click_to_get_material = false
+material = SubResource("ShaderMaterial_xewg6")
 
-[node name="Color picker" parent="." unique_id=784542166 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 2.999, 12.7, 28.383146)
+[node name="Color picker" parent="Basics" unique_id=784542166 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3831463, 0, -2.999)
 title = "Shader inputs to pick a color"
 description = "Colors are returned in the visible red, green and blue channels betwen 0...1."
 material = SubResource("ShaderMaterial_660i6")
-click_to_apply = false
-click_to_get_material = false
 
-[node name="DisplayQuad" parent="Color picker/DisplayOrigin" parent_id_path=PackedInt32Array(784542166, 595881598) index="0" unique_id=1420667322]
+[node name="DisplayQuad" parent="Basics/Color picker/DisplayOrigin" parent_id_path=PackedInt32Array(784542166, 595881598) index="0" unique_id=1420667322]
 surface_material_override/0 = SubResource("ShaderMaterial_660i6")
 
-[node name="Title" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="0" unique_id=1954479272]
+[node name="Title" parent="Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="0" unique_id=1954479272]
 text = "Shader inputs to pick a color"
 
-[node name="Description" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="1" unique_id=410209021]
+[node name="Description" parent="Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="1" unique_id=410209021]
 text = "Colors are returned in the visible red, green and blue channels betwen 0...1."
 
-[node name="HSlider" type="HSlider" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="2" unique_id=1482539081]
+[node name="HSlider" type="HSlider" parent="Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="2" unique_id=1482539081]
 layout_mode = 2
 
-[node name="HSlider2" type="HSlider" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="3" unique_id=131709120]
+[node name="HSlider2" type="HSlider" parent="Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="3" unique_id=131709120]
 layout_mode = 2
 
-[node name="HSlider3" type="HSlider" parent="Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="4" unique_id=93144613]
+[node name="HSlider3" type="HSlider" parent="Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="4" unique_id=93144613]
 layout_mode = 2
 
-[node name="MeshInstance3D" parent="Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_jbvmd")
+[node name="MeshInstance3D" parent="Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
+surface_material_override/0 = SubResource("StandardMaterial3D_lbamv")
 
-[node name="UV" parent="Color picker" unique_id=526377955 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1638718, 0, 0)
+[node name="UV" parent="Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.547018, 0, -2.999)
 title = "Accessing data like UV position"
 description = "The vertices of the mesh can hold data, such as UV map coordinates. These are interpolated over the surface for each pixel.The output here is x for redand y for green"
 material = SubResource("ShaderMaterial_0ocln")
-click_to_apply = false
-click_to_get_material = false
 
-[node name="UV2" parent="Color picker" unique_id=370226580 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1546516, 0, 2.3841858e-07)
+[node name="Texture lookup" parent="Basics" unique_id=370226580 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.537798, 0, -2.9989996)
 title = "Sampling data like textures"
 description = "Instead of directly returning the UV coordinates, they can be used to look up a color on a texture."
 material = SubResource("ShaderMaterial_7gogb")
-click_to_apply = false
-click_to_get_material = false
 
-[editable path="Color picker"]
-[editable path="Color picker/3D UI"]
+[node name="Time" parent="Basics" unique_id=642072156 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5580463, 0, -2.9989994)
+title = "Using different inputs like time"
+description = "Godot provides different values that can be used in shaders, such as the current time."
+material = SubResource("ShaderMaterial_jbvmd")
+
+[editable path="Basics/Color picker"]
+[editable path="Basics/Color picker/3D UI"]

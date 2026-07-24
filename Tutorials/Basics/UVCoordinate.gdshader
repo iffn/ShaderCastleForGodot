@@ -1,14 +1,10 @@
 shader_type spatial;
+render_mode unshaded;
 
 void vertex() {
-	// Called for every vertex the material is visible on.
+	
 }
 
 void fragment() {
-	ALBEDO = vec3(UV.xy, 0.0);
+	ALBEDO = vec3(UV.xy, 0.0); // Accessing the UV coordinates of the mesh in the fragment shader
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}

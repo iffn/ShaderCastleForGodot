@@ -1,14 +1,10 @@
-shader_type spatial;
+shader_type spatial; // 3D shader
+render_mode unshaded; // Writing the colors directly on the screen
 
 void vertex() {
-	// Called for every vertex the material is visible on.
+	// Empty means just passing the mesh along
 }
 
 void fragment() {
-	ALBEDO = vec3(1.0, 0.0, 0.0);
+	ALBEDO = vec3(1.0, 0.0, 0.0); // Setting the red green blue color channels
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}

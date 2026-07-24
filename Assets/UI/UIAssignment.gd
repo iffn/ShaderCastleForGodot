@@ -1,13 +1,13 @@
 @tool
 extends Node
 
-@export var title : String
-@export var description : String
+@export var title : String = "Title"
+@export var description : String = "Description"
 @export var material : Material
 
 @export var title_label : Label
 @export var description_label : Label
-@export var mesh : MeshInstance3D
+@export var mesh : GeometryInstance3D
 
 @export var click_to_apply : bool:
 	set(value):
@@ -22,7 +22,10 @@ extends Node
 func apply_data() -> void:
 	title_label.text = title
 	description_label.text = description
-	mesh.set_surface_override_material(0, material)
+	if mesh is MeshInstance3D:
+		mesh.set_surface_override_material(0, material)
+	elif  mesh is CSGBox3D:
+		mesh.material = material
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

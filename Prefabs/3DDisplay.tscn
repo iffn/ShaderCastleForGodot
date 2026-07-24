@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dymt85dn031yc"]
+
+[ext_resource type="Script" uid="uid://dplmnaq5cdrkv" path="res://ShaderCastleForGodot/Assets/UI/UIAssignment.gd" id="1_jksge"]
+[ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Assets/UI/3D UI.tscn" id="2_efmhr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r7sab"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkwxx"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_r7sab")
+
+[node name="3D display" type="Node3D" unique_id=1185929385 node_paths=PackedStringArray("title_label", "description_label", "mesh")]
+script = ExtResource("1_jksge")
+title_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Title")
+description_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Description")
+mesh = NodePath("DisplayOrigin/CSGBox3D")
+
+[node name="Base" type="CSGBox3D" parent="." unique_id=1532983229]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+size = Vector3(0.5, 1, 0.5)
+
+[node name="DisplayOrigin" type="Node3D" parent="." unique_id=1716011669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000002, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="DisplayOrigin" unique_id=372572483]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="3D UI" parent="." unique_id=498438476 instance=ExtResource("2_efmhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25689638)
+
+[node name="Panel" type="Panel" parent="3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(498438476, 600475954) index="0" unique_id=999966782]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(498438476, 600475954) index="1" unique_id=1302590422]
+custom_minimum_size = Vector2(256, 0)
+custom_maximum_size = Vector2(256, -1)
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 206.0
+
+[node name="Title" type="Label" parent="3D UI/SubViewport/Control/VBoxContainer" unique_id=1140415981]
+layout_mode = 2
+text = "Title"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="3D UI/SubViewport/Control/VBoxContainer" unique_id=518187765]
+layout_mode = 2
+text = "Description"
+autowrap_mode = 3
+
+[node name="MeshInstance3D" parent="3D UI" index="1" unique_id=121505346]
+surface_material_override/0 = SubResource("StandardMaterial3D_mkwxx")
+
+[editable path="3D UI"]
