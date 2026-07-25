@@ -765,14 +765,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_x6je3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5s0qr"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbamv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gf47"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_x6je3")
+albedo_texture = SubResource("ViewportTexture_5s0qr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -967,7 +967,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_lbamv")
+surface_material_override/0 = SubResource("StandardMaterial3D_5gf47")
 
 [node name="UV" parent="Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.547018, 0, -2.999)
