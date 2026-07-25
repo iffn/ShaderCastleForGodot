@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bt8otoejerb66"]
 
-[ext_resource type="Shader" uid="uid://cwy8rayua18nv" path="res://ShaderCastleForGodot/Tutorials/Basics/UVCoordinate.gdshader" id="1_ltkop"]
 [ext_resource type="Script" uid="uid://dplmnaq5cdrkv" path="res://ShaderCastleForGodot/Assets/UI/UIAssignment.gd" id="1_suvce"]
 [ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Assets/UI/3D UI.tscn" id="2_cdgdd"]
 
@@ -8,18 +7,14 @@
 flip_faces = true
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_suvce"]
-render_priority = 0
-shader = ExtResource("1_ltkop")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ltkop"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cdgdd"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_suvce"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltkop"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ltkop")
+albedo_texture = SubResource("ViewportTexture_cdgdd")
 
 [node name="2D Display" type="Node3D" unique_id=1555241329 node_paths=PackedStringArray("title_label", "description_label", "mesh")]
 script = ExtResource("1_suvce")
@@ -28,15 +23,14 @@ description_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Descriptio
 mesh = NodePath("DisplayOrigin/DisplayQuad")
 
 [node name="DisplayOrigin" type="Node3D" parent="." unique_id=595881598]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -0.001)
 
 [node name="DisplayQuad" type="MeshInstance3D" parent="DisplayOrigin" unique_id=1420667322]
-transform = Transform3D(1, -8.742278e-08, -8.742278e-08, -8.742278e-08, -1, 0, -8.742278e-08, 7.642742e-15, -1, 0, 0, 0)
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("QuadMesh_3tle5")
-surface_material_override/0 = SubResource("ShaderMaterial_suvce")
 
 [node name="3D UI" parent="." unique_id=498438476 instance=ExtResource("2_cdgdd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
 
 [node name="Panel" type="Panel" parent="3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(498438476, 600475954) index="0" unique_id=708718806]
 visible = false
@@ -62,6 +56,7 @@ text = "Description"
 autowrap_mode = 3
 
 [node name="MeshInstance3D" parent="3D UI" index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_suvce")
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.5, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_ltkop")
 
 [editable path="3D UI"]
