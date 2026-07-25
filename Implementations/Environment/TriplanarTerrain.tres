@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dw84tx25dgt3c"]
+
+[ext_resource type="Shader" uid="uid://235fru2yy2lw" path="res://ShaderCastleForGodot/Implementations/Environment/TriplanarTerrain.gdshader" id="1_0mkxd"]
+[ext_resource type="Texture2D" uid="uid://b2lqotwywjc57" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Rock030_1K_Color.png" id="2_6p57q"]
+[ext_resource type="Texture2D" uid="uid://bmmbfucm5p2r8" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_Color.png" id="3_0pk4q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_0mkxd")
+shader_parameter/topMap = ExtResource("3_0pk4q")
+shader_parameter/cliffMap = ExtResource("2_6p57q")
+shader_parameter/transition = 0.717
+shader_parameter/shaprness = 2.0
