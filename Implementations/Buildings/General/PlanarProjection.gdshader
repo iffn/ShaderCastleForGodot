@@ -1,8 +1,8 @@
 shader_type spatial;
 
 uniform sampler2D albedo_map : source_color;
-uniform sampler2D normal_map : source_color;
-uniform sampler2D arm_map : source_color;
+uniform sampler2D normal_map : hint_normal;
+uniform sampler2D arm_map;
 
 void get_projection_data(vec3 position, vec3 projection_vector, out vec2 uv, out vec3 tangent, out vec3 bitangent) {
 	vec3 normal = normalize(projection_vector);
@@ -37,7 +37,7 @@ void vertex() {
 
 void fragment() {
 	ALBEDO = texture(albedo_map, UV).rgb;
-	NORMAL = texture(normal_map, UV).rgb;
+	NORMAL_MAP = texture(normal_map, UV).rgb;
 	vec3 arm = texture(arm_map, UV).rgb;
 	AO = arm.x;
 	ROUGHNESS = arm.y;
