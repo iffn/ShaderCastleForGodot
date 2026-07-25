@@ -39,7 +39,45 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"materials": {
+"Display wall inside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/DisplayWall.tres",
+"use_external/path": "uid://ctiejpl1lksxk"
+},
+"Floor inside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/FloorInside.tres",
+"use_external/path": "uid://5ga8mureba3t"
+},
+"Floor outside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/FloorOutside.tres",
+"use_external/path": "uid://cat8g8w8mb4yh"
+},
+"Roof inside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/RoofInside.tres",
+"use_external/path": "uid://bystblbtnu8f6"
+},
+"Roof outside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/RoofOutisde.tres",
+"use_external/path": "uid://bg3tyi0bh86e1"
+},
+"Wall inside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/ProjectedWall.tres",
+"use_external/path": "uid://c5i8gpq8xnlnv"
+},
+"Wall outside": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/ProjectedWall.tres",
+"use_external/path": "uid://c5i8gpq8xnlnv"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

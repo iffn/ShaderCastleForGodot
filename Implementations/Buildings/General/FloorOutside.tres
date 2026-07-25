@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cat8g8w8mb4yh"]
+
+[ext_resource type="Shader" uid="uid://c4gggm1u52xns" path="res://ShaderCastleForGodot/Implementations/Buildings/General/PlanarProjection.gdshader" id="1_8lcfq"]
+[ext_resource type="Texture2D" uid="uid://dafyh6dsl31i4" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_brick_wall_001/concrete_brick_wall_001_diffuse_1k.png" id="2_8lcfq"]
+[ext_resource type="Texture2D" uid="uid://dmypwheo8hf3b" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_brick_wall_001/concrete_brick_wall_001_arm_1k.png" id="3_ynax6"]
+[ext_resource type="Texture2D" uid="uid://db6rhaomah772" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_brick_wall_001/concrete_brick_wall_001_nor_gl_1k.png" id="4_7kimv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8lcfq")
+shader_parameter/albedo_map = ExtResource("2_8lcfq")
+shader_parameter/normal_map = ExtResource("4_7kimv")
+shader_parameter/arm_map = ExtResource("3_ynax6")

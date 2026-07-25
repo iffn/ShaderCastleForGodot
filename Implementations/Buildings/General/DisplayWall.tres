@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ctiejpl1lksxk"]
+
+[ext_resource type="Shader" uid="uid://c4gggm1u52xns" path="res://ShaderCastleForGodot/Implementations/Buildings/General/PlanarProjection.gdshader" id="1_mq3of"]
+[ext_resource type="Texture2D" uid="uid://bnpn06y2syttd" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/beige_wall_001/beige_wall_001_diff_1k.png" id="2_mq3of"]
+[ext_resource type="Texture2D" uid="uid://jmp6bo7dqn7d" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/beige_wall_001/beige_wall_001_arm_1k.png" id="3_igqve"]
+[ext_resource type="Texture2D" uid="uid://etlqd2m87l8g" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/beige_wall_001/beige_wall_001_nor_gl_1k.png" id="4_xsw3g"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mq3of")
+shader_parameter/albedo_map = ExtResource("2_mq3of")
+shader_parameter/normal_map = ExtResource("4_xsw3g")
+shader_parameter/arm_map = ExtResource("3_igqve")

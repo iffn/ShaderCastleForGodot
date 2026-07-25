@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c5i8gpq8xnlnv"]
+
+[ext_resource type="Shader" uid="uid://c4gggm1u52xns" path="res://ShaderCastleForGodot/Implementations/Buildings/General/PlanarProjection.gdshader" id="1_qjt6o"]
+[ext_resource type="Texture2D" uid="uid://bow1jqn3nnqw6" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/medieval_blocks_03/medieval_blocks_03_diff_1k.png" id="2_rossw"]
+[ext_resource type="Texture2D" uid="uid://cgmddm3d8npfk" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/medieval_blocks_03/medieval_blocks_03_arm_1k.png" id="3_t3vcb"]
+[ext_resource type="Texture2D" uid="uid://btklwx6jftpeo" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/medieval_blocks_03/medieval_blocks_03_nor_gl_1k.png" id="4_vhuch"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qjt6o")
+shader_parameter/albedo_map = ExtResource("2_rossw")
+shader_parameter/normal_map = ExtResource("4_vhuch")
+shader_parameter/arm_map = ExtResource("3_t3vcb")

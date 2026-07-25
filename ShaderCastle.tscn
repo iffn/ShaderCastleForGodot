@@ -1038,7 +1038,7 @@ transform = Transform3D(-0.7095708, 0, -0.70463413, 0, 1, 0, 0.70463413, 0, -0.7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="Basics" type="Node3D" parent="MathTower/Floor -1" unique_id=1307006231]
-transform = Transform3D(0.7771459, 0, 0.6293204, 0, 1, 0, -0.6293204, 0, 0.7771459, 0, 0, 0)
+transform = Transform3D(-0.77714586, 0, -0.6293204, 0, 1, 0, 0.6293204, 0, -0.77714586, 0, 0, 0)
 script = ExtResource("18_3m87l")
 radius = 5.9
 angle_offset_deg = 6.5
@@ -1239,13 +1239,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5200043, -3, 35.299995)
 [node name="TextureSampling" type="Node3D" parent="Light/Textures and color" unique_id=946963916]
 
 [node name="Texture sampling with scaling" parent="Light/Textures and color/TextureSampling" unique_id=1824459064 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.62119675, 0, -8)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.62119675, 0, -8)
 title = "Texture display with tiling"
 description = "When creating a shader, it is often good to think of the overall workflow where the final shader is used. Many people don't know shader programming and creating a separate shader for small adjustments, which doesn't make much sense.A very common use case is the tiling of textures with scale and offset. This can also be shared between different texture types like normal maps."
 material = SubResource("ShaderMaterial_52rap")
 
 [node name="Mip maps" parent="Light/Textures and color/TextureSampling" unique_id=1875498350 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.806694, 0, -8)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.806694, 0, -8)
 title = "Mip maps"
 description = "Just sampling the pixels of textures results in noise, especially when scaling it down. Incorporating surrounding pixels makes it better. These can be precalculated and stored. Therefore, blurry, low resolution versions of the textures are used to make it smoother."
 material = SubResource("ShaderMaterial_y60jv")
