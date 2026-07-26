@@ -18,7 +18,7 @@
 [ext_resource type="Shader" uid="uid://cvc484a2xttx2" path="res://ShaderCastleForGodot/Tutorials/VertexShader/VerticalBillboard.gdshader" id="11_q65ym"]
 [ext_resource type="Shader" uid="uid://c2dsbdwvbuhoj" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullBack.gdshader" id="12_5s0qr"]
 [ext_resource type="Shader" uid="uid://dbhuidw682whj" path="res://ShaderCastleForGodot/Tutorials/Basics/Time.gdshader" id="12_7gogb"]
-[ext_resource type="Texture2D" uid="uid://by5vi4enm0ny7" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="12_660i6"]
+[ext_resource type="Texture2D" uid="uid://ce7ch8g3s6nmb" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="12_660i6"]
 [ext_resource type="Shader" uid="uid://7dl3t166bhvk" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullFront.gdshader" id="13_5gf47"]
 [ext_resource type="Shader" uid="uid://qlvpymemqxwj" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullOff.gdshader" id="14_52rap"]
 [ext_resource type="Script" uid="uid://b5a254p3g7rt7" path="res://ShaderCastleForGodot/Assets/UI/ArcArrangement.gd" id="18_3m87l"]
@@ -46,6 +46,12 @@
 [ext_resource type="Shader" uid="uid://dy3v6f6b8eg6v" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthTexture/DepthTextureAligned.gdshader" id="38_84nie"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="41_xbh4r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="42_of8ie"]
+[ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="43_2y8t4"]
+[ext_resource type="Shader" uid="uid://r6430bd8cj2i" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/FragmentOutputs.gdshader" id="44_htnhy"]
+[ext_resource type="Shader" uid="uid://tjqugbbd7r5a" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/NormalMap.gdshader" id="45_80w6i"]
+[ext_resource type="Shader" uid="uid://bbk1p0k4lyhba" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/ARMMap.gdshader" id="46_561kp"]
+[ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="47_2rigf"]
+[ext_resource type="Texture2D" uid="uid://c0lmdgphobrbo" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_nor_gl_1k.png" id="48_wqs6l"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -70,14 +76,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_avgq5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_80w6i"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ip5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_561kp"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_avgq5")
+albedo_texture = SubResource("ViewportTexture_80w6i")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -946,6 +952,42 @@ shader = ExtResource("23_52rap")
 shader_parameter/albedo = ExtResource("12_660i6")
 shader_parameter/mip_level = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4po6"]
+render_priority = 0
+shader = ExtResource("43_2y8t4")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_yfnap"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75l2c"]
+render_priority = 0
+shader = ExtResource("44_htnhy")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/ao = 1.0
+shader_parameter/ao_light_affect = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_htnhy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_17ntp"]
+render_priority = 0
+shader = ExtResource("45_80w6i")
+shader_parameter/albedo = Color(1, 0, 0, 1)
+shader_parameter/normal_map = ExtResource("48_wqs6l")
+
+[sub_resource type="BoxMesh" id="BoxMesh_htnhy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sv1xp"]
+render_priority = 0
+shader = ExtResource("46_561kp")
+shader_parameter/albedo_map = ExtResource("12_660i6")
+shader_parameter/normal_map = ExtResource("48_wqs6l")
+shader_parameter/arm_map = ExtResource("47_2rigf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_yfnap"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bld8a"]
 albedo_color = Color(0.07450981, 0.22745098, 1, 1)
 
@@ -955,7 +997,7 @@ albedo_color = Color(0.07450981, 0.22745098, 1, 1)
 environment = SubResource("Environment_660i6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2101350115]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+transform = Transform3D(-0.9238795, 0.34682897, -0.161729, 0, 0.42261824, 0.9063078, 0.38268343, 0.8373192, -0.39044833, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Terrain" parent="." unique_id=1381014962 instance=ExtResource("1_3vlbk")]
@@ -997,7 +1039,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_i2ip5")
+surface_material_override/0 = SubResource("StandardMaterial3D_561kp")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1329,7 +1371,39 @@ material = SubResource("ShaderMaterial_y60jv")
 [node name="TexturesAndColor" parent="Light/Textures and color" unique_id=923315454 instance=ExtResource("3_otk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.536743e-07)
 
-[node name="Light" parent="Light" unique_id=45035212 instance=ExtResource("4_ycgrn")]
+[node name="Light" type="Node3D" parent="Light" unique_id=213631958]
+
+[node name="Godot light" type="Node3D" parent="Light/Light" unique_id=1295060319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("18_3m87l")
+radius = -2.5
+angle_offset_deg = 22.5
+
+[node name="Albedo" parent="Light/Light/Godot light" unique_id=1840847962 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+title = "Albedo"
+material = SubResource("ShaderMaterial_m4po6")
+meshToDisplay = SubResource("SphereMesh_yfnap")
+
+[node name="FragmentOutputs" parent="Light/Light/Godot light" unique_id=639742030 instance=ExtResource("7_xewg6")]
+transform = Transform3D(0.9238795, 0, -0.38268346, 0, 1, 0, 0.38268346, 0, 0.9238795, 0.9567086, 0, -2.3096988)
+title = "FragmentOutputs"
+material = SubResource("ShaderMaterial_75l2c")
+meshToDisplay = SubResource("SphereMesh_htnhy")
+
+[node name="NormalMap" parent="Light/Light/Godot light" unique_id=986707564 instance=ExtResource("7_xewg6")]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1.767767, 0, -1.767767)
+title = "Normal maps"
+material = SubResource("ShaderMaterial_17ntp")
+meshToDisplay = SubResource("BoxMesh_htnhy")
+
+[node name="ARM" parent="Light/Light/Godot light" unique_id=1082447127 instance=ExtResource("7_xewg6")]
+transform = Transform3D(0.38268343, 0, -0.9238795, 0, 1, 0, 0.9238795, 0, 0.38268343, 2.3096988, 0, -0.9567086)
+title = "ARM map"
+material = SubResource("ShaderMaterial_sv1xp")
+meshToDisplay = SubResource("BoxMesh_yfnap")
+
+[node name="Light" parent="Light/Light" unique_id=45035212 instance=ExtResource("4_ycgrn")]
 
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("6_kkpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 10.695, -27.756)

@@ -12,6 +12,7 @@ extends Node
 @export var description_label : Label
 @export var displayMesh : MeshInstance3D
 
+@export_category("Apply")
 @export var click_to_apply : bool:
 	set(value):
 		if value:
