@@ -40,16 +40,28 @@
 [ext_resource type="Shader" uid="uid://0qutmfr0vn3m" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/step xa.gdshader" id="32_jrc4g"]
 [ext_resource type="Shader" uid="uid://cy30kuxq0mcjk" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/step ax.gdshader" id="33_aof11"]
 [ext_resource type="Shader" uid="uid://bcytcdbdiaegd" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/smoothstep.gdshader" id="34_xbh4r"]
+[ext_resource type="Shader" uid="uid://drd2xf63i0ddu" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/sin.gdshader" id="35_17ntp"]
 [ext_resource type="Shader" uid="uid://6pe8adnsy33h" path="res://ShaderCastleForGodot/Tutorials/Buffer/ScreenTexture/BasicScreenTexture.gdshader" id="35_avgq5"]
 [ext_resource type="Shader" uid="uid://chb8tc7pycgj4" path="res://ShaderCastleForGodot/Tutorials/Buffer/ScreenTexture/ScreenTextureTinted.gdshader" id="36_i2ip5"]
+[ext_resource type="Shader" uid="uid://i2kp6oumnoas" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/cos.gdshader" id="36_sv1xp"]
 [ext_resource type="Shader" uid="uid://5pjricdn0f8i" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthTexture/BasicDepthTexture.gdshader" id="37_08vxt"]
+[ext_resource type="Shader" uid="uid://dvxkv3de452hg" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/tan.gdshader" id="37_s75ot"]
 [ext_resource type="Shader" uid="uid://dy3v6f6b8eg6v" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthTexture/DepthTextureAligned.gdshader" id="38_84nie"]
+[ext_resource type="Shader" uid="uid://l3q6brufaag" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/asin.gdshader" id="38_s75ot"]
+[ext_resource type="Shader" uid="uid://b4fx238l4onr4" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/atan.gdshader" id="38_xpevr"]
+[ext_resource type="Shader" uid="uid://bjnkut1yu8xqs" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/acos.gdshader" id="39_xpevr"]
+[ext_resource type="Shader" uid="uid://di0clf4bqt3lc" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/sinh.gdshader" id="41_kbnq3"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="41_xbh4r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="42_of8ie"]
+[ext_resource type="Shader" uid="uid://0ma0m1qgout3" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/cosh.gdshader" id="42_u2wcb"]
 [ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="43_2y8t4"]
+[ext_resource type="Shader" uid="uid://b6htlcwhn7w1j" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/tanh.gdshader" id="43_wj5qw"]
 [ext_resource type="Shader" uid="uid://r6430bd8cj2i" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/FragmentOutputs.gdshader" id="44_htnhy"]
+[ext_resource type="Shader" uid="uid://bf4qtug685fp8" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/asinh.gdshader" id="44_rp6a1"]
+[ext_resource type="Shader" uid="uid://d2u7qrejfufq6" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/acosh.gdshader" id="45_1ge1e"]
 [ext_resource type="Shader" uid="uid://tjqugbbd7r5a" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/NormalMap.gdshader" id="45_80w6i"]
 [ext_resource type="Shader" uid="uid://bbk1p0k4lyhba" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/ARMMap.gdshader" id="46_561kp"]
+[ext_resource type="Shader" uid="uid://bjh5cd7wxsm1h" path="res://ShaderCastleForGodot/Tutorials/Math/Trigonometry/atanh.gdshader" id="46_iffii"]
 [ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="47_2rigf"]
 [ext_resource type="Texture2D" uid="uid://c0lmdgphobrbo" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_nor_gl_1k.png" id="48_wqs6l"]
 
@@ -76,14 +88,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_80w6i"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_kbnq3"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_561kp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u2wcb"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_80w6i")
+albedo_texture = SubResource("ViewportTexture_kbnq3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -227,6 +239,66 @@ shader = ExtResource("34_xbh4r")
 shader_parameter/scale = 5.0
 shader_parameter/a = 1.0
 shader_parameter/b = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ikbq6"]
+render_priority = 0
+shader = ExtResource("35_17ntp")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iow0l"]
+render_priority = 0
+shader = ExtResource("36_sv1xp")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gf1p"]
+render_priority = 0
+shader = ExtResource("37_s75ot")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbnq3"]
+render_priority = 0
+shader = ExtResource("38_s75ot")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2wcb"]
+render_priority = 0
+shader = ExtResource("39_xpevr")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umfrm"]
+render_priority = 0
+shader = ExtResource("38_xpevr")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7rsy"]
+render_priority = 0
+shader = ExtResource("41_kbnq3")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dnw6j"]
+render_priority = 0
+shader = ExtResource("42_u2wcb")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85xq7"]
+render_priority = 0
+shader = ExtResource("43_wj5qw")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_id5fd"]
+render_priority = 0
+shader = ExtResource("44_rp6a1")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_65i8n"]
+render_priority = 0
+shader = ExtResource("45_1ge1e")
+shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3v54a"]
+render_priority = 0
+shader = ExtResource("46_iffii")
+shader_parameter/scale = 5.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wbsx"]
 resource_name = "Roof"
@@ -1039,7 +1111,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_561kp")
+surface_material_override/0 = SubResource("StandardMaterial3D_u2wcb")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1185,7 +1257,7 @@ material = SubResource("ShaderMaterial_aof11")
 
 [node name="round" parent="MathTower/Floor -1/Basics" unique_id=1559120285 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(0.4226182, 0, -0.90630776, 0, 1, 0, 0.90630776, 0, 0.4226182, -5.347216, 0, 2.4934478)
-title = " "
+title = " round(x)"
 description = ""
 material = SubResource("ShaderMaterial_xbh4r")
 
@@ -1202,7 +1274,7 @@ description = ""
 material = SubResource("ShaderMaterial_avgq5")
 
 [node name="Step" type="Node3D" parent="MathTower/Floor -1" unique_id=1735348688]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 script = ExtResource("18_3m87l")
 radius = 3.7
 angle_offset_deg = 17.0
@@ -1225,6 +1297,84 @@ transform = Transform3D(0.95630467, 0, -0.29237166, 0, 1, 0, 0.29237166, 0, 0.95
 title = " smoothstep(a, b, x)"
 description = ""
 material = SubResource("ShaderMaterial_1kanq")
+
+[node name="Trigonometry" type="Node3D" parent="MathTower/Floor -1" unique_id=323294350]
+transform = Transform3D(0.79568195, 0, 0.6057148, 0, 1, 0, -0.6057148, 0, 0.79568195, 0, 0, 0)
+script = ExtResource("18_3m87l")
+radius = 5.9
+angle_offset_deg = 7.0
+
+[node name="sin" parent="MathTower/Floor -1/Trigonometry" unique_id=61520361 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 5.9)
+title = " sin(x)"
+description = ""
+material = SubResource("ShaderMaterial_ikbq6")
+
+[node name="cos" parent="MathTower/Floor -1/Trigonometry" unique_id=1780082140 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.992546, 0, -0.12186933, 0, 1, 0, 0.12186933, 0, 0.992546, -0.7190291, 0, 5.8560224)
+title = " cos(x)"
+description = ""
+material = SubResource("ShaderMaterial_iow0l")
+
+[node name="tan" parent="MathTower/Floor -1/Trigonometry" unique_id=1739937808 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.9702956, 0, -0.24192187, 0, 1, 0, 0.24192187, 0, 0.9702956, -1.4273392, 0, 5.724745)
+title = "tan(x)"
+description = ""
+material = SubResource("ShaderMaterial_5gf1p")
+
+[node name="asin" parent="MathTower/Floor -1/Trigonometry" unique_id=2041944418 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.9335802, 0, -0.3583679, 0, 1, 0, 0.3583679, 0, 0.9335802, -2.1143708, 0, 5.5081244)
+title = "asin(x)"
+description = ""
+material = SubResource("ShaderMaterial_kbnq3")
+
+[node name="acos" parent="MathTower/Floor -1/Trigonometry" unique_id=1442795204 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.8829474, 0, -0.46947148, 0, 1, 0, 0.46947148, 0, 0.8829474, -2.7698822, 0, 5.2093906)
+title = "acos(x)"
+description = ""
+material = SubResource("ShaderMaterial_u2wcb")
+
+[node name="atan" parent="MathTower/Floor -1/Trigonometry" unique_id=2086857596 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.81915194, 0, -0.5735764, 0, 1, 0, 0.5735764, 0, 0.81915194, -3.384101, 0, 4.832997)
+title = "atan(x)"
+description = ""
+material = SubResource("ShaderMaterial_umfrm")
+
+[node name="sinh" parent="MathTower/Floor -1/Trigonometry" unique_id=1679241553 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.74314475, 0, -0.66913056, 0, 1, 0, 0.66913056, 0, 0.74314475, -3.9478705, 0, 4.3845544)
+title = "sinh(x)"
+description = ""
+material = SubResource("ShaderMaterial_y7rsy")
+
+[node name="cosh" parent="MathTower/Floor -1/Trigonometry" unique_id=495416083 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.65605897, 0, -0.7547094, 0, 1, 0, 0.7547094, 0, 0.65605897, -4.4527864, 0, 3.8707483)
+title = "cosh(x)"
+description = ""
+material = SubResource("ShaderMaterial_dnw6j")
+
+[node name="tanh" parent="MathTower/Floor -1/Trigonometry" unique_id=1957626805 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.55919284, 0, -0.8290374, 0, 1, 0, 0.8290374, 0, 0.55919284, -4.8913217, 0, 3.2992382)
+title = "tanh(x)"
+description = ""
+material = SubResource("ShaderMaterial_85xq7")
+
+[node name="asinh" parent="MathTower/Floor -1/Trigonometry" unique_id=1550438015 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.45399046, 0, -0.8910064, 0, 1, 0, 0.8910064, 0, 0.45399046, -5.2569385, 0, 2.678544)
+title = "asinh(x)"
+description = ""
+material = SubResource("ShaderMaterial_id5fd")
+
+[node name="acosh" parent="MathTower/Floor -1/Trigonometry" unique_id=355852476 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.34202012, 0, -0.9396925, 0, 1, 0, 0.9396925, 0, 0.34202012, -5.5441866, 0, 2.0179188)
+title = "acosh(x)"
+description = ""
+material = SubResource("ShaderMaterial_65i8n")
+
+[node name="atanh" parent="MathTower/Floor -1/Trigonometry" unique_id=1377505715 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.22495101, 0, -0.97436994, 0, 1, 0, 0.97436994, 0, 0.22495101, -5.7487836, 0, 1.3272113)
+title = "atanh(x)"
+description = ""
+material = SubResource("ShaderMaterial_3v54a")
 
 [node name="Transform" type="Node3D" parent="MathTower/Floor -1" unique_id=1877755833]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -1378,27 +1528,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("18_3m87l")
 radius = -2.5
 angle_offset_deg = 22.5
+arrange_around_the_center = true
 
 [node name="Albedo" parent="Light/Light/Godot light" unique_id=1840847962 instance=ExtResource("7_xewg6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+transform = Transform3D(0.8314696, 0, 0.55557024, 0, 1, 0, -0.55557024, 0, 0.8314696, -1.3889256, 0, -2.078674)
 title = "Albedo"
 material = SubResource("ShaderMaterial_m4po6")
 meshToDisplay = SubResource("SphereMesh_yfnap")
 
 [node name="FragmentOutputs" parent="Light/Light/Godot light" unique_id=639742030 instance=ExtResource("7_xewg6")]
-transform = Transform3D(0.9238795, 0, -0.38268346, 0, 1, 0, 0.38268346, 0, 0.9238795, 0.9567086, 0, -2.3096988)
+transform = Transform3D(0.98078525, 0, 0.19509032, 0, 1, 0, -0.19509032, 0, 0.98078525, -0.4877258, 0, -2.4519632)
 title = "FragmentOutputs"
 material = SubResource("ShaderMaterial_75l2c")
 meshToDisplay = SubResource("SphereMesh_htnhy")
 
 [node name="NormalMap" parent="Light/Light/Godot light" unique_id=986707564 instance=ExtResource("7_xewg6")]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 1.767767, 0, -1.767767)
+transform = Transform3D(0.9807852, 0, -0.19509031, 0, 1, 0, 0.19509031, 0, 0.9807852, 0.4877258, 0, -2.4519632)
 title = "Normal maps"
 material = SubResource("ShaderMaterial_17ntp")
 meshToDisplay = SubResource("BoxMesh_htnhy")
 
 [node name="ARM" parent="Light/Light/Godot light" unique_id=1082447127 instance=ExtResource("7_xewg6")]
-transform = Transform3D(0.38268343, 0, -0.9238795, 0, 1, 0, 0.9238795, 0, 0.38268343, 2.3096988, 0, -0.9567086)
+transform = Transform3D(0.83146954, 0, -0.5555702, 0, 1, 0, 0.5555702, 0, 0.83146954, 1.3889256, 0, -2.078674)
 title = "ARM map"
 material = SubResource("ShaderMaterial_sv1xp")
 meshToDisplay = SubResource("BoxMesh_yfnap")
