@@ -40,6 +40,8 @@
 [ext_resource type="Shader" uid="uid://0qutmfr0vn3m" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/step xa.gdshader" id="32_jrc4g"]
 [ext_resource type="Shader" uid="uid://cy30kuxq0mcjk" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/step ax.gdshader" id="33_aof11"]
 [ext_resource type="Shader" uid="uid://bcytcdbdiaegd" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/smoothstep.gdshader" id="34_xbh4r"]
+[ext_resource type="Shader" uid="uid://6pe8adnsy33h" path="res://ShaderCastleForGodot/Tutorials/Buffer/ScreenTexture/BasicScreenTexture.gdshader" id="35_avgq5"]
+[ext_resource type="Shader" uid="uid://chb8tc7pycgj4" path="res://ShaderCastleForGodot/Tutorials/Buffer/ScreenTexture/ScreenTextureTinted.gdshader" id="36_i2ip5"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="41_xbh4r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="42_of8ie"]
 
@@ -66,14 +68,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_of8ie"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_avgq5"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avgq5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2ip5"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_of8ie")
+albedo_texture = SubResource("ViewportTexture_avgq5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -910,6 +912,17 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bwniq")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84nie"]
+render_priority = 0
+shader = ExtResource("35_avgq5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2y8t4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2y8t4"]
+render_priority = 0
+shader = ExtResource("36_i2ip5")
+shader_parameter/color_tint = Color(0.8627451, 0.11764706, 0.11764706, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52rap"]
 render_priority = 0
 shader = ExtResource("22_5gf47")
@@ -974,7 +987,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_avgq5")
+surface_material_override/0 = SubResource("StandardMaterial3D_i2ip5")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1242,6 +1255,23 @@ mesh = SubResource("ArrayMesh_okxkm")
 
 [node name="Buffer" type="Node3D" parent="." unique_id=2841552]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 12.7, 68.3)
+
+[node name="Node3D" type="Node3D" parent="Buffer" unique_id=126240253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
+
+[node name="Local vertex offset" parent="Buffer/Node3D" unique_id=317856363 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5505887, 0, -3.5478516)
+title = "Basic screen texture"
+description = "The screen_texture reads the current frame buffer."
+material = SubResource("ShaderMaterial_84nie")
+meshToDisplay = SubResource("QuadMesh_2y8t4")
+
+[node name="Local vertex offset2" parent="Buffer/Node3D" unique_id=716762994 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7318997, 0, -3.5478516)
+title = "Aligned screen texture with tint"
+description = "Using the screen UVs, the texture can be aligned with the camera. This color can then be modified."
+material = SubResource("ShaderMaterial_2y8t4")
+meshToDisplay = SubResource("QuadMesh_2y8t4")
 
 [node name="Buffer" parent="Buffer" unique_id=1742799541 instance=ExtResource("5_r8aig")]
 
