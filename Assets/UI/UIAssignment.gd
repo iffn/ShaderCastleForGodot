@@ -1,13 +1,16 @@
 @tool
 extends Node
 
+@export_category("Display settings")
 @export var title : String = "Title"
 @export var description : String = "Description"
 @export var material : Material
+@export var meshToDisplay : Mesh
 
+@export_category("Prefab settings")
 @export var title_label : Label
 @export var description_label : Label
-@export var mesh : GeometryInstance3D
+@export var displayMesh : MeshInstance3D
 
 @export var click_to_apply : bool:
 	set(value):
@@ -17,15 +20,14 @@ extends Node
 @export var click_to_get_material : bool:
 	set(value):
 		if value:
-			material = mesh.get_surface_override_material(0)
+			material = displayMesh.get_surface_override_material(0)
 
 func apply_data() -> void:
 	title_label.text = title
 	description_label.text = description
-	if mesh is MeshInstance3D:
-		mesh.set_surface_override_material(0, material)
-	elif  mesh is CSGBox3D:
-		mesh.material = material
+	if meshToDisplay:
+		displayMesh.mesh = meshToDisplay
+	displayMesh.set_surface_override_material(0, material)
 
 func _ready() -> void:
 	apply_data()

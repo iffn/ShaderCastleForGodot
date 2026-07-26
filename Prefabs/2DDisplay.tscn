@@ -16,11 +16,11 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_cdgdd")
 
-[node name="2D Display" type="Node3D" unique_id=1555241329 node_paths=PackedStringArray("title_label", "description_label", "mesh")]
+[node name="2D Display" type="Node3D" unique_id=1555241329 node_paths=PackedStringArray("title_label", "description_label", "displayMesh")]
 script = ExtResource("1_suvce")
 title_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Title")
 description_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Description")
-mesh = NodePath("DisplayOrigin/DisplayQuad")
+displayMesh = NodePath("DisplayOrigin/DisplayQuad")
 
 [node name="DisplayOrigin" type="Node3D" parent="." unique_id=595881598]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -0.001)

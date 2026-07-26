@@ -101,21 +101,31 @@ shader = ExtResource("9_x6je3")
 render_priority = 0
 shader = ExtResource("10_lbamv")
 
+[sub_resource type="QuadMesh" id="QuadMesh_avgq5"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3gpvc"]
 render_priority = 0
 shader = ExtResource("11_q65ym")
+
+[sub_resource type="QuadMesh" id="QuadMesh_of8ie"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3m87l"]
 render_priority = 0
 shader = ExtResource("12_5s0qr")
 
+[sub_resource type="QuadMesh" id="QuadMesh_i2ip5"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kk271"]
 render_priority = 0
 shader = ExtResource("13_5gf47")
 
+[sub_resource type="QuadMesh" id="QuadMesh_08vxt"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sfgd4"]
 render_priority = 0
 shader = ExtResource("14_52rap")
+
+[sub_resource type="QuadMesh" id="QuadMesh_84nie"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
 render_priority = 0
@@ -1004,30 +1014,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1286283, 0, -2.3958015)
 title = "Billboard"
 description = "Instead of transforming the mesh normally into the camera space, the mesh can be made to always face the camera. This is often used for particle effects.This effect should be used carefully, since it can cause weird effects like grass always looking at you."
 material = SubResource("ShaderMaterial_q65ym")
+meshToDisplay = SubResource("QuadMesh_avgq5")
 
 [node name="Vertical billboard" parent="Entrance/Vertex shader" unique_id=1844938133 instance=ExtResource("7_xewg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1318555, 0, -2.3958015)
 title = "Vertical billboard"
 description = "Instead of fully facing the camera, the mesh can be rotated around an axis to face the player. This works for some applications, but also breaks down in others."
 material = SubResource("ShaderMaterial_3gpvc")
+meshToDisplay = SubResource("QuadMesh_of8ie")
 
 [node name="Cull back" parent="Entrance/Vertex shader" unique_id=1430775943 instance=ExtResource("7_xewg6")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -7.5945106, 0, 2.3254852)
 title = "Cull Back"
 description = "Shaders is about optimization and for closed meshes, the side  of a triangle that is relevant to the user can often be defined, while the other side can be optimized away.Culling means discarding one side of the face, and there are 3 options.Cull Back means not rendering the back faces"
 material = SubResource("ShaderMaterial_3m87l")
+meshToDisplay = SubResource("QuadMesh_i2ip5")
 
 [node name="Cull front" parent="Entrance/Vertex shader" unique_id=793577331 instance=ExtResource("7_xewg6")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -7.5945106, 0, 1.2050133)
 title = "Cull Front"
 description = "Cull Front means not rendering the front face.This shows the inside of the mesh, which can be used to create an outline effect for example."
 material = SubResource("ShaderMaterial_kk271")
+meshToDisplay = SubResource("QuadMesh_08vxt")
 
 [node name="Cull off" parent="Entrance/Vertex shader" unique_id=667717992 instance=ExtResource("7_xewg6")]
 transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -7.5945106, 0, -0.056365967)
 title = "Cull Off"
 description = "Cull Off means not discarding either side.This can be useful for 2d dipslays like foiliage, where both sides should be visible."
 material = SubResource("ShaderMaterial_sfgd4")
+meshToDisplay = SubResource("QuadMesh_84nie")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
