@@ -42,6 +42,8 @@
 [ext_resource type="Shader" uid="uid://bcytcdbdiaegd" path="res://ShaderCastleForGodot/Tutorials/Math/BuiltIn/smoothstep.gdshader" id="34_xbh4r"]
 [ext_resource type="Shader" uid="uid://6pe8adnsy33h" path="res://ShaderCastleForGodot/Tutorials/Buffer/ScreenTexture/BasicScreenTexture.gdshader" id="35_avgq5"]
 [ext_resource type="Shader" uid="uid://chb8tc7pycgj4" path="res://ShaderCastleForGodot/Tutorials/Buffer/ScreenTexture/ScreenTextureTinted.gdshader" id="36_i2ip5"]
+[ext_resource type="Shader" uid="uid://5pjricdn0f8i" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthTexture/BasicDepthTexture.gdshader" id="37_08vxt"]
+[ext_resource type="Shader" uid="uid://dy3v6f6b8eg6v" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthTexture/DepthTextureAligned.gdshader" id="38_84nie"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="41_xbh4r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="42_of8ie"]
 
@@ -923,6 +925,14 @@ render_priority = 0
 shader = ExtResource("36_i2ip5")
 shader_parameter/color_tint = Color(0.8627451, 0.11764706, 0.11764706, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_htnhy"]
+render_priority = 0
+shader = ExtResource("37_08vxt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yfnap"]
+render_priority = 0
+shader = ExtResource("38_84nie")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52rap"]
 render_priority = 0
 shader = ExtResource("22_5gf47")
@@ -1256,22 +1266,43 @@ mesh = SubResource("ArrayMesh_okxkm")
 [node name="Buffer" type="Node3D" parent="." unique_id=2841552]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 12.7, 68.3)
 
-[node name="Node3D" type="Node3D" parent="Buffer" unique_id=126240253]
+[node name="Screen texture" type="Node3D" parent="Buffer" unique_id=126240253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
 
-[node name="Local vertex offset" parent="Buffer/Node3D" unique_id=317856363 instance=ExtResource("7_xewg6")]
+[node name="Basic screen textrue" parent="Buffer/Screen texture" unique_id=317856363 instance=ExtResource("7_xewg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5505887, 0, -3.5478516)
 title = "Basic screen texture"
 description = "The screen_texture reads the current frame buffer."
 material = SubResource("ShaderMaterial_84nie")
 meshToDisplay = SubResource("QuadMesh_2y8t4")
 
-[node name="Local vertex offset2" parent="Buffer/Node3D" unique_id=716762994 instance=ExtResource("7_xewg6")]
+[node name="Aligned screen texture with tint" parent="Buffer/Screen texture" unique_id=716762994 instance=ExtResource("7_xewg6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7318997, 0, -3.5478516)
 title = "Aligned screen texture with tint"
 description = "Using the screen UVs, the texture can be aligned with the camera. This color can then be modified."
 material = SubResource("ShaderMaterial_2y8t4")
 meshToDisplay = SubResource("QuadMesh_2y8t4")
+
+[node name="Depth buffer" type="Node3D" parent="Buffer" unique_id=1640373603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.299999, 0, -5.5)
+
+[node name="Basic depth texture" parent="Buffer/Depth buffer" unique_id=1975697208 instance=ExtResource("7_xewg6")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -3.5315828, 0, 0.97393036)
+title = "Basic depth texture"
+description = "The current depth texture can be read inside the shader."
+material = SubResource("ShaderMaterial_htnhy")
+meshToDisplay = SubResource("QuadMesh_2y8t4")
+
+[node name="Aligned depth texture" parent="Buffer/Depth buffer" unique_id=1955367364 instance=ExtResource("7_xewg6")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -3.3043756, 0, -0.69877625)
+title = "Aligned depth texture"
+description = "Using the screen UVs, the depth texture can be aligned with the view."
+material = SubResource("ShaderMaterial_yfnap")
+meshToDisplay = SubResource("QuadMesh_2y8t4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Buffer/Depth buffer/Aligned depth texture" unique_id=741649301]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 1.2799501, -0.29490566)
+size = Vector3(0.2, 0.2, 0.2)
 
 [node name="Buffer" parent="Buffer" unique_id=1742799541 instance=ExtResource("5_r8aig")]
 

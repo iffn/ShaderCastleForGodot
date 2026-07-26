@@ -9,6 +9,5 @@ void vertex() {
 }
 
 void fragment() {
-	
 	ALBEDO = texture(screen_texture, UV).rgb; // Sample the captured screen texture mapped to the quad's mesh UVs
 }
