@@ -66,6 +66,11 @@ _subresources={
 "use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/RoofInside.tres",
 "use_external/path": "uid://bystblbtnu8f6"
 },
+"Roof inside main room": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/RoofInside.tres",
+"use_external/path": "uid://bystblbtnu8f6"
+},
 "Roof outside": {
 "use_external/enabled": true,
 "use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Buildings/General/RoofOutisde.tres",
