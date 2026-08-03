@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ce7ch8g3s6nmb" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="12_660i6"]
 [ext_resource type="Shader" uid="uid://7dl3t166bhvk" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullFront.gdshader" id="13_5gf47"]
 [ext_resource type="Shader" uid="uid://qlvpymemqxwj" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullOff.gdshader" id="14_52rap"]
+[ext_resource type="Shader" uid="uid://bcfiws48mponp" path="res://ShaderCastleForGodot/Tutorials/VertexShader/Wireframe.gdshader" id="15_y7rsy"]
 [ext_resource type="Script" uid="uid://b5a254p3g7rt7" path="res://ShaderCastleForGodot/Assets/UI/ArcArrangement.gd" id="18_3m87l"]
 [ext_resource type="Shader" uid="uid://bsl2ar4urssjm" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/Linear.gdshader" id="19_sfgd4"]
 [ext_resource type="Shader" uid="uid://b1y8p4yv4fg6v" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/abs.gdshader" id="20_xeuay"]
@@ -93,14 +94,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_u2wcb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iffii"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wj5qw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7rsy"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_u2wcb")
+albedo_texture = SubResource("ViewportTexture_iffii")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -153,6 +154,15 @@ render_priority = 0
 shader = ExtResource("14_52rap")
 
 [sub_resource type="QuadMesh" id="QuadMesh_84nie"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hh0ue"]
+render_priority = 0
+shader = ExtResource("15_y7rsy")
+shader_parameter/modelColor = Color(1, 0, 0, 1)
+shader_parameter/wireframeColor = Color(0, 0, 0, 1)
+shader_parameter/width = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_iffii"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
 render_priority = 0
@@ -1147,7 +1157,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_wj5qw")
+surface_material_override/0 = SubResource("StandardMaterial3D_y7rsy")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1216,6 +1226,13 @@ title = "Cull Off"
 description = "Cull Off means not discarding either side.This can be useful for 2d dipslays like foiliage, where both sides should be visible."
 material = SubResource("ShaderMaterial_sfgd4")
 meshToDisplay = SubResource("QuadMesh_84nie")
+
+[node name="Wireframe" parent="Entrance/Vertex shader" unique_id=394386953 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 9.0875)
+title = "Wireframe"
+description = " "
+material = SubResource("ShaderMaterial_hh0ue")
+meshToDisplay = SubResource("SphereMesh_iffii")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
