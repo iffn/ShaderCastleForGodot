@@ -3,7 +3,7 @@ extends Node
 
 @export_category("Display settings")
 @export var title : String = "Title"
-@export var description : String = "Description"
+@export_multiline var description : String = "Description"
 @export var material : Material
 @export var meshToDisplay : Mesh
 

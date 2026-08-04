@@ -96,14 +96,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y7rsy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_85xq7"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnw6j"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id5fd"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_y7rsy")
+albedo_texture = SubResource("ViewportTexture_85xq7")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -203,14 +203,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jceew")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_85xq7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ehqcw"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id5fd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkfu4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_85xq7")
+albedo_texture = SubResource("ViewportTexture_ehqcw")
+
+[sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
+size = Vector2(1.5, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3v54a"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_espxb"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_3v54a")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
 render_priority = 0
@@ -1205,7 +1217,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_dnw6j")
+surface_material_override/0 = SubResource("StandardMaterial3D_id5fd")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1276,14 +1288,14 @@ material = SubResource("ShaderMaterial_sfgd4")
 meshToDisplay = SubResource("QuadMesh_84nie")
 
 [node name="Wireframe" parent="Entrance/Vertex shader" unique_id=394386953 instance=ExtResource("7_xewg6")]
-transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 9.0875)
+transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 8.48823)
 title = "Wireframe"
 description = " "
 material = SubResource("ShaderMaterial_hh0ue")
 meshToDisplay = SubResource("SphereMesh_iffii")
 
 [node name="MultiMeshInstance3D" parent="Entrance/Vertex shader" unique_id=912002243 instance=ExtResource("7_xewg6")]
-transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 10.161013)
+transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 9.900816)
 title = "MultiMeshInstance3D"
 description = " "
 material = SubResource("ShaderMaterial_g5oki")
@@ -1311,7 +1323,114 @@ text = "MultiMeshInstance3D"
 text = " "
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/MultiMeshInstance3D/3D UI" parent_id_path=PackedInt32Array(912002243, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_id5fd")
+surface_material_override/0 = SubResource("StandardMaterial3D_jkfu4")
+
+[node name="Control" type="Control" parent="Entrance/Vertex shader/MultiMeshInstance3D" unique_id=778956855]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Entrance/Vertex shader/MultiMeshInstance3D/Control" unique_id=1614488305]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Entrance/Vertex shader/MultiMeshInstance3D/Control" unique_id=1725889088]
+custom_minimum_size = Vector2(700, 0)
+custom_maximum_size = Vector2(700, -1)
+layout_mode = 0
+offset_right = 700.0
+offset_bottom = 830.0
+
+[node name="Title" type="Label" parent="Entrance/Vertex shader/MultiMeshInstance3D/Control/VBoxContainer" unique_id=1600332063]
+layout_mode = 2
+text = "Where is the geometry shader?"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Entrance/Vertex shader/MultiMeshInstance3D/Control/VBoxContainer" unique_id=2008160413]
+layout_mode = 2
+text = "Mesh on GPU:
+Sending meshes from the CPU to the GPU for rendering is slow. Therefore, it is preferable to store or generate them directly on the GPU. However, managing this architecturally is complex, and the real-time graphics industry is currently in an awkward transition period.
+
+Geometry Shader:
+The initial idea was to allow the GPU to construct new geometry dynamically. However, GPUs require predictable memory allocations to stay performant. This clashed with the dynamic output of geometry shaders, which is why they are now largely considered deprecated and were never implemented into Godot.
+
+Tessellation:
+Tessellation was designed to subdivide mesh triangles directly on the GPU to increase geometric detail. However, this hardware-bound approach is now also considered deprecated and was not implemented into Godot's high-level shading language.
+
+GPU Instancing:
+GPU instancing loads a single mesh (such as a tree) onto the GPU once, then passes a list of transform data (position, scale, rotation) to render many copies efficiently. This offers excellent performance and is supported in Godot via the MultiMeshInstance3D node.
+
+Compute Shader:
+Historically, GPUs were rigid pipeline machines. Modern GPUs allow general-purpose code execution via compute shaders, which can generate and manipulate raw mesh data. However, relying on compute shaders limits cross-platform compatibility, particularly with Web exports.
+
+Mesh Shader:
+Introduced as a modern replacement for geometry and tessellation shaders, mesh shaders bring compute-like flexibility to geometry generation. However, this is a newer hardware workflow and is not yet available in Godot's high-level shader workflow."
+autowrap_mode = 3
+
+[node name="Where is the geometry shader" parent="Entrance/Vertex shader" unique_id=2030272435 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6885948, 3, 12.110512)
+title = "Where is the geometry shader?"
+description = "Mesh on GPU:
+Sending meshes from the CPU to the GPU for rendering is slow. Therefore, it is preferable to store or generate them directly on the GPU. However, managing this architecturally is complex, and the real-time graphics industry is currently in an awkward transition period.
+
+Geometry Shader:
+The initial idea was to allow the GPU to construct new geometry dynamically. However, GPUs require predictable memory allocations to stay performant. This clashed with the dynamic output of geometry shaders, which is why they are now largely considered deprecated and were never implemented into Godot.
+
+Tessellation:
+Tessellation was designed to subdivide mesh triangles directly on the GPU to increase geometric detail. However, this hardware-bound approach is now also considered deprecated and was not implemented into Godot's high-level shading language.
+
+GPU Instancing:
+GPU instancing loads a single mesh (such as a tree) onto the GPU once, then passes a list of transform data (position, scale, rotation) to render many copies efficiently. This offers excellent performance and is supported in Godot via the MultiMeshInstance3D node.
+
+Compute Shader:
+Historically, GPUs were rigid pipeline machines. Modern GPUs allow general-purpose code execution via compute shaders, which can generate and manipulate raw mesh data. However, relying on compute shaders limits cross-platform compatibility, particularly with Web exports.
+
+Mesh Shader:
+Introduced as a modern replacement for geometry and tessellation shaders, mesh shaders bring compute-like flexibility to geometry generation. However, this is a newer hardware workflow and is not yet available in Godot's high-level shader workflow."
+
+[node name="DisplayQuad" parent="Entrance/Vertex shader/Where is the geometry shader/DisplayOrigin" parent_id_path=PackedInt32Array(2030272435, 595881598) index="0" unique_id=1420667322]
+visible = false
+
+[node name="3D UI" parent="Entrance/Vertex shader/Where is the geometry shader" index="1" unique_id=498438476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53149414, -0.001)
+
+[node name="SubViewport" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="0" unique_id=1631946190]
+size = Vector2i(825, 825)
+
+[node name="VBoxContainer" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(2030272435, 498438476, 600475954) index="1" unique_id=1806436609]
+custom_minimum_size = Vector2(0, 0)
+custom_maximum_size = Vector2(825, -1)
+offset_right = 825.0
+offset_bottom = 804.0
+
+[node name="Title" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI/SubViewport/Control/VBoxContainer" index="0" unique_id=1954479272]
+text = "Where is the geometry shader?"
+
+[node name="Description" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI/SubViewport/Control/VBoxContainer" index="1" unique_id=410209021]
+text = "Mesh on GPU:
+Sending meshes from the CPU to the GPU for rendering is slow. Therefore, it is preferable to store or generate them directly on the GPU. However, managing this architecturally is complex, and the real-time graphics industry is currently in an awkward transition period.
+
+Geometry Shader:
+The initial idea was to allow the GPU to construct new geometry dynamically. However, GPUs require predictable memory allocations to stay performant. This clashed with the dynamic output of geometry shaders, which is why they are now largely considered deprecated and were never implemented into Godot.
+
+Tessellation:
+Tessellation was designed to subdivide mesh triangles directly on the GPU to increase geometric detail. However, this hardware-bound approach is now also considered deprecated and was not implemented into Godot's high-level shading language.
+
+GPU Instancing:
+GPU instancing loads a single mesh (such as a tree) onto the GPU once, then passes a list of transform data (position, scale, rotation) to render many copies efficiently. This offers excellent performance and is supported in Godot via the MultiMeshInstance3D node.
+
+Compute Shader:
+Historically, GPUs were rigid pipeline machines. Modern GPUs allow general-purpose code execution via compute shaders, which can generate and manipulate raw mesh data. However, relying on compute shaders limits cross-platform compatibility, particularly with Web exports.
+
+Mesh Shader:
+Introduced as a modern replacement for geometry and tessellation shaders, mesh shaders bring compute-like flexibility to geometry generation. However, this is a newer hardware workflow and is not yet available in Godot's high-level shader workflow."
+
+[node name="MeshInstance3D" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="1" unique_id=121505346]
+mesh = SubResource("QuadMesh_65i8n")
+surface_material_override/0 = SubResource("StandardMaterial3D_espxb")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
@@ -1745,3 +1864,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-07, 10.602706, -17
 [editable path="Entrance/Basics/Color picker/3D UI"]
 [editable path="Entrance/Vertex shader/MultiMeshInstance3D"]
 [editable path="Entrance/Vertex shader/MultiMeshInstance3D/3D UI"]
+[editable path="Entrance/Vertex shader/Where is the geometry shader"]
+[editable path="Entrance/Vertex shader/Where is the geometry shader/3D UI"]
