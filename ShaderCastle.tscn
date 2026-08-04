@@ -22,6 +22,7 @@
 [ext_resource type="Shader" uid="uid://7dl3t166bhvk" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullFront.gdshader" id="13_5gf47"]
 [ext_resource type="Shader" uid="uid://qlvpymemqxwj" path="res://ShaderCastleForGodot/Tutorials/VertexShader/CullOff.gdshader" id="14_52rap"]
 [ext_resource type="Shader" uid="uid://bcfiws48mponp" path="res://ShaderCastleForGodot/Tutorials/VertexShader/Wireframe.gdshader" id="15_y7rsy"]
+[ext_resource type="Shader" uid="uid://j7ule0ffo61h" path="res://ShaderCastleForGodot/Tutorials/VertexShader/Outline.gdshader" id="17_id5fd"]
 [ext_resource type="Script" uid="uid://b5a254p3g7rt7" path="res://ShaderCastleForGodot/Assets/UI/ArcArrangement.gd" id="18_3m87l"]
 [ext_resource type="Shader" uid="uid://bsl2ar4urssjm" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/Linear.gdshader" id="19_sfgd4"]
 [ext_resource type="Shader" uid="uid://b1y8p4yv4fg6v" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/abs.gdshader" id="20_xeuay"]
@@ -70,6 +71,8 @@
 [ext_resource type="Shader" uid="uid://bjh5cd7wxsm1h" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Trigonometry/atanh.gdshader" id="46_iffii"]
 [ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="47_2rigf"]
 [ext_resource type="Texture2D" uid="uid://c0lmdgphobrbo" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_nor_gl_1k.png" id="48_wqs6l"]
+[ext_resource type="Shader" uid="uid://bnny14k4k5m4v" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthBufferRoom/DepthLenseDemoRoom.gdshader" id="60_65i8n"]
+[ext_resource type="Shader" uid="uid://cajq5f47tppol" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthBufferRoom/DepthWrite.gdshader" id="61_3v54a"]
 [ext_resource type="Script" uid="uid://chh5q26c43rj1" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gd" id="71_85xq7"]
 [ext_resource type="Shader" uid="uid://b8xdqcuvjim8t" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gdshader" id="72_85xq7"]
 
@@ -157,14 +160,25 @@ shader = ExtResource("14_52rap")
 
 [sub_resource type="QuadMesh" id="QuadMesh_84nie"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_er7f8"]
+render_priority = 0
+shader = ExtResource("8_660i6")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh0ue"]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_er7f8")
+shader = ExtResource("17_id5fd")
+shader_parameter/outline_thickness = 0.02
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_iffii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_haf7y"]
 render_priority = 0
 shader = ExtResource("15_y7rsy")
 shader_parameter/modelColor = Color(1, 0, 0, 1)
 shader_parameter/wireframeColor = Color(0, 0, 0, 1)
 shader_parameter/width = 1.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_iffii"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g5oki"]
 render_priority = 0
@@ -203,26 +217,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jceew")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ehqcw"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_65i8n"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkfu4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3v54a"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ehqcw")
+albedo_texture = SubResource("ViewportTexture_65i8n")
 
 [sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
 size = Vector2(1.5, 1.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_3v54a"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_espxb"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_espxb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ehqcw"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_3v54a")
+albedo_texture = SubResource("ViewportTexture_espxb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
 render_priority = 0
@@ -1117,6 +1131,27 @@ shader = ExtResource("37_08vxt")
 render_priority = 0
 shader = ExtResource("38_84nie")
 
+[sub_resource type="QuadMesh" id="QuadMesh_rdm35"]
+size = Vector2(2, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oirlh"]
+viewport_path = NodePath("Buffer/DepthBufferRoom/DepthRenderer")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26wev"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_oirlh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rb3dj"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("60_65i8n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eqath"]
+render_priority = 0
+shader = ExtResource("61_3v54a")
+shader_parameter/depth = 0.9
+shader_parameter/albedo = Color(1, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52rap"]
 render_priority = 0
 shader = ExtResource("22_5gf47")
@@ -1287,15 +1322,22 @@ description = "Cull Off means not discarding either side.This can be useful for 
 material = SubResource("ShaderMaterial_sfgd4")
 meshToDisplay = SubResource("QuadMesh_84nie")
 
-[node name="Wireframe" parent="Entrance/Vertex shader" unique_id=394386953 instance=ExtResource("7_xewg6")]
-transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 8.48823)
-title = "Wireframe"
+[node name="Outline" parent="Entrance/Vertex shader" unique_id=394386953 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 8.212679)
+title = "Outline"
 description = " "
 material = SubResource("ShaderMaterial_hh0ue")
 meshToDisplay = SubResource("SphereMesh_iffii")
 
+[node name="Wireframe2" parent="Entrance/Vertex shader" unique_id=328139717 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 9.199747)
+title = "Wireframe"
+description = " "
+material = SubResource("ShaderMaterial_haf7y")
+meshToDisplay = SubResource("SphereMesh_iffii")
+
 [node name="MultiMeshInstance3D" parent="Entrance/Vertex shader" unique_id=912002243 instance=ExtResource("7_xewg6")]
-transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 9.900816)
+transform = Transform3D(1.1924882e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924882e-08, 3.0172703, 3.0506268, 10.334904)
 title = "MultiMeshInstance3D"
 description = " "
 material = SubResource("ShaderMaterial_g5oki")
@@ -1323,7 +1365,7 @@ text = "MultiMeshInstance3D"
 text = " "
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/MultiMeshInstance3D/3D UI" parent_id_path=PackedInt32Array(912002243, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_jkfu4")
+surface_material_override/0 = SubResource("StandardMaterial3D_3v54a")
 
 [node name="Control" type="Control" parent="Entrance/Vertex shader/MultiMeshInstance3D" unique_id=778956855]
 layout_mode = 3
@@ -1430,7 +1472,7 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="1" unique_id=121505346]
 mesh = SubResource("QuadMesh_65i8n")
-surface_material_override/0 = SubResource("StandardMaterial3D_espxb")
+surface_material_override/0 = SubResource("StandardMaterial3D_ehqcw")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
@@ -1783,6 +1825,47 @@ meshToDisplay = SubResource("QuadMesh_2y8t4")
 [node name="CSGBox3D" type="CSGBox3D" parent="Buffer/Depth buffer/Aligned depth texture" unique_id=741649301]
 transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 1.2799501, -0.29490566)
 size = Vector3(0.2, 0.2, 0.2)
+
+[node name="DepthBufferRoom" type="Node3D" parent="Buffer" unique_id=1351264643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+
+[node name="DepthLense2" type="MeshInstance3D" parent="Buffer/DepthBufferRoom" unique_id=429161561]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.24954462, 1.5, -8.473175)
+mesh = SubResource("QuadMesh_rdm35")
+surface_material_override/0 = SubResource("StandardMaterial3D_26wev")
+
+[node name="DepthRenderer" type="SubViewport" parent="Buffer/DepthBufferRoom" unique_id=1747901701]
+size = Vector2i(512, 256)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Camera3D2" type="Camera3D" parent="Buffer/DepthBufferRoom/DepthRenderer" unique_id=1661333639]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.2495446, 14.2, 68.3)
+projection = 1
+size = 3.0
+near = 1.0
+far = 8.5
+
+[node name="DepthLense" type="MeshInstance3D" parent="Buffer/DepthBufferRoom/DepthRenderer/Camera3D2" unique_id=1322044142]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -1.001)
+mesh = SubResource("QuadMesh_rdm35")
+surface_material_override/0 = SubResource("ShaderMaterial_rb3dj")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Buffer/DepthBufferRoom" unique_id=1449036850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0791435, 1.3955364, -6.974228)
+radial_segments = 24
+rings = 12
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Buffer/DepthBufferRoom" unique_id=672015895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7930602, 0.25, -2.573)
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Aligned screen texture with tint" parent="Buffer/DepthBufferRoom" unique_id=469607310 instance=ExtResource("7_xewg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8930075, 0, -7.704582)
+title = "Depth writre"
+description = ""
+material = SubResource("ShaderMaterial_eqath")
+meshToDisplay = SubResource("QuadMesh_2y8t4")
 
 [node name="Buffer" parent="Buffer" unique_id=1742799541 instance=ExtResource("5_r8aig")]
 
