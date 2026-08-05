@@ -3,7 +3,6 @@ render_mode unshaded;
 
 uniform float scale : hint_range(0.1, 100.0) = 5.0;
 uniform float a = 1.0;
-uniform float b = 2.0;
 
 void fragment() {
 	// Preparation

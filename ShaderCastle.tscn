@@ -267,7 +267,6 @@ render_priority = 0
 shader = ExtResource("23_seb52")
 shader_parameter/scale = 5.0
 shader_parameter/a = 1.0
-shader_parameter/b = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ii2fx"]
 render_priority = 0
