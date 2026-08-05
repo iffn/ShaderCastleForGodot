@@ -27,7 +27,7 @@ void fragment() {
 	float x = coordinate.x;
 
 	// Function to plot
-	float y = clamp(x, a, b);
+	float y = min(x, a);
 
 	// Plotting the function
 	float plot_function = y - coordinate.y;

@@ -3,6 +3,7 @@ render_mode unshaded;
 
 uniform float scale : hint_range(0.1, 100.0) = 5.0;
 uniform float a = 1.0;
+uniform float b = 2.0;
 
 void fragment() {
 	// Preparation
@@ -26,7 +27,7 @@ void fragment() {
 	float x = coordinate.x;
 
 	// Function to plot
-	float y = min(x, a);
+	float y = clamp(x, a, b);
 
 	// Plotting the function
 	float plot_function = y - coordinate.y;
