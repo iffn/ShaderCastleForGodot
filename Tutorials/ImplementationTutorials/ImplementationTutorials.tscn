@@ -2,12 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="4_akt4p"]
 [ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="5_om2oa"]
+[ext_resource type="Shader" uid="uid://chdklspsni2rb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/ColorBlendUVY.gdshader" id="6_intij"]
 [ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/SmallVertexOffset.gdshader" id="6_tmd7j"]
-[ext_resource type="PackedScene" uid="uid://b02g8ywyrs8kj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BevelBrick.blend" id="7_s66ov"]
+[ext_resource type="Shader" uid="uid://ccxq6fwabbuw" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/VerticalBillboard.gdshader" id="7_636rn"]
+[ext_resource type="PackedScene" uid="uid://cqd0r7qk8fy66" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/GrassBladeComplex.blend" id="7_ynafr"]
 [ext_resource type="Shader" uid="uid://7nnf5cwoooyq" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/TextureDisplay.gdshader" id="8_intij"]
 [ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithCracks.gdshader" id="8_u38ar"]
+[ext_resource type="Shader" uid="uid://bka4bu71qwllv" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/Wind.gdshader" id="8_uy6ep"]
 [ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithNoise.gdshader" id="8_xavbm"]
 [ext_resource type="Texture2D" uid="uid://7kn7mn00mhxi" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickAlbedo.png" id="9_ynafr"]
+[ext_resource type="Script" uid="uid://chh5q26c43rj1" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gd" id="10_audxr"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="69_8opo1"]
@@ -26,6 +30,138 @@ glow_enabled = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g6kx5"]
 data = PackedVector3Array(-50, -1, 50, -50, -1, -50, -50, 1, -50, 50, -1, -50, -50, -1, -50, -50, -1, 50, -50, 1, -50, -50, -1, -50, 50, -1, -50, -50, 1, -50, -50, 1, 50, -50, -1, 50, -50, -1, 50, -50, 1, 50, 50, 1, 50, 50, 1, 50, -50, 1, 50, -50, 1, -50, -50, -1, 50, 50, -1, 50, 50, -1, -50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, -1, -50, 50, -1, 50, 50, 1, 50, 50, -1, -50, 50, 1, -50, -50, 1, -50, -50, 1, -50, 50, 1, -50, 50, 1, 50, 50, 1, 50, 50, 1, -50, 50, -1, -50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_intij"]
+render_priority = 0
+shader = ExtResource("5_om2oa")
+shader_parameter/albedo = Color(0, 0.48235294, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie7uk"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_trky6"]
+_surfaces = [{
+"aabb": AABB(-0.24882396, 0, 0, 0.4976479, 1, 1e-05),
+"format": 34359742465,
+"index_count": 3,
+"index_data": PackedByteArray("AAABAAIA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAACAtct+PgAAAAAAAACAtct+vgAAAAAAAACA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_svmtb"]
+resource_name = "GrassBlade_GrassBlade"
+_surfaces = [{
+"aabb": AABB(-0.24882396, 0, 0, 0.4976479, 1, 1e-05),
+"attribute_data": PackedByteArray("AAAAPwAAgD8AAEA/AAAAAD4JgD4AAAAA"),
+"format": 34359742487,
+"index_count": 3,
+"index_data": PackedByteArray("AAABAAIA"),
+"material": SubResource("StandardMaterial3D_ie7uk"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAACAtct+PgAAAAAAAACAtct+vgAAAAAAAACA/3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_trky6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynafr"]
+render_priority = 0
+shader = ExtResource("6_intij")
+shader_parameter/bottom = Color(0, 0.19607843, 0, 1)
+shader_parameter/top = Color(0, 0.85490197, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_oy7ja"]
+resource_name = "GrassBlade_GrassBlade"
+_surfaces = [{
+"aabb": AABB(-0.24882396, 0, 0, 0.4976479, 1, 1e-05),
+"attribute_data": PackedByteArray("AAAAPwAAgD8AAEA/AAAAAD4JgD4AAAAA"),
+"format": 34359742487,
+"index_count": 3,
+"index_data": PackedByteArray("AAABAAIA"),
+"material": SubResource("StandardMaterial3D_ie7uk"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAACAtct+PgAAAAAAAACAtct+vgAAAAAAAACA/3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_trky6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uy6ep"]
+render_priority = 0
+shader = ExtResource("7_636rn")
+shader_parameter/bottom = Color(0, 0.19607843, 0, 1)
+shader_parameter/top = Color(0, 0.85490197, 0, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_636rn"]
+resource_name = "GrassBlade_GrassBlade"
+_surfaces = [{
+"aabb": AABB(-0.24882396, 0, 0, 0.4976479, 1, 1e-05),
+"attribute_data": PackedByteArray("AAAAPwAAgD8AAEA/AAAAAD4JgD4AAAAA"),
+"format": 34359742487,
+"index_count": 3,
+"index_data": PackedByteArray("AAABAAIA"),
+"material": SubResource("StandardMaterial3D_ie7uk"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAACAtct+PgAAAAAAAACAtct+vgAAAAAAAACA/3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_trky6")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svmtb"]
+render_priority = 0
+shader = ExtResource("8_uy6ep")
+shader_parameter/bottom = Color(0, 0.19607843, 0, 1)
+shader_parameter/top = Color(0, 0.85490197, 0, 1)
+shader_parameter/wind_sway_frequency = 1.0
+shader_parameter/wind_strength = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hsr4c"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_x3m7a"]
+_surfaces = [{
+"aabb": AABB(-0.07007459, 0, 0, 0.14014918, 1, 1e-05),
+"format": 34359742465,
+"index_count": 21,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMABAAGAAUABgAHAAUABgAIAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAACArbsZPWNjYz8AAACArbsZvWNjYz8AAACAOGp/vbu6Gj8AAACAOGp/Pbu6Gj8AAACARIOPvYqKij4AAACARIOPPYqKij4AAACARVkevQAAAAAAAACARVkePQAAAAAAAACA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_uy6ep"]
+resource_name = "GrassBladeComplex_GrassBlade"
+_surfaces = [{
+"aabb": AABB(-0.07007459, 0, 0, 0.14014918, 1, 1e-05),
+"attribute_data": PackedByteArray("AAAAPwAAgD8AABA/KAFAP1AC4D4oAUA/nwTAPlACAD8AACA/UAIAP+4GoD7wBoA+AAAwP/AGgD4+CYA+AACUOAAAQD8AAJQ4"),
+"format": 34359742487,
+"index_count": 21,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAQAEAAMABAAFAAMABAAGAAUABgAHAAUABgAIAAcA"),
+"material": SubResource("StandardMaterial3D_hsr4c"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 9,
+"vertex_data": PackedByteArray("AAAAAAAAgD8AAACArbsZPWNjYz8AAACArbsZvWNjYz8AAACAOGp/vbu6Gj8AAACAOGp/Pbu6Gj8AAACARIOPvYqKij4AAACARIOPPYqKij4AAACARVkevQAAAAAAAACARVkePQAAAAAAAACA/3//f////z//f/9/////P/9//3////8//3//f////z//f/9/////P/9//3////8//3//f////z//f/9/////P/9//3////8/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_x3m7a")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_svmtb"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy7ja"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_svmtb")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rudpd"]
 render_priority = 0
@@ -168,17 +304,83 @@ size = Vector3(100, 2, 100)
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=925622205]
 shape = SubResource("ConcavePolygonShape3D_g6kx5")
 
-[node name="BevelBrick" parent="." unique_id=960455104 instance=ExtResource("7_s66ov")]
+[node name="Grass" type="Node3D" parent="." unique_id=352304854]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.9445243, 0, 2.8179817)
+
+[node name="Grass blade" parent="Grass" unique_id=1185929385 instance=ExtResource("4_akt4p")]
+title = "Grass blade"
+material = SubResource("ShaderMaterial_intij")
+meshToDisplay = SubResource("ArrayMesh_svmtb")
+euler_angles = Vector3(0, 0, 0)
+
+[node name="Color blend" parent="Grass" unique_id=719679880 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8298588, 0, 0)
+title = "Color blend"
+material = SubResource("ShaderMaterial_ynafr")
+meshToDisplay = SubResource("ArrayMesh_oy7ja")
+euler_angles = Vector3(0, 0, 0)
+
+[node name="Billboard" parent="Grass" unique_id=1253808886 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6427524, 0, 2.3841858e-07)
+title = "Vertical billboard"
+material = SubResource("ShaderMaterial_uy6ep")
+meshToDisplay = SubResource("ArrayMesh_636rn")
+euler_angles = Vector3(0, 0, 0)
+
+[node name="Wind" parent="Grass" unique_id=642143392 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5264704, 0, 2.3841858e-07)
+title = "Wind"
+material = SubResource("ShaderMaterial_svmtb")
+meshToDisplay = SubResource("ArrayMesh_636rn")
+euler_angles = Vector3(0, 0, 0)
+
+[node name="Complex blade" parent="Grass" unique_id=300544721 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5830686, 0, 2.3841858e-07)
+title = "Complex grass blade"
+material = SubResource("ShaderMaterial_svmtb")
+meshToDisplay = SubResource("ArrayMesh_uy6ep")
+euler_angles = Vector3(0, 0, 0)
+
+[node name="Complex blade2" parent="Grass" unique_id=1712670358 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8417826, 0, 4.7683716e-07)
+title = "Grass field"
+material = SubResource("ShaderMaterial_svmtb")
+meshToDisplay = SubResource("ArrayMesh_uy6ep")
+euler_angles = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" parent="Grass/Complex blade2/DisplayOrigin" parent_id_path=PackedInt32Array(1712670358, 1716011669) index="0" unique_id=1657387828]
+visible = false
+mesh = SubResource("ArrayMesh_uy6ep")
+surface_material_override/0 = SubResource("ShaderMaterial_svmtb")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Grass/Complex blade2/DisplayOrigin" parent_id_path=PackedInt32Array(1712670358, 1716011669) index="1" unique_id=1298894310 node_paths=PackedStringArray("linkedMultipMesh")]
+transform = Transform3D(-9.934766e-08, 0, -0.99999994, 0, 0.99999994, 0, 0.99999994, 0, -9.934766e-08, 0, -0.2853785, 0)
+script = ExtResource("10_audxr")
+linkedMultipMesh = NodePath(".")
+mesh = SubResource("ArrayMesh_uy6ep")
+material = SubResource("ShaderMaterial_svmtb")
+instance_count = 100
+side_length = 0.4
+mesh_scale = Vector3(0.2, 0.2, 0.2)
+
+[node name="Title" parent="Grass/Complex blade2/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="0" unique_id=1140415981]
+text = "Grass field"
+
+[node name="MeshInstance3D" parent="Grass/Complex blade2/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
+surface_material_override/0 = SubResource("StandardMaterial3D_oy7ja")
+
+[node name="GrassBladeComplex" parent="." unique_id=759551437 instance=ExtResource("7_ynafr")]
 
 [node name="StylizedBricks" type="Node3D" parent="." unique_id=2106297097]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.1267905, 0, -14.66209)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.223118, 0, 4.841757)
 
-[node name="Bevel" parent="StylizedBricks" unique_id=1185929385 instance=ExtResource("4_akt4p")]
+[node name="Bevel" parent="StylizedBricks" unique_id=565844488 instance=ExtResource("4_akt4p")]
 title = "Bevel"
 description = "A bevel added to the edge of the brick breaks up the sharp edges."
 material = SubResource("ShaderMaterial_rudpd")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
+euler_angles = Vector3(0, 0, 0)
 
 [node name="Vertex offset" parent="StylizedBricks" unique_id=1076800984 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837841, 0, -0.0477848)
@@ -187,6 +389,7 @@ description = "Subdividing the mesh and adding a small vertex offset makes the b
 material = SubResource("ShaderMaterial_s66ov")
 meshToDisplay = SubResource("ArrayMesh_u38ar")
 display_scale = 0.18
+euler_angles = Vector3(0, 0, 0)
 
 [node name="Painted shadows" parent="StylizedBricks" unique_id=1423633360 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9426742, 0, 0)
@@ -199,6 +402,7 @@ The edges are usually briger, so they are highlighted
 material = SubResource("ShaderMaterial_636rn")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
+euler_angles = Vector3(0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="StylizedBricks" unique_id=1238048709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.451726, 1.6028607, 0.0070343018)
@@ -209,6 +413,7 @@ title = "Noise"
 material = SubResource("ShaderMaterial_8dipx")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
+euler_angles = Vector3(0, 0, 0)
 
 [node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0387526, 0, 2.861023e-06)
@@ -216,3 +421,8 @@ title = "Cracks"
 material = SubResource("ShaderMaterial_xavbm")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
+euler_angles = Vector3(0, 0, 0)
+
+[editable path="Grass/Complex blade2"]
+[editable path="Grass/Complex blade2/3D UI"]
+[editable path="GrassBladeComplex"]

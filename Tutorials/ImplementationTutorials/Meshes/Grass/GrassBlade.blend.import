@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://crcmsnhsfd7o0"
-path="res://.godot/imported/GrassBlade.blend-2c254004fb3d84d473bb81273f226732.scn"
+path="res://.godot/imported/GrassBlade.blend-5a737f818d8e17c70a3ac1ff34960b6f.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Assets/Meshes/GrassBlade.blend"
-dest_files=["res://.godot/imported/GrassBlade.blend-2c254004fb3d84d473bb81273f226732.scn"]
+source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/GrassBlade.blend"
+dest_files=["res://.godot/imported/GrassBlade.blend-5a737f818d8e17c70a3ac1ff34960b6f.scn"]
 
 [params]
 
@@ -39,7 +39,19 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"meshes": {
+"GrassBlade_GrassBlade": {
+"generate/lightmap_uv": 0,
+"generate/lods": 2,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": false,
+"save_to_file/fallback_path": "",
+"save_to_file/path": ""
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

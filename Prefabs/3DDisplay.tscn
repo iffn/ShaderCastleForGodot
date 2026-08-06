@@ -3,8 +3,6 @@
 [ext_resource type="Script" uid="uid://dplmnaq5cdrkv" path="res://ShaderCastleForGodot/Assets/UI/UIAssignment.gd" id="1_jksge"]
 [ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Assets/UI/3D UI.tscn" id="2_efmhr"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_jksge"]
-
 [sub_resource type="BoxMesh" id="BoxMesh_efmhr"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jksge"]
@@ -18,7 +16,7 @@ albedo_texture = SubResource("ViewportTexture_jksge")
 
 [node name="3D display" type="Node3D" unique_id=1185929385 node_paths=PackedStringArray("title_label", "description_label", "displayMesh")]
 script = ExtResource("1_jksge")
-mesh3D = SubResource("BoxMesh_jksge")
+euler_angles = null
 title_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Title")
 description_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Description")
 displayMesh = NodePath("DisplayOrigin/MeshInstance3D")
@@ -33,10 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3000002, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DisplayOrigin" unique_id=1657387828]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = SubResource("BoxMesh_efmhr")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="DisplayOrigin" unique_id=372572483]
-visible = false
-size = Vector3(0.3, 0.3, 0.3)
 
 [node name="3D UI" parent="." unique_id=498438476 instance=ExtResource("2_efmhr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25689638)
