@@ -6,6 +6,7 @@ extends Node
 @export_multiline var description : String = "Description"
 @export var material : Material
 @export var meshToDisplay : Mesh
+@export var display_scale := 0.3
 
 @export_category("Prefab settings")
 @export var title_label : Label
@@ -29,6 +30,7 @@ func apply_data() -> void:
 	if meshToDisplay:
 		displayMesh.mesh = meshToDisplay
 	displayMesh.set_surface_override_material(0, material)
+	displayMesh.scale = display_scale * Vector3.ONE
 
 func _ready() -> void:
 	apply_data()

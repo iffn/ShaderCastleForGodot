@@ -102,14 +102,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hh0ue"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jkfu4"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g5oki"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hh0ue"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_hh0ue")
+albedo_texture = SubResource("ViewportTexture_jkfu4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -220,26 +220,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jceew")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_haf7y"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_g5oki"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er7f8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haf7y"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_haf7y")
+albedo_texture = SubResource("ViewportTexture_g5oki")
 
 [sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
 size = Vector2(1.5, 1.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rb3dj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_er7f8"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqath"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb3dj"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_rb3dj")
+albedo_texture = SubResource("ViewportTexture_er7f8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
 render_priority = 0
@@ -1294,6 +1294,7 @@ description = "Colors are returned in the visible red, green and blue channels b
 material = SubResource("ShaderMaterial_660i6")
 
 [node name="DisplayQuad" parent="Entrance/Basics/Color picker/DisplayOrigin" parent_id_path=PackedInt32Array(784542166, 595881598) index="0" unique_id=1420667322]
+transform = Transform3D(-0.3, -4.5298744e-08, 0, 4.5298744e-08, -0.3, 0, 0, 0, 0.3, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_660i6")
 
 [node name="Title" parent="Entrance/Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="0" unique_id=1954479272]
@@ -1312,7 +1313,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_g5oki")
+surface_material_override/0 = SubResource("StandardMaterial3D_hh0ue")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1425,7 +1426,7 @@ text = "MultiMeshInstance3D"
 text = " "
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/MultiMeshInstance3D/3D UI" parent_id_path=PackedInt32Array(912002243, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_er7f8")
+surface_material_override/0 = SubResource("StandardMaterial3D_haf7y")
 
 [node name="Where is the geometry shader" parent="Entrance/Vertex shader" unique_id=2030272435 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6885948, 3, 12.110512)
@@ -1449,6 +1450,7 @@ Mesh Shader:
 Introduced as a modern replacement for geometry and tessellation shaders, mesh shaders bring compute-like flexibility to geometry generation. However, this is a newer hardware workflow and is not yet available in Godot's high-level shader workflow."
 
 [node name="DisplayQuad" parent="Entrance/Vertex shader/Where is the geometry shader/DisplayOrigin" parent_id_path=PackedInt32Array(2030272435, 595881598) index="0" unique_id=1420667322]
+transform = Transform3D(-0.3, -4.5298744e-08, 0, 4.5298744e-08, -0.3, 0, 0, 0, 0.3, 0, 0, 0)
 visible = false
 
 [node name="3D UI" parent="Entrance/Vertex shader/Where is the geometry shader" index="1" unique_id=498438476]
@@ -1487,7 +1489,7 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="1" unique_id=121505346]
 mesh = SubResource("QuadMesh_65i8n")
-surface_material_override/0 = SubResource("StandardMaterial3D_eqath")
+surface_material_override/0 = SubResource("StandardMaterial3D_rb3dj")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
