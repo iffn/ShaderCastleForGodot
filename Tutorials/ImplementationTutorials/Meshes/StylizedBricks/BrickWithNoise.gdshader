@@ -1,5 +1,7 @@
 shader_type spatial;
 
+//render_mode diffuse_toon;
+
 uniform sampler2D noise_texture : hint_default_white, filter_linear_mipmap, repeat_enable;
 uniform vec3 albedo : source_color = vec3(1.0);
 uniform float normal_strength : hint_range(0.0, 30.0) = 10.0;
@@ -20,11 +22,10 @@ void fragment() {
 	float dy = (h_top - h_center) * normal_strength;
 
 	vec3 tangent_normal = normalize(vec3(-dx, -dy, 1.0));
-
-	// Remap from [-1.0, 1.0] range to [0.0, 1.0] color space
-	NORMAL_MAP = tangent_normal * 0.5 + 0.5;
-
-	ALBEDO = albedo * h_center;
 	
+	ALBEDO = albedo;
+	NORMAL_MAP = tangent_normal * 0.5 + 0.5; // Remap from [-1.0, 1.0] range to [0.0, 1.0] color space
 	ROUGHNESS = 1.0;
+	METALLIC = 0.0;
+	AO = h_center;
 }

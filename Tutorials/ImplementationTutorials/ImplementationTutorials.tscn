@@ -4,8 +4,10 @@
 [ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="5_om2oa"]
 [ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/SmallVertexOffset.gdshader" id="6_tmd7j"]
 [ext_resource type="PackedScene" uid="uid://b02g8ywyrs8kj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BevelBrick.blend" id="7_s66ov"]
+[ext_resource type="Shader" uid="uid://7nnf5cwoooyq" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/TextureDisplay.gdshader" id="8_intij"]
 [ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithCracks.gdshader" id="8_u38ar"]
 [ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithNoise.gdshader" id="8_xavbm"]
+[ext_resource type="Texture2D" uid="uid://7kn7mn00mhxi" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickAlbedo.png" id="9_ynafr"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="69_8opo1"]
@@ -115,6 +117,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qq6q2")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_636rn"]
+render_priority = 0
+shader = ExtResource("8_intij")
+shader_parameter/albedo = ExtResource("9_ynafr")
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8dipx"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s66ov"]
@@ -131,8 +138,8 @@ shader_parameter/normal_strength = 10.0
 render_priority = 0
 shader = ExtResource("8_u38ar")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_s66ov")
+shader_parameter/crack_width = 0.01
 shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
-shader_parameter/crack_width = 0.015
 shader_parameter/normal_strength = 10.0
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
@@ -142,7 +149,6 @@ environment = SubResource("Environment_660i6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2101350115]
 transform = Transform3D(-0.9238795, 0.34682897, -0.161729, 0, 0.42261824, 0.9063078, 0.38268343, 0.8373192, -0.39044833, 0, 0, 0)
-visible = false
 shadow_enabled = true
 
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("67_whso2")]
@@ -169,6 +175,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.1
 
 [node name="Bevel" parent="StylizedBricks" unique_id=1185929385 instance=ExtResource("4_akt4p")]
 title = "Bevel"
+description = "A bevel added to the edge of the brick breaks up the sharp edges."
 material = SubResource("ShaderMaterial_rudpd")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
@@ -176,18 +183,25 @@ display_scale = 0.18
 [node name="Vertex offset" parent="StylizedBricks" unique_id=1076800984 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837841, 0, -0.0477848)
 title = "Vertex offset"
+description = "Subdividing the mesh and adding a small vertex offset makes the brick look more realistic. "
 material = SubResource("ShaderMaterial_s66ov")
 meshToDisplay = SubResource("ArrayMesh_u38ar")
 display_scale = 0.18
 
 [node name="Painted shadows" parent="StylizedBricks" unique_id=1423633360 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9426742, 0, 0)
-title = "Painted shadows"
+title = "Painted features"
+description = "Hand painting features alows for a large amount of artistic control. This often involves understanding and painting the light. Note that the painted light interactions are set  and do not react to the scene light.
+- A dark to bright gradient from the bottom to the top represents that the bottom is usualyl less well lit.
+The edges are usually briger, so they are highlighted
+- Cracks are painted that follow the structure of the shape.
+- The edges of the cracks are highligted. For example, always the bottom and right."
+material = SubResource("ShaderMaterial_636rn")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
 [node name="OmniLight3D" type="OmniLight3D" parent="StylizedBricks" unique_id=1238048709]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8953462, 1.442917, 0.007024765)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.451726, 1.6028607, 0.0070343018)
 
 [node name="Noise" parent="StylizedBricks" unique_id=1061568170 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9130268, 0, 2.861023e-06)

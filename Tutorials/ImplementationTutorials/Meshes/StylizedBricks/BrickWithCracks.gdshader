@@ -1,14 +1,21 @@
 shader_type spatial;
 
+render_mode diffuse_toon;
+
 uniform sampler2D noise_texture : hint_default_white, filter_linear_mipmap, repeat_enable;
-uniform vec3 albedo : source_color = vec3(1.0);
 uniform float crack_width = 0.015;
+uniform vec3 albedo : source_color = vec3(1.0);
 uniform float normal_strength : hint_range(0.0, 30.0) = 10.0;
 
 float get_height(vec2 uv) {
 	float noise = texture(noise_texture, uv).r;
-	float edge = smoothstep(0.5 - crack_width, 0.5, noise) - smoothstep(0.5, 0.5 + crack_width, noise);
-	return 1.0 - edge *  - noise;
+	float crack_noise = texture(noise_texture, uv * 50.0).r;
+	float crack_width_additional = crack_width + crack_noise * crack_width * 2.0;
+	float center = 0.5 + crack_noise * 0.02;
+	float crack = smoothstep(center - crack_width_additional, center, noise) - smoothstep(center, center + crack_width_additional, noise);
+	crack *= mix(0.2, 0.6, crack_noise);
+	
+	return 1.0 - noise - crack * 0.2;
 }
 
 void fragment() {
@@ -22,11 +29,10 @@ void fragment() {
 	float dy = (h_top - h_center) * normal_strength;
 
 	vec3 tangent_normal = normalize(vec3(-dx, -dy, 1.0));
-
-	// Remap from [-1.0, 1.0] range to [0.0, 1.0] color space
-	NORMAL_MAP = tangent_normal * 0.5 + 0.5;
-
-	ALBEDO = albedo * h_center;
 	
+	ALBEDO = albedo;
+	NORMAL_MAP = tangent_normal * 0.5 + 0.5; // Remap from [-1.0, 1.0] range to [0.0, 1.0] color space
 	ROUGHNESS = 1.0;
+	METALLIC = 0.0;
+	AO = h_center;
 }

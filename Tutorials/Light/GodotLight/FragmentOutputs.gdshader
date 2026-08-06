@@ -13,11 +13,11 @@ void vertex() {
 
 void fragment() {
 	ALBEDO = albedo;
-	METALLIC = metallic;
-	ROUGHNESS = roughness;
-	SPECULAR = specular;
-	AO = ao;
-	AO_LIGHT_AFFECT = ao_light_affect;
+	METALLIC = metallic; // Is or is not metallic. In between only if there are pixels that have both metallic and non-metallic visuals
+	ROUGHNESS = roughness; // Microfacet distribution. 0 = aligned, 1 = large difference
+	SPECULAR = specular; // Non-energy conserving reflectivity, keep it at 0.5
+	AO = ao; // How much ambient light reaches this point. Low for deep down in a narrow gap
+	AO_LIGHT_AFFECT = ao_light_affect; // How much occlusion affects direct lights, default 0
 }
 
 //void light() {
