@@ -30,10 +30,14 @@
 [ext_resource type="Shader" uid="uid://cfbd4pl43y7qa" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/max.gdshader" id="22_5acsn"]
 [ext_resource type="Shader" uid="uid://dx7a4br4oqtg8" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/TextureSamplingWithScaling.gdshader" id="22_5gf47"]
 [ext_resource type="Shader" uid="uid://bmya3ws4jeibb" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/MipMaps.gdshader" id="23_52rap"]
+[ext_resource type="Shader" uid="uid://bnm0epgkvd3em" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/ValueNoise.gdshader" id="23_g5oki"]
+[ext_resource type="Shader" uid="uid://bgiqrwlnikc3d" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/GradientNoise.gdshader" id="23_hh0ue"]
 [ext_resource type="Shader" uid="uid://bk8musfdtsssx" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/min.gdshader" id="23_seb52"]
 [ext_resource type="Shader" uid="uid://dww8ffvh0xb3g" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/clamp.gdshader" id="24_iocoe"]
 [ext_resource type="Shader" uid="uid://cl8tq7ses0dg3" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/mix.gdshader" id="24_seb52"]
+[ext_resource type="Shader" uid="uid://cpipdeqke5d1c" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/SimplexNoise.gdshader" id="25_haf7y"]
 [ext_resource type="Shader" uid="uid://1dnr2aa4r27" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/fract.gdshader" id="25_mnp87"]
+[ext_resource type="Shader" uid="uid://bwu6qktqk020v" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/NoiseTexture.gdshader" id="26_er7f8"]
 [ext_resource type="Shader" uid="uid://cr4kd0l2fwh1l" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/mod.gdshader" id="26_mnp87"]
 [ext_resource type="Shader" uid="uid://dk8uiw2fwkxob" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/floor.gdshader" id="27_1kanq"]
 [ext_resource type="Shader" uid="uid://b73c5hj1lefub" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/ceil.gdshader" id="28_ii2fx"]
@@ -72,6 +76,7 @@
 [ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="47_2rigf"]
 [ext_resource type="Texture2D" uid="uid://c0lmdgphobrbo" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_nor_gl_1k.png" id="48_wqs6l"]
 [ext_resource type="Shader" uid="uid://bnny14k4k5m4v" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthBufferRoom/DepthLenseDemoRoom.gdshader" id="60_65i8n"]
+[ext_resource type="Shader" uid="uid://c6vbnpk8a43ew" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/FunctionTest.gdshader" id="60_rb3dj"]
 [ext_resource type="Shader" uid="uid://cajq5f47tppol" path="res://ShaderCastleForGodot/Tutorials/Buffer/DepthBufferRoom/DepthWrite.gdshader" id="61_3v54a"]
 [ext_resource type="Shader" uid="uid://ct0yf5euetd4e" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/SPOMFull.gdshader" id="62_espxb"]
 [ext_resource type="Shader" uid="uid://dd6esdsmmcft1" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/POM.gdshader" id="62_jkfu4"]
@@ -102,14 +107,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jkfu4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_er7f8"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hh0ue"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb3dj"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_jkfu4")
+albedo_texture = SubResource("ViewportTexture_er7f8")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -220,26 +225,52 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jceew")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g5oki"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_eqath"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haf7y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26u2x"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_g5oki")
+albedo_texture = SubResource("ViewportTexture_eqath")
 
 [sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
 size = Vector2(1.5, 1.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_er7f8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ae5aw"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rb3dj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4cfj"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_er7f8")
+albedo_texture = SubResource("ViewportTexture_ae5aw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8001b"]
+render_priority = 0
+shader = ExtResource("23_g5oki")
+shader_parameter/scale = 10.00000047174012
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4cfj"]
+render_priority = 0
+shader = ExtResource("23_hh0ue")
+shader_parameter/scale = 10.00000047174012
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wb0ph"]
+render_priority = 0
+shader = ExtResource("25_haf7y")
+shader_parameter/scale = 10.00000047174012
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_er7f8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_haf7y"]
+noise = SubResource("FastNoiseLite_er7f8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_og1t3"]
+render_priority = 0
+shader = ExtResource("26_er7f8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_haf7y")
+shader_parameter/scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
 render_priority = 0
@@ -422,6 +453,13 @@ shader_parameter/scale = 5.0
 render_priority = 0
 shader = ExtResource("46_iffii")
 shader_parameter/scale = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7ccs"]
+render_priority = 0
+shader = ExtResource("60_rb3dj")
+shader_parameter/scale = 1.5000000679901202
+shader_parameter/a = 1.0
+shader_parameter/b = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wbsx"]
 resource_name = "Roof"
@@ -1313,7 +1351,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_hh0ue")
+surface_material_override/0 = SubResource("StandardMaterial3D_rb3dj")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1426,7 +1464,7 @@ text = "MultiMeshInstance3D"
 text = " "
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/MultiMeshInstance3D/3D UI" parent_id_path=PackedInt32Array(912002243, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_haf7y")
+surface_material_override/0 = SubResource("StandardMaterial3D_26u2x")
 
 [node name="Where is the geometry shader" parent="Entrance/Vertex shader" unique_id=2030272435 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6885948, 3, 12.110512)
@@ -1489,12 +1527,45 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="1" unique_id=121505346]
 mesh = SubResource("QuadMesh_65i8n")
-surface_material_override/0 = SubResource("StandardMaterial3D_rb3dj")
+surface_material_override/0 = SubResource("StandardMaterial3D_x4cfj")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
 [node name="MathTower" type="Node3D" parent="." unique_id=1428825792]
 transform = Transform3D(-0.7095708, 0, -0.70463413, 0, 1, 0, 0.70463413, 0, -0.7095708, 22.07228, 12.7, 63)
+
+[node name="Floor 1" type="Node3D" parent="MathTower" unique_id=2072629427]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="Noise" type="Node3D" parent="MathTower/Floor 1" unique_id=762480138]
+transform = Transform3D(-0.77714586, 0, -0.6293204, 0, 1, 0, 0.6293204, 0, -0.77714586, 0, 0, 0)
+script = ExtResource("18_3m87l")
+radius = 5.9
+angle_offset_deg = 6.5
+
+[node name="ValueNoise" parent="MathTower/Floor 1/Noise" unique_id=184424693 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.9)
+title = "Value noise"
+description = ""
+material = SubResource("ShaderMaterial_8001b")
+
+[node name="GradientNoise" parent="MathTower/Floor 1/Noise" unique_id=1034466781 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.9935719, 0, -0.11320321, 0, 1, 0, 0.11320321, 0, 0.9935719, -0.66789895, 0, 5.862074)
+title = "Gradient noise"
+description = ""
+material = SubResource("ShaderMaterial_x4cfj")
+
+[node name="SimplexNoise" parent="MathTower/Floor 1/Noise" unique_id=2044958047 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.97437006, 0, -0.22495104, 0, 1, 0, 0.22495104, 0, 0.97437006, -1.3272113, 0, 5.7487836)
+title = "Simplex noise"
+description = ""
+material = SubResource("ShaderMaterial_wb0ph")
+
+[node name="NoiseTexture" parent="MathTower/Floor 1/Noise" unique_id=555432939 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.9426415, 0, -0.33380687, 0, 1, 0, 0.33380687, 0, 0.9426415, -1.9694605, 0, 5.561585)
+title = "Noise texture"
+description = ""
+material = SubResource("ShaderMaterial_og1t3")
 
 [node name="Floor -1" type="Node3D" parent="MathTower" unique_id=324425365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
@@ -1722,6 +1793,11 @@ transform = Transform3D(0.22495101, 0, -0.97436994, 0, 1, 0, 0.97436994, 0, 0.22
 title = "atanh(x)"
 description = ""
 material = SubResource("ShaderMaterial_3v54a")
+
+[node name="Test" parent="MathTower/Floor -1" unique_id=1606160478 instance=ExtResource("7_ycgrn")]
+title = "FunctionTest"
+description = "This is just a test for me"
+material = SubResource("ShaderMaterial_k7ccs")
 
 [node name="Transform" type="Node3D" parent="MathTower/Floor -1" unique_id=1877755833]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

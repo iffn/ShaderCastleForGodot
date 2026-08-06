@@ -27,7 +27,13 @@ void fragment() {
 	float x = coordinate.x;
 
 	// Function to plot
-	float y = mix(a, b, x);
+	float noise = x;
+	float edge = step(noise, 0.6) - step(noise, 0.5);
+	
+	float y1 = smoothstep(0.4, 0.5, noise);
+	float y2 = smoothstep(0.5, 0.6, noise);
+	
+	float y = y1 - y2;
 
 	// Plotting the function
 	float plot_function = y - coordinate.y;

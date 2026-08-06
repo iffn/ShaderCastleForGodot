@@ -4,7 +4,8 @@
 [ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="5_om2oa"]
 [ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/SmallVertexOffset.gdshader" id="6_tmd7j"]
 [ext_resource type="PackedScene" uid="uid://b02g8ywyrs8kj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BevelBrick.blend" id="7_s66ov"]
-[ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/Cracks.gdshader" id="8_u38ar"]
+[ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithCracks.gdshader" id="8_u38ar"]
+[ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithNoise.gdshader" id="8_xavbm"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="69_8opo1"]
@@ -119,11 +120,20 @@ shadow_mesh = SubResource("ArrayMesh_qq6q2")
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s66ov"]
 noise = SubResource("FastNoiseLite_8dipx")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dipx"]
+render_priority = 0
+shader = ExtResource("8_xavbm")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_s66ov")
+shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
+shader_parameter/normal_strength = 10.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xavbm"]
 render_priority = 0
 shader = ExtResource("8_u38ar")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_s66ov")
-shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
+shader_parameter/crack_width = 0.015
+shader_parameter/normal_strength = 10.0
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
@@ -132,6 +142,7 @@ environment = SubResource("Environment_660i6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2101350115]
 transform = Transform3D(-0.9238795, 0.34682897, -0.161729, 0, 0.42261824, 0.9063078, 0.38268343, 0.8373192, -0.39044833, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("67_whso2")]
@@ -175,16 +186,19 @@ title = "Painted shadows"
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9514923, 0, 2.861023e-06)
-title = "Cracks"
-material = SubResource("ShaderMaterial_xavbm")
+[node name="OmniLight3D" type="OmniLight3D" parent="StylizedBricks" unique_id=1238048709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8953462, 1.442917, 0.007024765)
+
+[node name="Noise" parent="StylizedBricks" unique_id=1061568170 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9130268, 0, 2.861023e-06)
+title = "Noise"
+material = SubResource("ShaderMaterial_8dipx")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Noise" parent="StylizedBricks" unique_id=1061568170 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.041815, 0, 2.861023e-06)
-title = "Noise"
+[node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0387526, 0, 2.861023e-06)
+title = "Cracks"
 material = SubResource("ShaderMaterial_xavbm")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
