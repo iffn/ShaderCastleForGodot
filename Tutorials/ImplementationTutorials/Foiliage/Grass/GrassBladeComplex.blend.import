@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b02g8ywyrs8kj"
-path="res://.godot/imported/BevelBrick.blend-e99e1395d3866634e5deb0c90e873e9b.scn"
+uid="uid://cqd0r7qk8fy66"
+path="res://.godot/imported/GrassBladeComplex.blend-35958ff056b98b9099445fc254c100ef.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BevelBrick.blend"
-dest_files=["res://.godot/imported/BevelBrick.blend-e99e1395d3866634e5deb0c90e873e9b.scn"]
+source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/GrassBladeComplex.blend"
+dest_files=["res://.godot/imported/GrassBladeComplex.blend-35958ff056b98b9099445fc254c100ef.scn"]
 
 [params]
 
@@ -41,7 +41,7 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "meshes": {
-"BevelBrick_BeveledBrick": {
+"GrassBlade_GrassBlade": {
 "generate/lightmap_uv": 0,
 "generate/lods": 2,
 "generate/shadow_meshes": 0,

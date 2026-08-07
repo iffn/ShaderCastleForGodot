@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cqd0r7qk8fy66"
-path="res://.godot/imported/GrassBladeComplex.blend-af1149ab4d24a5b75f755bf50e6e1574.scn"
+uid="uid://crcmsnhsfd7o0"
+path="res://.godot/imported/GrassBlade.blend-78c20644d5fbdb511e1657843e0a5340.scn"
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/GrassBladeComplex.blend"
-dest_files=["res://.godot/imported/GrassBladeComplex.blend-af1149ab4d24a5b75f755bf50e6e1574.scn"]
+source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/GrassBlade.blend"
+dest_files=["res://.godot/imported/GrassBlade.blend-78c20644d5fbdb511e1657843e0a5340.scn"]
 
 [params]
 

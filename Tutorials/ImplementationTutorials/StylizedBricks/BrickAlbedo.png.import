@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://7kn7mn00mhxi"
-path.s3tc="res://.godot/imported/BrickAlbedo.png-9703b60f87e93ca0da138b143967cc6d.s3tc.ctex"
+path.s3tc="res://.godot/imported/BrickAlbedo.png-155a8d2f9b515eef185238f3333b088e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickAlbedo.png"
-dest_files=["res://.godot/imported/BrickAlbedo.png-9703b60f87e93ca0da138b143967cc6d.s3tc.ctex"]
+source_file="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickAlbedo.png"
+dest_files=["res://.godot/imported/BrickAlbedo.png-155a8d2f9b515eef185238f3333b088e.s3tc.ctex"]
 
 [params]
 

@@ -14,12 +14,12 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_jksge")
 
-[node name="3D display" type="Node3D" unique_id=1185929385 node_paths=PackedStringArray("title_label", "description_label", "displayMesh")]
+[node name="3D display" type="Node3D" unique_id=1185929385 node_paths=PackedStringArray("title_label", "description_label", "displayMesh", "displayOrigin")]
 script = ExtResource("1_jksge")
-euler_angles = null
 title_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Title")
 description_label = NodePath("3D UI/SubViewport/Control/VBoxContainer/Description")
 displayMesh = NodePath("DisplayOrigin/MeshInstance3D")
+displayOrigin = NodePath("DisplayOrigin")
 
 [node name="Base" type="CSGBox3D" parent="." unique_id=1532983229]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

@@ -1,16 +1,20 @@
 [gd_scene format=4 uid="uid://bhn1bpgv5s5vw"]
 
 [ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="4_akt4p"]
+[ext_resource type="Shader" uid="uid://weeia17iogx3" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/GrassTexture.gdshader" id="5_ds75a"]
 [ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="5_om2oa"]
-[ext_resource type="Shader" uid="uid://chdklspsni2rb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/ColorBlendUVY.gdshader" id="6_intij"]
-[ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/SmallVertexOffset.gdshader" id="6_tmd7j"]
-[ext_resource type="Shader" uid="uid://ccxq6fwabbuw" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/VerticalBillboard.gdshader" id="7_636rn"]
-[ext_resource type="PackedScene" uid="uid://cqd0r7qk8fy66" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/GrassBladeComplex.blend" id="7_ynafr"]
-[ext_resource type="Shader" uid="uid://7nnf5cwoooyq" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/TextureDisplay.gdshader" id="8_intij"]
-[ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithCracks.gdshader" id="8_u38ar"]
-[ext_resource type="Shader" uid="uid://bka4bu71qwllv" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/Grass/Wind.gdshader" id="8_uy6ep"]
-[ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickWithNoise.gdshader" id="8_xavbm"]
-[ext_resource type="Texture2D" uid="uid://7kn7mn00mhxi" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Meshes/StylizedBricks/BrickAlbedo.png" id="9_ynafr"]
+[ext_resource type="Shader" uid="uid://chdklspsni2rb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/ColorBlendUVY.gdshader" id="6_intij"]
+[ext_resource type="Texture2D" uid="uid://bmmbfucm5p2r8" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_Color.png" id="6_kclyp"]
+[ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/SmallVertexOffset.gdshader" id="6_tmd7j"]
+[ext_resource type="Shader" uid="uid://ccxq6fwabbuw" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/VerticalBillboard.gdshader" id="7_636rn"]
+[ext_resource type="Texture2D" uid="uid://bwopfj8desqxy" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_NormalGL.png" id="7_ho06g"]
+[ext_resource type="PackedScene" uid="uid://cqd0r7qk8fy66" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/GrassBladeComplex.blend" id="7_ynafr"]
+[ext_resource type="Shader" uid="uid://7nnf5cwoooyq" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/TextureDisplay.gdshader" id="8_intij"]
+[ext_resource type="Shader" uid="uid://cpo5yf2i0yuyr" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/BasicColor.gdshader" id="8_kclyp"]
+[ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickWithCracks.gdshader" id="8_u38ar"]
+[ext_resource type="Shader" uid="uid://bka4bu71qwllv" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/Wind.gdshader" id="8_uy6ep"]
+[ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickWithNoise.gdshader" id="8_xavbm"]
+[ext_resource type="Texture2D" uid="uid://7kn7mn00mhxi" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickAlbedo.png" id="9_ynafr"]
 [ext_resource type="Script" uid="uid://chh5q26c43rj1" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gd" id="10_audxr"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
@@ -31,10 +35,18 @@ glow_enabled = true
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g6kx5"]
 data = PackedVector3Array(-50, -1, 50, -50, -1, -50, -50, 1, -50, 50, -1, -50, -50, -1, -50, -50, -1, 50, -50, 1, -50, -50, -1, -50, 50, -1, -50, -50, 1, -50, -50, 1, 50, -50, -1, 50, -50, -1, 50, -50, 1, 50, 50, 1, 50, 50, 1, 50, -50, 1, 50, -50, 1, -50, -50, -1, 50, 50, -1, 50, 50, -1, -50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, -1, -50, 50, -1, 50, 50, 1, 50, 50, -1, -50, 50, 1, -50, -50, 1, -50, -50, 1, -50, 50, 1, -50, 50, 1, 50, 50, 1, 50, 50, 1, -50, 50, -1, -50)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pixo"]
+render_priority = 0
+shader = ExtResource("5_ds75a")
+shader_parameter/albedo = ExtResource("6_kclyp")
+shader_parameter/normal = ExtResource("7_ho06g")
+
+[sub_resource type="QuadMesh" id="QuadMesh_svmtb"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_intij"]
 render_priority = 0
-shader = ExtResource("5_om2oa")
-shader_parameter/albedo = Color(0, 0.48235294, 0, 1)
+shader = ExtResource("8_kclyp")
+shader_parameter/albedo = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie7uk"]
 
@@ -154,14 +166,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_svmtb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ds75a"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oy7ja"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kclyp"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_svmtb")
+albedo_texture = SubResource("ViewportTexture_ds75a")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rudpd"]
 render_priority = 0
@@ -307,54 +319,72 @@ shape = SubResource("ConcavePolygonShape3D_g6kx5")
 [node name="Grass" type="Node3D" parent="." unique_id=352304854]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.9445243, 0, 2.8179817)
 
-[node name="Grass blade" parent="Grass" unique_id=1185929385 instance=ExtResource("4_akt4p")]
+[node name="Grass texture" parent="Grass" unique_id=1185929385 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80615354, 0, 0)
+title = "Grass texture"
+description = "A basic way to display grass is with a texture. A normal map can further help improve the display."
+material = SubResource("ShaderMaterial_6pixo")
+meshToDisplay = SubResource("QuadMesh_svmtb")
+euler_angles = Vector3(270, 0, 0)
+hovering = false
+
+[node name="Grass blade" parent="Grass" unique_id=1313429169 instance=ExtResource("4_akt4p")]
 title = "Grass blade"
+description = "A basic grass blade can be represented by a simple triangle with a color"
 material = SubResource("ShaderMaterial_intij")
 meshToDisplay = SubResource("ArrayMesh_svmtb")
-euler_angles = Vector3(0, 0, 0)
+hovering = false
 
 [node name="Color blend" parent="Grass" unique_id=719679880 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8298588, 0, 0)
 title = "Color blend"
+description = "Adding a color blend helps with the beliavability. Since less light reaches the bottom of the grass, a darker color makes sense."
 material = SubResource("ShaderMaterial_ynafr")
 meshToDisplay = SubResource("ArrayMesh_oy7ja")
-euler_angles = Vector3(0, 0, 0)
+hovering = false
 
 [node name="Billboard" parent="Grass" unique_id=1253808886 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6427524, 0, 2.3841858e-07)
 title = "Vertical billboard"
+description = "When looking at a flat mesh from the side, it gets very flat. A vertical billboard aligns the grass with the view. Note that this usually causes a weird effect on once the user becomes aware of it."
 material = SubResource("ShaderMaterial_uy6ep")
 meshToDisplay = SubResource("ArrayMesh_636rn")
-euler_angles = Vector3(0, 0, 0)
+hovering = false
 
 [node name="Wind" parent="Grass" unique_id=642143392 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5264704, 0, 2.3841858e-07)
 title = "Wind"
+description = "Adding a vertex offset allows creating a wind effect."
 material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_636rn")
-euler_angles = Vector3(0, 0, 0)
+hovering = false
 
 [node name="Complex blade" parent="Grass" unique_id=300544721 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5830686, 0, 2.3841858e-07)
 title = "Complex grass blade"
+description = "Increasing the complexity of the mesh improves the wind behavior."
 material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_uy6ep")
-euler_angles = Vector3(0, 0, 0)
+hovering = false
 
-[node name="Complex blade2" parent="Grass" unique_id=1712670358 instance=ExtResource("4_akt4p")]
+[node name="Many blades" parent="Grass" unique_id=1712670358 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8417826, 0, 4.7683716e-07)
 title = "Grass field"
+description = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_uy6ep")
-euler_angles = Vector3(0, 0, 0)
+hovering = false
 
-[node name="MeshInstance3D" parent="Grass/Complex blade2/DisplayOrigin" parent_id_path=PackedInt32Array(1712670358, 1716011669) index="0" unique_id=1657387828]
+[node name="DisplayOrigin" parent="Grass/Many blades" index="1" unique_id=1716011669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.001, 0)
+
+[node name="MeshInstance3D" parent="Grass/Many blades/DisplayOrigin" index="0" unique_id=1657387828]
 visible = false
 mesh = SubResource("ArrayMesh_uy6ep")
 surface_material_override/0 = SubResource("ShaderMaterial_svmtb")
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Grass/Complex blade2/DisplayOrigin" parent_id_path=PackedInt32Array(1712670358, 1716011669) index="1" unique_id=1298894310 node_paths=PackedStringArray("linkedMultipMesh")]
-transform = Transform3D(-9.934766e-08, 0, -0.99999994, 0, 0.99999994, 0, 0.99999994, 0, -9.934766e-08, 0, -0.2853785, 0)
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Grass/Many blades/DisplayOrigin" index="1" unique_id=1298894310 node_paths=PackedStringArray("linkedMultipMesh")]
+transform = Transform3D(-9.934766e-08, 0, -0.99999994, 0, 0.99999994, 0, 0.99999994, 0, -9.934766e-08, 0, 0, 0)
 script = ExtResource("10_audxr")
 linkedMultipMesh = NodePath(".")
 mesh = SubResource("ArrayMesh_uy6ep")
@@ -363,11 +393,14 @@ instance_count = 100
 side_length = 0.4
 mesh_scale = Vector3(0.2, 0.2, 0.2)
 
-[node name="Title" parent="Grass/Complex blade2/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="0" unique_id=1140415981]
+[node name="Title" parent="Grass/Many blades/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="0" unique_id=1140415981]
 text = "Grass field"
 
-[node name="MeshInstance3D" parent="Grass/Complex blade2/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_oy7ja")
+[node name="Description" parent="Grass/Many blades/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="1" unique_id=518187765]
+text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
+
+[node name="MeshInstance3D" parent="Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
+surface_material_override/0 = SubResource("StandardMaterial3D_kclyp")
 
 [node name="GrassBladeComplex" parent="." unique_id=759551437 instance=ExtResource("7_ynafr")]
 
@@ -375,12 +408,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_oy7ja")
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.223118, 0, 4.841757)
 
 [node name="Bevel" parent="StylizedBricks" unique_id=565844488 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0064539914)
 title = "Bevel"
 description = "A bevel added to the edge of the brick breaks up the sharp edges."
 material = SubResource("ShaderMaterial_rudpd")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
-euler_angles = Vector3(0, 0, 0)
 
 [node name="Vertex offset" parent="StylizedBricks" unique_id=1076800984 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837841, 0, -0.0477848)
@@ -389,7 +422,6 @@ description = "Subdividing the mesh and adding a small vertex offset makes the b
 material = SubResource("ShaderMaterial_s66ov")
 meshToDisplay = SubResource("ArrayMesh_u38ar")
 display_scale = 0.18
-euler_angles = Vector3(0, 0, 0)
 
 [node name="Painted shadows" parent="StylizedBricks" unique_id=1423633360 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9426742, 0, 0)
@@ -402,7 +434,6 @@ The edges are usually briger, so they are highlighted
 material = SubResource("ShaderMaterial_636rn")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
-euler_angles = Vector3(0, 0, 0)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="StylizedBricks" unique_id=1238048709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.451726, 1.6028607, 0.0070343018)
@@ -413,7 +444,6 @@ title = "Noise"
 material = SubResource("ShaderMaterial_8dipx")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
-euler_angles = Vector3(0, 0, 0)
 
 [node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0387526, 0, 2.861023e-06)
@@ -421,8 +451,7 @@ title = "Cracks"
 material = SubResource("ShaderMaterial_xavbm")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
-euler_angles = Vector3(0, 0, 0)
 
-[editable path="Grass/Complex blade2"]
-[editable path="Grass/Complex blade2/3D UI"]
+[editable path="Grass/Many blades"]
+[editable path="Grass/Many blades/3D UI"]
 [editable path="GrassBladeComplex"]
