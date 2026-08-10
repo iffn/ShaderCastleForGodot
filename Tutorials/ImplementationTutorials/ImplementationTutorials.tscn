@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://b17fmwkwmh5tn" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/UVUnwrap.gdshader" id="19_ho06g"]
 [ext_resource type="Shader" uid="uid://b1e8cj8658npo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/InnerOpaqueMesh.gdshader" id="20_1duxy"]
 [ext_resource type="Texture2D" uid="uid://dydlmg56olrbb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.png" id="20_rci2t"]
+[ext_resource type="Shader" uid="uid://ba0s4k8qxv1hu" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/PlanarOffset.gdshader" id="22_7ujh1"]
 [ext_resource type="Shader" uid="uid://dh5uru3f56so5" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicTransparencyWater.gdshader" id="23_rci2t"]
 [ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Depth.gdshader" id="24_1duxy"]
 [ext_resource type="Shader" uid="uid://20vgvccpcamo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/TransparencyFromScreen.gdshader" id="24_d21qw"]
@@ -349,6 +350,12 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_3627g")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_saxa7"]
+render_priority = 0
+shader = ExtResource("22_7ujh1")
+shader_parameter/offset = 0.2350000111625
+shader_parameter/albedo = Color(0.5137255, 0.6, 0.34117648, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1duxy"]
 render_priority = 0
 shader = ExtResource("19_7bi4b")
@@ -608,16 +615,24 @@ material = SubResource("ShaderMaterial_7bi4b")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Leaf shader" parent="Bushes" unique_id=787674492 instance=ExtResource("4_akt4p")]
+[node name="Leaf shader2" parent="Bushes" unique_id=19384415 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3071079, 0, 0.21365786)
-title = "Leaf shader"
+title = "Offset"
 description = "Vertex offset relative to center of UV in Tangent and Binormal direction."
+material = SubResource("ShaderMaterial_saxa7")
+meshToDisplay = SubResource("ArrayMesh_ho06g")
+display_scale = 0.18
+
+[node name="Leaf shader" parent="Bushes" unique_id=787674492 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5555081, 0, 0.21365786)
+title = "Leaf texture"
+description = ""
 material = SubResource("ShaderMaterial_1duxy")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
 [node name="Innter mesh" parent="Bushes" unique_id=1085078669 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.607949, 0, 0.21365786)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8563492, 0, 0.21365833)
 title = "Inner opaque mesh"
 description = "Opaque mesh to reduce overdraw"
 material = SubResource("ShaderMaterial_rci2t")
@@ -625,7 +640,7 @@ meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
 [node name="Opaque LOD" parent="Bushes" unique_id=1277920801 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9892874, 0, 0.21365833)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2376876, 0, 0.21365833)
 title = "Opaque LOD"
 description = ""
 material = SubResource("ShaderMaterial_j8r8k")
