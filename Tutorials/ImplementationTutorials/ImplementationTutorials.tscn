@@ -1,36 +1,48 @@
-[gd_scene format=4 uid="uid://bhn1bpgv5s5vw"]
+[gd_scene format=4 uid="uid://1pkqsrfcrkwd"]
 
-[ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="4_akt4p"]
-[ext_resource type="Shader" uid="uid://weeia17iogx3" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/GrassTexture.gdshader" id="5_ds75a"]
-[ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="5_om2oa"]
-[ext_resource type="Shader" uid="uid://chdklspsni2rb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/ColorBlendUVY.gdshader" id="6_intij"]
-[ext_resource type="Texture2D" uid="uid://bmmbfucm5p2r8" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_Color.png" id="6_kclyp"]
-[ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/SmallVertexOffset.gdshader" id="6_tmd7j"]
-[ext_resource type="Shader" uid="uid://ccxq6fwabbuw" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/VerticalBillboard.gdshader" id="7_636rn"]
-[ext_resource type="Texture2D" uid="uid://bwopfj8desqxy" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_NormalGL.png" id="7_ho06g"]
-[ext_resource type="Shader" uid="uid://7nnf5cwoooyq" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/TextureDisplay.gdshader" id="8_intij"]
-[ext_resource type="Shader" uid="uid://cpo5yf2i0yuyr" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/BasicColor.gdshader" id="8_kclyp"]
-[ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickWithCracks.gdshader" id="8_u38ar"]
-[ext_resource type="Shader" uid="uid://bka4bu71qwllv" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/Wind.gdshader" id="8_uy6ep"]
-[ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickWithNoise.gdshader" id="8_xavbm"]
-[ext_resource type="Texture2D" uid="uid://7kn7mn00mhxi" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickAlbedo.png" id="9_ynafr"]
-[ext_resource type="Script" uid="uid://chh5q26c43rj1" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gd" id="10_audxr"]
-[ext_resource type="Shader" uid="uid://vxntuktjatt6" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.gdshader" id="19_7bi4b"]
-[ext_resource type="Shader" uid="uid://b17fmwkwmh5tn" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/UVUnwrap.gdshader" id="19_ho06g"]
-[ext_resource type="Shader" uid="uid://b1e8cj8658npo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/InnerOpaqueMesh.gdshader" id="20_1duxy"]
-[ext_resource type="Texture2D" uid="uid://dydlmg56olrbb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.png" id="20_rci2t"]
-[ext_resource type="Shader" uid="uid://ba0s4k8qxv1hu" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/PlanarOffset.gdshader" id="22_7ujh1"]
-[ext_resource type="Shader" uid="uid://dh5uru3f56so5" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicTransparencyWater.gdshader" id="23_rci2t"]
-[ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Depth.gdshader" id="24_1duxy"]
-[ext_resource type="Shader" uid="uid://20vgvccpcamo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/TransparencyFromScreen.gdshader" id="24_d21qw"]
-[ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="25_1qlh3"]
-[ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/DistoredTransparency.gdshader" id="25_h6w3f"]
-[ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/EdgeFoam.gdshader" id="26_j8r8k"]
-[ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/SineWave.gdshader" id="30_2jtpy"]
-[ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWave.gdshader" id="31_a26no"]
-[ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
-[ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
-[ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="69_8opo1"]
+[ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="1_waw53"]
+[ext_resource type="Shader" uid="uid://vxntuktjatt6" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.gdshader" id="2_fyhn6"]
+[ext_resource type="Texture2D" uid="uid://dydlmg56olrbb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.png" id="3_430du"]
+[ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="4_ib04r"]
+[ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="5_b7uom"]
+[ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="6_cm48o"]
+[ext_resource type="Shader" uid="uid://bbk1p0k4lyhba" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/ARMMap.gdshader" id="7_ixm00"]
+[ext_resource type="Texture2D" uid="uid://ce7ch8g3s6nmb" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="8_umf0y"]
+[ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="9_q5ne7"]
+[ext_resource type="Texture2D" uid="uid://c0lmdgphobrbo" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_nor_gl_1k.png" id="10_87j8f"]
+[ext_resource type="Shader" uid="uid://djj7uv3quaclg" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/WallTextures/DamagedWall.gdshader" id="11_0ot1l"]
+[ext_resource type="Texture2D" uid="uid://bnpn06y2syttd" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/beige_wall_001/beige_wall_001_diff_1k.png" id="12_iajq3"]
+[ext_resource type="Texture2D" uid="uid://jmp6bo7dqn7d" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/beige_wall_001/beige_wall_001_arm_1k.png" id="13_wcjcg"]
+[ext_resource type="Texture2D" uid="uid://etlqd2m87l8g" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/beige_wall_001/beige_wall_001_nor_gl_1k.png" id="14_bdafq"]
+[ext_resource type="Shader" uid="uid://dipsovcj0sao1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/WallTextures/OvergrownWall.gdshader" id="15_h6u82"]
+[ext_resource type="Texture2D" uid="uid://cfpaprv18vbd0" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_moss/concrete_moss_diff_1k.png" id="16_dfq4k"]
+[ext_resource type="Texture2D" uid="uid://b8lsl82v4sfnk" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_moss/concrete_moss_arm_1k.png" id="17_o5q8t"]
+[ext_resource type="Texture2D" uid="uid://bl1olsapthm05" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_moss/concrete_moss_nor_gl_1k.png" id="18_je2o4"]
+[ext_resource type="Shader" uid="uid://de6cchdhdu7d2" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/Albedo.gdshader" id="19_11e1w"]
+[ext_resource type="Shader" uid="uid://s4f84uqaxjk2" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/SmallVertexOffset.gdshader" id="20_605dp"]
+[ext_resource type="Shader" uid="uid://7nnf5cwoooyq" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/TextureDisplay.gdshader" id="21_pv4tm"]
+[ext_resource type="Texture2D" uid="uid://7kn7mn00mhxi" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickAlbedo.png" id="22_3snto"]
+[ext_resource type="Shader" uid="uid://b68x00fsfqgnk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickWithNoise.gdshader" id="23_eynvo"]
+[ext_resource type="Shader" uid="uid://b3hkfiwmrf7m1" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/StylizedBricks/BrickWithCracks.gdshader" id="24_7njvd"]
+[ext_resource type="Shader" uid="uid://weeia17iogx3" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/GrassTexture.gdshader" id="25_i6kdi"]
+[ext_resource type="Texture2D" uid="uid://bmmbfucm5p2r8" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_Color.png" id="26_q5fqt"]
+[ext_resource type="Texture2D" uid="uid://bwopfj8desqxy" path="res://ShaderCastleForGodot/ExternalAssets/CC0/AmbientCG/Grass004_1K_NormalGL.png" id="27_8hgyt"]
+[ext_resource type="Shader" uid="uid://cpo5yf2i0yuyr" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/BasicColor.gdshader" id="28_lu3au"]
+[ext_resource type="Shader" uid="uid://chdklspsni2rb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/ColorBlendUVY.gdshader" id="29_32nhi"]
+[ext_resource type="Shader" uid="uid://ccxq6fwabbuw" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/VerticalBillboard.gdshader" id="30_p1q2d"]
+[ext_resource type="Shader" uid="uid://bka4bu71qwllv" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Grass/Wind.gdshader" id="31_sh885"]
+[ext_resource type="Script" uid="uid://chh5q26c43rj1" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gd" id="32_clvp6"]
+[ext_resource type="Shader" uid="uid://b17fmwkwmh5tn" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/UVUnwrap.gdshader" id="33_vvt2v"]
+[ext_resource type="Shader" uid="uid://ba0s4k8qxv1hu" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/PlanarOffset.gdshader" id="34_sefrs"]
+[ext_resource type="Shader" uid="uid://b1e8cj8658npo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/InnerOpaqueMesh.gdshader" id="35_gfib7"]
+[ext_resource type="Shader" uid="uid://dh5uru3f56so5" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicTransparencyWater.gdshader" id="36_f8h0c"]
+[ext_resource type="Shader" uid="uid://20vgvccpcamo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/TransparencyFromScreen.gdshader" id="37_cps0w"]
+[ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/DistoredTransparency.gdshader" id="38_p8ay6"]
+[ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Depth.gdshader" id="39_y6tib"]
+[ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/EdgeFoam.gdshader" id="40_m26rk"]
+[ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="41_mex2c"]
+[ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/SineWave.gdshader" id="42_7vcyf"]
+[ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWave.gdshader" id="43_t5bg0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -46,16 +58,59 @@ glow_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2jtpy"]
 render_priority = 0
-shader = ExtResource("19_7bi4b")
+shader = ExtResource("2_fyhn6")
 shader_parameter/offset = 0.70000003325
-shader_parameter/albedo_map = ExtResource("20_rci2t")
+shader_parameter/albedo_map = ExtResource("3_430du")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g6kx5"]
 data = PackedVector3Array(-50, -1, 50, -50, -1, -50, -50, 1, -50, 50, -1, -50, -50, -1, -50, -50, -1, 50, -50, 1, -50, -50, -1, -50, 50, -1, -50, -50, 1, -50, -50, 1, 50, -50, -1, 50, -50, -1, 50, -50, 1, 50, 50, 1, 50, 50, 1, 50, -50, 1, 50, -50, 1, -50, -50, -1, 50, 50, -1, 50, 50, -1, -50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, -1, -50, 50, -1, 50, 50, 1, 50, 50, -1, -50, 50, 1, -50, -50, 1, -50, -50, 1, -50, 50, 1, -50, 50, 1, 50, 50, 1, 50, 50, 1, -50, 50, -1, -50)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eaq5x"]
+render_priority = 0
+shader = ExtResource("7_ixm00")
+shader_parameter/albedo_map = ExtResource("8_umf0y")
+shader_parameter/normal_map = ExtResource("10_87j8f")
+shader_parameter/arm_map = ExtResource("9_q5ne7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_j31vm"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yrxpa"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6pixo"]
+noise = SubResource("FastNoiseLite_yrxpa")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4ria"]
+render_priority = 0
+shader = ExtResource("11_0ot1l")
+shader_parameter/threshold = 0.3210000152475
+shader_parameter/half_smoothness = 0.04800000228
+shader_parameter/noise_size = 2.0
+shader_parameter/albedo_map_1 = ExtResource("8_umf0y")
+shader_parameter/normal_map_1 = ExtResource("10_87j8f")
+shader_parameter/arm_map_1 = ExtResource("9_q5ne7")
+shader_parameter/albedo_map_2 = ExtResource("12_iajq3")
+shader_parameter/normal_map_2 = ExtResource("14_bdafq")
+shader_parameter/arm_map_2 = ExtResource("13_wcjcg")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_6pixo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_np01h"]
+render_priority = 0
+shader = ExtResource("15_h6u82")
+shader_parameter/threshold = 0.2970000141075
+shader_parameter/half_smoothness = 0.04800000228
+shader_parameter/noise_size = 2.0
+shader_parameter/noiseOffset = -0.16199998394499998
+shader_parameter/albedo_map_1 = ExtResource("8_umf0y")
+shader_parameter/normal_map_1 = ExtResource("10_87j8f")
+shader_parameter/arm_map_1 = ExtResource("9_q5ne7")
+shader_parameter/albedo_map_2 = ExtResource("16_dfq4k")
+shader_parameter/normal_map_2 = ExtResource("18_je2o4")
+shader_parameter/arm_map_2 = ExtResource("17_o5q8t")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_6pixo")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rudpd"]
 render_priority = 0
-shader = ExtResource("5_om2oa")
+shader = ExtResource("19_11e1w")
 shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2oa"]
@@ -100,7 +155,7 @@ shadow_mesh = SubResource("ArrayMesh_tmd7j")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s66ov"]
 render_priority = 0
-shader = ExtResource("6_tmd7j")
+shader = ExtResource("20_605dp")
 shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
 shader_parameter/noise_scale = 0.24600001098648
 shader_parameter/displacement_strength = 0.00800000038
@@ -145,8 +200,8 @@ shadow_mesh = SubResource("ArrayMesh_qq6q2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_636rn"]
 render_priority = 0
-shader = ExtResource("8_intij")
-shader_parameter/albedo = ExtResource("9_ynafr")
+shader = ExtResource("21_pv4tm")
+shader_parameter/albedo = ExtResource("22_3snto")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_8dipx"]
 
@@ -155,14 +210,14 @@ noise = SubResource("FastNoiseLite_8dipx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8dipx"]
 render_priority = 0
-shader = ExtResource("8_xavbm")
+shader = ExtResource("23_eynvo")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_s66ov")
 shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
 shader_parameter/normal_strength = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xavbm"]
 render_priority = 0
-shader = ExtResource("8_u38ar")
+shader = ExtResource("24_7njvd")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_s66ov")
 shader_parameter/crack_width = 0.01
 shader_parameter/albedo = Color(0.33333334, 0.33333334, 0.33333334, 1)
@@ -170,15 +225,15 @@ shader_parameter/normal_strength = 10.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6pixo"]
 render_priority = 0
-shader = ExtResource("5_ds75a")
-shader_parameter/albedo = ExtResource("6_kclyp")
-shader_parameter/normal = ExtResource("7_ho06g")
+shader = ExtResource("25_i6kdi")
+shader_parameter/albedo = ExtResource("26_q5fqt")
+shader_parameter/normal = ExtResource("27_8hgyt")
 
 [sub_resource type="QuadMesh" id="QuadMesh_svmtb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_intij"]
 render_priority = 0
-shader = ExtResource("8_kclyp")
+shader = ExtResource("28_lu3au")
 shader_parameter/albedo = Color(0, 0.85490197, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ie7uk"]
@@ -215,7 +270,7 @@ shadow_mesh = SubResource("ArrayMesh_trky6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynafr"]
 render_priority = 0
-shader = ExtResource("6_intij")
+shader = ExtResource("29_32nhi")
 shader_parameter/bottom = Color(0, 0.19607843, 0, 1)
 shader_parameter/top = Color(0, 0.85490197, 0, 1)
 
@@ -238,7 +293,7 @@ shadow_mesh = SubResource("ArrayMesh_trky6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uy6ep"]
 render_priority = 0
-shader = ExtResource("7_636rn")
+shader = ExtResource("30_p1q2d")
 shader_parameter/bottom = Color(0, 0.19607843, 0, 1)
 shader_parameter/top = Color(0, 0.85490197, 0, 1)
 
@@ -261,7 +316,7 @@ shadow_mesh = SubResource("ArrayMesh_trky6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_svmtb"]
 render_priority = 0
-shader = ExtResource("8_uy6ep")
+shader = ExtResource("31_sh885")
 shader_parameter/bottom = Color(0, 0.19607843, 0, 1)
 shader_parameter/top = Color(0, 0.85490197, 0, 1)
 shader_parameter/wind_sway_frequency = 1.0
@@ -299,18 +354,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_a26no"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_g3van"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78sem"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qqwe"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_a26no")
+albedo_texture = SubResource("ViewportTexture_g3van")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
-shader = ExtResource("19_ho06g")
+shader = ExtResource("33_vvt2v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dukw"]
 resource_name = "Material"
@@ -354,38 +409,38 @@ shadow_mesh = SubResource("ArrayMesh_3627g")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_saxa7"]
 render_priority = 0
-shader = ExtResource("22_7ujh1")
+shader = ExtResource("34_sefrs")
 shader_parameter/offset = 0.2350000111625
 shader_parameter/albedo = Color(0.5137255, 0.6, 0.34117648, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1duxy"]
 render_priority = 0
-shader = ExtResource("19_7bi4b")
+shader = ExtResource("2_fyhn6")
 shader_parameter/offset = 0.53600002546
-shader_parameter/albedo_map = ExtResource("20_rci2t")
+shader_parameter/albedo_map = ExtResource("3_430du")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1qlh3"]
 render_priority = 0
-shader = ExtResource("20_1duxy")
+shader = ExtResource("35_gfib7")
 shader_parameter/offset = -0.2
 shader_parameter/albedo = Color(0.51400006, 0.6, 0.342, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rci2t"]
 render_priority = 0
 next_pass = SubResource("ShaderMaterial_1qlh3")
-shader = ExtResource("19_7bi4b")
+shader = ExtResource("2_fyhn6")
 shader_parameter/offset = 0.53600002546
-shader_parameter/albedo_map = ExtResource("20_rci2t")
+shader_parameter/albedo_map = ExtResource("3_430du")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j8r8k"]
 render_priority = 0
-shader = ExtResource("20_1duxy")
+shader = ExtResource("35_gfib7")
 shader_parameter/offset = 2.3749999966682367e-08
 shader_parameter/albedo = Color(0.5137255, 0.6, 0.34117648, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d21qw"]
 render_priority = 0
-shader = ExtResource("23_rci2t")
+shader = ExtResource("36_f8h0c")
 shader_parameter/albedo = Color(0.14500001, 0.22191668, 0.5, 0.7490196)
 
 [sub_resource type="QuadMesh" id="QuadMesh_7bi4b"]
@@ -395,7 +450,7 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_78sem"]
 render_priority = 0
-shader = ExtResource("24_d21qw")
+shader = ExtResource("37_cps0w")
 shader_parameter/water_albedo = Color(0.14509805, 0.22352941, 0.5019608, 0.7490196)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_7ujh1"]
@@ -405,14 +460,14 @@ noise = SubResource("FastNoiseLite_7ujh1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4o58"]
 render_priority = 0
-shader = ExtResource("25_h6w3f")
+shader = ExtResource("38_p8ay6")
 shader_parameter/water_albedo = Color(0.14509805, 0.22352941, 0.5019608, 0.7490196)
 shader_parameter/distortion = 0.0070000003325
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_h6w3f")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h6w3f"]
 render_priority = 0
-shader = ExtResource("24_1duxy")
+shader = ExtResource("39_y6tib")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d21qw"]
 
@@ -421,7 +476,7 @@ noise = SubResource("FastNoiseLite_d21qw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a26no"]
 render_priority = 0
-shader = ExtResource("26_j8r8k")
+shader = ExtResource("40_m26rk")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_j8r8k")
 shader_parameter/water_color = Color(0.24000001, 0.40466672, 1, 0.6862745)
 shader_parameter/foam_color = Color(0.414, 0.52439994, 0.69, 0.7882353)
@@ -431,7 +486,7 @@ shader_parameter/depth_cutoff = 0.02800000133
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ujh1"]
 render_priority = 0
-shader = ExtResource("25_1qlh3")
+shader = ExtResource("41_mex2c")
 shader_parameter/absorption_coefficients = Vector3(0.5, 0.08, 0.01)
 shader_parameter/water_base_color = Color(0.1488, 0.25089338, 0.62, 1)
 shader_parameter/scale = 200.0
@@ -440,7 +495,7 @@ shader_parameter/scale = 200.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_peyk1"]
 render_priority = 0
-shader = ExtResource("30_2jtpy")
+shader = ExtResource("42_7vcyf")
 shader_parameter/wavelength = 0.5
 shader_parameter/amplitude = 0.2
 shader_parameter/speed = 0.2
@@ -453,7 +508,7 @@ orientation = 1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wg1qd"]
 render_priority = 0
-shader = ExtResource("31_a26no")
+shader = ExtResource("43_t5bg0")
 shader_parameter/wavelength = 0.5
 shader_parameter/steepness = 0.5
 shader_parameter/speed = 0.2
@@ -464,19 +519,19 @@ shader_parameter/speed = 0.2
 environment = SubResource("Environment_660i6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2101350115]
-transform = Transform3D(-0.9238795, 0.34682897, -0.161729, 0, 0.42261824, 0.9063078, 0.38268343, 0.8373192, -0.39044833, 0, 0, 0)
+transform = Transform3D(0.6959127, -0.6508435, 0.30349326, 0, 0.42261824, 0.9063078, -0.71812624, -0.6307112, 0.29410544, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Tree" parent="." unique_id=239158485 instance=ExtResource("67_whso2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 0, -6.3826613)
+[node name="Tree" parent="." unique_id=239158485 instance=ExtResource("1_waw53")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.644658, -4.7683716e-07, 6.467231)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=2013304247]
+[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
 surface_material_override/0 = SubResource("ShaderMaterial_2jtpy")
 
-[node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("68_ea70n")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+[node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("4_ib04r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0660412, 0, 1.9402081)
 
-[node name="SetupControls" parent="." unique_id=1595231349 instance=ExtResource("69_8opo1")]
+[node name="SetupControls" parent="." unique_id=1595231349 instance=ExtResource("5_b7uom")]
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=560271195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -487,27 +542,49 @@ size = Vector3(100, 2, 100)
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=925622205]
 shape = SubResource("ConcavePolygonShape3D_g6kx5")
 
-[node name="StylizedBricks" type="Node3D" parent="." unique_id=2106297097]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.1812038)
+[node name="Wall textures" type="Node3D" parent="." unique_id=1246741554]
 
-[node name="Bevel" parent="StylizedBricks" unique_id=565844488 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0064539914)
+[node name="Wall texture" parent="Wall textures" unique_id=320400435 instance=ExtResource("6_cm48o")]
+title = "Wall texture"
+description = ""
+material = SubResource("ShaderMaterial_eaq5x")
+meshToDisplay = SubResource("QuadMesh_j31vm")
+
+[node name="Damaged texture" parent="Wall textures" unique_id=215308863 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1896262, 0, 9.928757e-08)
+title = "Damaged texture"
+description = ""
+material = SubResource("ShaderMaterial_d4ria")
+meshToDisplay = SubResource("QuadMesh_j31vm")
+
+[node name="Overgrowth" parent="Wall textures" unique_id=922751477 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5812516, 0, 1.8907093e-07)
+title = "Overgrown texture"
+description = ""
+material = SubResource("ShaderMaterial_np01h")
+meshToDisplay = SubResource("QuadMesh_j31vm")
+
+[node name="StylizedBricks" type="Node3D" parent="." unique_id=2106297097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0274732)
+
+[node name="Bevel" parent="StylizedBricks" unique_id=565844488 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.745216e-10, 0, 0.006453991)
 title = "Bevel"
 description = "A bevel added to the edge of the brick breaks up the sharp edges."
 material = SubResource("ShaderMaterial_rudpd")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Vertex offset" parent="StylizedBricks" unique_id=1076800984 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.837841, 0, -0.0477848)
+[node name="Vertex offset" parent="StylizedBricks" unique_id=1076800984 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0702138, 0, 0.047785044)
 title = "Vertex offset"
 description = "Subdividing the mesh and adding a small vertex offset makes the brick look more realistic. "
 material = SubResource("ShaderMaterial_s66ov")
 meshToDisplay = SubResource("ArrayMesh_u38ar")
 display_scale = 0.18
 
-[node name="Painted shadows" parent="StylizedBricks" unique_id=1423633360 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9426742, 0, 0)
+[node name="Painted shadows" parent="StylizedBricks" unique_id=1423633360 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3721838, 0, 2.3841858e-07)
 title = "Painted features"
 description = "Hand painting features alows for a large amount of artistic control. This often involves understanding and painting the light. Note that the painted light interactions are set  and do not react to the scene light.
 - A dark to bright gradient from the bottom to the top represents that the bottom is usualyl less well lit.
@@ -519,26 +596,26 @@ meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
 [node name="OmniLight3D" type="OmniLight3D" parent="StylizedBricks" unique_id=1238048709]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.451726, 1.6028607, 0.0070343018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9765897, 1.6028607, -0.007033825)
 
-[node name="Noise" parent="StylizedBricks" unique_id=1061568170 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9130268, 0, 2.861023e-06)
+[node name="Noise" parent="StylizedBricks" unique_id=1061568170 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6093698, 0, -2.3841858e-06)
 title = "Noise"
 material = SubResource("ShaderMaterial_8dipx")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0387526, 0, 2.861023e-06)
+[node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7815523, 0, -2.1457672e-06)
 title = "Cracks"
 material = SubResource("ShaderMaterial_xavbm")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
 [node name="Grass" type="Node3D" parent="." unique_id=352304854]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.538093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.1313243)
 
-[node name="Grass texture" parent="Grass" unique_id=1185929385 instance=ExtResource("4_akt4p")]
+[node name="Grass texture" parent="Grass" unique_id=1185929385 instance=ExtResource("6_cm48o")]
 title = "Grass texture"
 description = "A basic way to display grass is with a texture. A normal map can further help improve the display."
 material = SubResource("ShaderMaterial_6pixo")
@@ -546,7 +623,7 @@ meshToDisplay = SubResource("QuadMesh_svmtb")
 euler_angles = Vector3(270, 0, 0)
 hovering = false
 
-[node name="Grass blade" parent="Grass" unique_id=1313429169 instance=ExtResource("4_akt4p")]
+[node name="Grass blade" parent="Grass" unique_id=1313429169 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8271184, 0, 0)
 title = "Grass blade"
 description = "A basic grass blade can be represented by a simple triangle with a color"
@@ -554,7 +631,7 @@ material = SubResource("ShaderMaterial_intij")
 meshToDisplay = SubResource("ArrayMesh_svmtb")
 hovering = false
 
-[node name="Color blend" parent="Grass" unique_id=719679880 instance=ExtResource("4_akt4p")]
+[node name="Color blend" parent="Grass" unique_id=719679880 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6569774, 0, 2.3841858e-07)
 title = "Color blend"
 description = "Adding a color blend helps with the beliavability. Since less light reaches the bottom of the grass, a darker color makes sense."
@@ -562,7 +639,7 @@ material = SubResource("ShaderMaterial_ynafr")
 meshToDisplay = SubResource("ArrayMesh_oy7ja")
 hovering = false
 
-[node name="Billboard" parent="Grass" unique_id=1253808886 instance=ExtResource("4_akt4p")]
+[node name="Billboard" parent="Grass" unique_id=1253808886 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4698708, 0, 2.3841858e-07)
 title = "Vertical billboard"
 description = "When looking at a flat mesh from the side, it gets very flat. A vertical billboard aligns the grass with the view. Note that this usually causes a weird effect on once the user becomes aware of it."
@@ -570,7 +647,7 @@ material = SubResource("ShaderMaterial_uy6ep")
 meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
-[node name="Wind" parent="Grass" unique_id=642143392 instance=ExtResource("4_akt4p")]
+[node name="Wind" parent="Grass" unique_id=642143392 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3535893, 0, 2.3841858e-07)
 title = "Wind"
 description = "Adding a vertex offset allows creating a wind effect."
@@ -578,7 +655,7 @@ material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
-[node name="Complex blade" parent="Grass" unique_id=300544721 instance=ExtResource("4_akt4p")]
+[node name="Complex blade" parent="Grass" unique_id=300544721 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.410187, 0, 4.7683716e-07)
 title = "Complex grass blade"
 description = "Increasing the complexity of the mesh improves the wind behavior."
@@ -586,7 +663,7 @@ material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_uy6ep")
 hovering = false
 
-[node name="Many blades" parent="Grass" unique_id=1712670358 instance=ExtResource("4_akt4p")]
+[node name="Many blades" parent="Grass" unique_id=1712670358 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6689005, 0, 4.7683716e-07)
 title = "Grass field"
 description = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
@@ -604,7 +681,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_svmtb")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Grass/Many blades/DisplayOrigin" index="1" unique_id=1298894310 node_paths=PackedStringArray("linkedMultipMesh")]
 transform = Transform3D(-9.934766e-08, 0, -0.99999994, 0, 0.99999994, 0, 0.99999994, 0, -9.934766e-08, 0, 0, 0)
-script = ExtResource("10_audxr")
+script = ExtResource("32_clvp6")
 linkedMultipMesh = NodePath(".")
 mesh = SubResource("ArrayMesh_uy6ep")
 material = SubResource("ShaderMaterial_svmtb")
@@ -619,12 +696,12 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_78sem")
+surface_material_override/0 = SubResource("StandardMaterial3D_0qqwe")
 
 [node name="Bushes" type="Node3D" parent="." unique_id=1570795030]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 7.3367596)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05948104e-07, 0, -9.4532995)
 
-[node name="Basic mesh" parent="Bushes" unique_id=1266656380 instance=ExtResource("4_akt4p")]
+[node name="Basic mesh" parent="Bushes" unique_id=1266656380 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9242805e-08, 0, 0.21365786)
 title = "Basic bush mesh"
 description = "This can be created in Blender:
@@ -637,7 +714,7 @@ material = SubResource("ShaderMaterial_7bi4b")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="PlanarOffset" parent="Bushes" unique_id=19384415 instance=ExtResource("4_akt4p")]
+[node name="PlanarOffset" parent="Bushes" unique_id=19384415 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3071079, 0, 0.21365786)
 title = "Offset"
 description = "Vertex offset relative to center of UV in Tangent and Binormal direction."
@@ -645,7 +722,7 @@ material = SubResource("ShaderMaterial_saxa7")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Leaf shader" parent="Bushes" unique_id=787674492 instance=ExtResource("4_akt4p")]
+[node name="Leaf shader" parent="Bushes" unique_id=787674492 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5555081, 0, 0.21365786)
 title = "Leaf texture"
 description = ""
@@ -653,7 +730,7 @@ material = SubResource("ShaderMaterial_1duxy")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Innter mesh" parent="Bushes" unique_id=1085078669 instance=ExtResource("4_akt4p")]
+[node name="Innter mesh" parent="Bushes" unique_id=1085078669 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8563492, 0, 0.21365833)
 title = "Inner opaque mesh"
 description = "Opaque mesh to reduce overdraw"
@@ -661,7 +738,7 @@ material = SubResource("ShaderMaterial_rci2t")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Opaque LOD" parent="Bushes" unique_id=1277920801 instance=ExtResource("4_akt4p")]
+[node name="Opaque LOD" parent="Bushes" unique_id=1277920801 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2376876, 0, 0.21365833)
 title = "Opaque LOD"
 description = ""
@@ -670,10 +747,10 @@ meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
 [node name="Water" type="Node3D" parent="." unique_id=1767500007]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 9.469526)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.326484e-07, 0, -12.638846)
 
-[node name="BasicTransparency" parent="Water" unique_id=2128189775 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9242805e-08, 0, 0.21365786)
+[node name="BasicTransparency" parent="Water" unique_id=2128189775 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9242805e-08, 0, 0)
 title = "Basic transparency water"
 description = ""
 material = SubResource("ShaderMaterial_d21qw")
@@ -686,8 +763,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="TransparencyFromScreen" parent="Water" unique_id=1401212748 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9830935, 0, 0.21365738)
+[node name="TransparencyFromScreen" parent="Water" unique_id=1401212748 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9830935, 0, 0)
 title = "Transparency from screen"
 description = ""
 material = SubResource("ShaderMaterial_78sem")
@@ -700,8 +777,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Distored screen UV" parent="Water" unique_id=1032948277 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0569293, 0, 0.21365738)
+[node name="Distored screen UV" parent="Water" unique_id=1032948277 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0569293, 0, 0)
 title = "Distored transparency"
 description = ""
 material = SubResource("ShaderMaterial_c4o58")
@@ -714,8 +791,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Depth" parent="Water" unique_id=1994549843 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2894747, 0, 0.21365738)
+[node name="Depth" parent="Water" unique_id=1994549843 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2894747, 0, 0)
 title = "Depth"
 description = ""
 material = SubResource("ShaderMaterial_h6w3f")
@@ -728,8 +805,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Edge foam" parent="Water" unique_id=2085528281 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5272474, 0, 0.21365738)
+[node name="Edge foam" parent="Water" unique_id=2085528281 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5272474, 0, 0)
 title = "Edge foam from depth"
 description = ""
 material = SubResource("ShaderMaterial_a26no")
@@ -742,8 +819,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.1, 0.4, 0.1)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="BeersLaw" parent="Water" unique_id=1140976894 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.587154, 0, 0.21365833)
+[node name="BeersLaw" parent="Water" unique_id=1140976894 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.587154, 0, 0)
 title = "Beer's law"
 description = "Glacial / Pure: 0.25, 0.03, 0.005
 Tropical ocean: 0.50, 0.08, 0.01
@@ -759,8 +836,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Sine wave" parent="Water" unique_id=457383167 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5683837, 0, 0.21365833)
+[node name="Sine wave" parent="Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5683837, 0, 0)
 title = "Sine wave"
 description = "
 "
@@ -769,8 +846,8 @@ meshToDisplay = SubResource("QuadMesh_2jtpy")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="Gerstner wave" parent="Water" unique_id=2006104574 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.512921, 0, 0.21365833)
+[node name="Gerstner wave" parent="Water" unique_id=2006104574 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.512921, 0, 0)
 title = "Gerstner wave"
 description = "
 "

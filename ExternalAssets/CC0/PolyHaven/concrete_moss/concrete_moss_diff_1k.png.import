@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c67k8r8pii70v"
-path.s3tc="res://.godot/imported/red_brick_arm_1k.png-4479f2dc4728954119ccb69030a08dd6.s3tc.ctex"
+uid="uid://cfpaprv18vbd0"
+path.s3tc="res://.godot/imported/concrete_moss_diff_1k.png-20d1f7d0a1807f6f0b86548b6983f57a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png"
-dest_files=["res://.godot/imported/red_brick_arm_1k.png-4479f2dc4728954119ccb69030a08dd6.s3tc.ctex"]
+source_file="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/concrete_moss/concrete_moss_diff_1k.png"
+dest_files=["res://.godot/imported/concrete_moss_diff_1k.png-20d1f7d0a1807f6f0b86548b6983f57a.s3tc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/uastc_level=0
 compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

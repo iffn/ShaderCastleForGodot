@@ -113,14 +113,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8001b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wb0ph"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wb0ph"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1t3"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_8001b")
+albedo_texture = SubResource("ViewportTexture_wb0ph")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -231,26 +231,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jceew")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_og1t3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_k7ccs"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k7ccs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s6h4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_og1t3")
+albedo_texture = SubResource("ViewportTexture_k7ccs")
 
 [sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
 size = Vector2(1.5, 1.5)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2s6h4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_36d40"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_36d40"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oq33n"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_2s6h4")
+albedo_texture = SubResource("ViewportTexture_36d40")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8001b"]
 render_priority = 0
@@ -1386,7 +1386,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_wb0ph")
+surface_material_override/0 = SubResource("StandardMaterial3D_og1t3")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1502,7 +1502,7 @@ text = "MultiMeshInstance3D"
 text = " "
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/MultiMeshInstance3D/3D UI" parent_id_path=PackedInt32Array(912002243, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_k7ccs")
+surface_material_override/0 = SubResource("StandardMaterial3D_2s6h4")
 
 [node name="Where is the geometry shader" parent="Entrance/Vertex shader" unique_id=2030272435 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6885948, 3, 12.110512)
@@ -1565,7 +1565,7 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="1" unique_id=121505346]
 mesh = SubResource("QuadMesh_65i8n")
-surface_material_override/0 = SubResource("StandardMaterial3D_36d40")
+surface_material_override/0 = SubResource("StandardMaterial3D_oq33n")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
@@ -1953,7 +1953,7 @@ material = SubResource("ShaderMaterial_htnhy")
 meshToDisplay = SubResource("QuadMesh_2y8t4")
 
 [node name="Aligned depth texture" parent="Buffer/Depth buffer" unique_id=1955367364 instance=ExtResource("7_xewg6")]
-transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -3.3043756, 0, -0.69877625)
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -3.3043756, 0, -0.2712326)
 title = "Aligned depth texture"
 description = "Using the screen UVs, the depth texture can be aligned with the view."
 material = SubResource("ShaderMaterial_yfnap")
@@ -2114,7 +2114,7 @@ meshToDisplay = SubResource("BoxMesh_yfnap")
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("6_kkpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 10.695, -27.756)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=2013304247]
+[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
 surface_material_override/0 = SubResource("ShaderMaterial_2s6h4")
 
 [node name="Water" type="CSGBox3D" parent="." unique_id=204811492]
