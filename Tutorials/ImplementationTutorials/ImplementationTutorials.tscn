@@ -26,6 +26,8 @@
 [ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="25_1qlh3"]
 [ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/DistoredTransparency.gdshader" id="25_h6w3f"]
 [ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/EdgeFoam.gdshader" id="26_j8r8k"]
+[ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/SineWave.gdshader" id="30_2jtpy"]
+[ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWave.gdshader" id="31_a26no"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="69_8opo1"]
@@ -297,14 +299,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rci2t"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_a26no"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1duxy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_78sem"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_rci2t")
+albedo_texture = SubResource("ViewportTexture_a26no")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
@@ -435,6 +437,26 @@ shader_parameter/water_base_color = Color(0.1488, 0.25089338, 0.62, 1)
 shader_parameter/scale = 200.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_7ujh1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_peyk1"]
+render_priority = 0
+shader = ExtResource("30_2jtpy")
+shader_parameter/wavelength = 0.5
+shader_parameter/amplitude = 0.2
+shader_parameter/speed = 0.2
+
+[sub_resource type="QuadMesh" id="QuadMesh_2jtpy"]
+flip_faces = true
+size = Vector2(1, 0.1)
+subdivide_width = 50
+orientation = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wg1qd"]
+render_priority = 0
+shader = ExtResource("31_a26no")
+shader_parameter/wavelength = 0.5
+shader_parameter/steepness = 0.5
+shader_parameter/speed = 0.2
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
@@ -597,7 +619,7 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_1duxy")
+surface_material_override/0 = SubResource("StandardMaterial3D_78sem")
 
 [node name="Bushes" type="Node3D" parent="." unique_id=1570795030]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 7.3367596)
@@ -615,7 +637,7 @@ material = SubResource("ShaderMaterial_7bi4b")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Leaf shader2" parent="Bushes" unique_id=19384415 instance=ExtResource("4_akt4p")]
+[node name="PlanarOffset" parent="Bushes" unique_id=19384415 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3071079, 0, 0.21365786)
 title = "Offset"
 description = "Vertex offset relative to center of UV in Tangent and Binormal direction."
@@ -736,6 +758,26 @@ euler_angles = Vector3(270, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
+
+[node name="Sine wave" parent="Water" unique_id=457383167 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5683837, 0, 0.21365833)
+title = "Sine wave"
+description = "
+"
+material = SubResource("ShaderMaterial_peyk1")
+meshToDisplay = SubResource("QuadMesh_2jtpy")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="Gerstner wave" parent="Water" unique_id=2006104574 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.512921, 0, 0.21365833)
+title = "Gerstner wave"
+description = "
+"
+material = SubResource("ShaderMaterial_wg1qd")
+meshToDisplay = SubResource("QuadMesh_2jtpy")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
 
 [editable path="Tree"]
 [editable path="Grass/Many blades"]
