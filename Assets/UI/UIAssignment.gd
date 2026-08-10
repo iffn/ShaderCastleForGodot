@@ -35,7 +35,8 @@ func apply_data() -> void:
 	displayMesh.set_surface_override_material(0, material)
 	displayMesh.scale = display_scale * Vector3.ONE
 	displayMesh.rotation = euler_angles * deg_to_rad(1)
-	displayOrigin.position.y = 1.3 if hovering else 1.001
+	if(displayOrigin):
+		displayOrigin.position.y = 1.3 if hovering else 1.001
 
 func _ready() -> void:
 	apply_data()

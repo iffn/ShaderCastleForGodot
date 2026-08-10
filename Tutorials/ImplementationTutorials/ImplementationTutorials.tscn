@@ -166,14 +166,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ds75a"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_kclyp"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kclyp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho06g"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ds75a")
+albedo_texture = SubResource("ViewportTexture_kclyp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rudpd"]
 render_priority = 0
@@ -317,10 +317,9 @@ size = Vector3(100, 2, 100)
 shape = SubResource("ConcavePolygonShape3D_g6kx5")
 
 [node name="Grass" type="Node3D" parent="." unique_id=352304854]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.9445243, 0, 2.8179817)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 2.8179817)
 
 [node name="Grass texture" parent="Grass" unique_id=1185929385 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80615354, 0, 0)
 title = "Grass texture"
 description = "A basic way to display grass is with a texture. A normal map can further help improve the display."
 material = SubResource("ShaderMaterial_6pixo")
@@ -329,6 +328,7 @@ euler_angles = Vector3(270, 0, 0)
 hovering = false
 
 [node name="Grass blade" parent="Grass" unique_id=1313429169 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8271184, 0, 0)
 title = "Grass blade"
 description = "A basic grass blade can be represented by a simple triangle with a color"
 material = SubResource("ShaderMaterial_intij")
@@ -336,7 +336,7 @@ meshToDisplay = SubResource("ArrayMesh_svmtb")
 hovering = false
 
 [node name="Color blend" parent="Grass" unique_id=719679880 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8298588, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6569774, 0, 2.3841858e-07)
 title = "Color blend"
 description = "Adding a color blend helps with the beliavability. Since less light reaches the bottom of the grass, a darker color makes sense."
 material = SubResource("ShaderMaterial_ynafr")
@@ -344,7 +344,7 @@ meshToDisplay = SubResource("ArrayMesh_oy7ja")
 hovering = false
 
 [node name="Billboard" parent="Grass" unique_id=1253808886 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6427524, 0, 2.3841858e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4698708, 0, 2.3841858e-07)
 title = "Vertical billboard"
 description = "When looking at a flat mesh from the side, it gets very flat. A vertical billboard aligns the grass with the view. Note that this usually causes a weird effect on once the user becomes aware of it."
 material = SubResource("ShaderMaterial_uy6ep")
@@ -352,7 +352,7 @@ meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
 [node name="Wind" parent="Grass" unique_id=642143392 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5264704, 0, 2.3841858e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3535893, 0, 2.3841858e-07)
 title = "Wind"
 description = "Adding a vertex offset allows creating a wind effect."
 material = SubResource("ShaderMaterial_svmtb")
@@ -360,7 +360,7 @@ meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
 [node name="Complex blade" parent="Grass" unique_id=300544721 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5830686, 0, 2.3841858e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.410187, 0, 4.7683716e-07)
 title = "Complex grass blade"
 description = "Increasing the complexity of the mesh improves the wind behavior."
 material = SubResource("ShaderMaterial_svmtb")
@@ -368,7 +368,7 @@ meshToDisplay = SubResource("ArrayMesh_uy6ep")
 hovering = false
 
 [node name="Many blades" parent="Grass" unique_id=1712670358 instance=ExtResource("4_akt4p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.8417826, 0, 4.7683716e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6689005, 0, 4.7683716e-07)
 title = "Grass field"
 description = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 material = SubResource("ShaderMaterial_svmtb")
@@ -400,12 +400,12 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_kclyp")
+surface_material_override/0 = SubResource("StandardMaterial3D_ho06g")
 
 [node name="GrassBladeComplex" parent="." unique_id=759551437 instance=ExtResource("7_ynafr")]
 
 [node name="StylizedBricks" type="Node3D" parent="." unique_id=2106297097]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5.223118, 0, 4.841757)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 4.841757)
 
 [node name="Bevel" parent="StylizedBricks" unique_id=565844488 instance=ExtResource("4_akt4p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0064539914)
