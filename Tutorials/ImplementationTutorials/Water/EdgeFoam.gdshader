@@ -11,7 +11,15 @@ uniform float noise_strength : hint_range(0.0, 0.2) = 0.05;
 uniform float depth_cutoff : hint_range(0.0, 0.2)  = 0.05;
 
 float linear_depth(float depth_raw, vec3 vertex, vec2 screen_uv, mat4 inv_projection_matrix) {
-	vec4 ndc = vec4(screen_uv * 2.0 - 1.0, depth_raw, 1.0);
+	vec4 ndc;
+	
+	// Handle the Z-coordinate differences between OpenGL and Vulkan/Reverse-Z
+	#if CURRENT_RENDERER == RENDERER_COMPATIBILITY
+		ndc = vec4(screen_uv * 2.0 - 1.0, depth_raw * 2.0 - 1.0, 1.0);
+	#else
+		ndc = vec4(screen_uv * 2.0 - 1.0, depth_raw, 1.0);
+	#endif
+	
 	vec4 view_space_behind = inv_projection_matrix * ndc;
 	view_space_behind.xyz /= view_space_behind.w;
 	
