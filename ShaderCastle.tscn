@@ -61,6 +61,7 @@
 [ext_resource type="Shader" uid="uid://b4fx238l4onr4" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Trigonometry/atan.gdshader" id="38_xpevr"]
 [ext_resource type="Shader" uid="uid://chenuwxbqptqe" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Transform/OffsetVerticalFunction.gdshader" id="39_iffii"]
 [ext_resource type="Shader" uid="uid://bjnkut1yu8xqs" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Trigonometry/acos.gdshader" id="39_xpevr"]
+[ext_resource type="Shader" uid="uid://b0560jodr47pk" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/exp.gdshader" id="40_wb0ph"]
 [ext_resource type="Shader" uid="uid://di0clf4bqt3lc" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Trigonometry/sinh.gdshader" id="41_kbnq3"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="41_xbh4r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="42_of8ie"]
@@ -348,6 +349,11 @@ shader = ExtResource("24_seb52")
 shader_parameter/scale = 5.0
 shader_parameter/a = 1.0
 shader_parameter/b = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qimaa"]
+render_priority = 0
+shader = ExtResource("40_wb0ph")
+shader_parameter/scale = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i2ip5"]
 render_priority = 0
@@ -1362,7 +1368,6 @@ description = "Colors are returned in the visible red, green and blue channels b
 material = SubResource("ShaderMaterial_660i6")
 
 [node name="DisplayQuad" parent="Entrance/Basics/Color picker/DisplayOrigin" parent_id_path=PackedInt32Array(784542166, 595881598) index="0" unique_id=1420667322]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_660i6")
 
 [node name="Title" parent="Entrance/Basics/Color picker/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(784542166, 1806436609) index="0" unique_id=1954479272]
@@ -1521,8 +1526,8 @@ Mesh Shader:
 Introduced as a modern replacement for geometry and tessellation shaders, mesh shaders bring compute-like flexibility to geometry generation. However, this is a newer hardware workflow and is not yet available in Godot's high-level shader workflow."
 
 [node name="DisplayQuad" parent="Entrance/Vertex shader/Where is the geometry shader/DisplayOrigin" parent_id_path=PackedInt32Array(2030272435, 595881598) index="0" unique_id=1420667322]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 visible = false
+surface_material_override/0 = null
 
 [node name="3D UI" parent="Entrance/Vertex shader/Where is the geometry shader" index="1" unique_id=498438476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53149414, -0.001)
@@ -1607,7 +1612,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 transform = Transform3D(-0.77714586, 0, -0.6293204, 0, 1, 0, 0.6293204, 0, -0.77714586, 0, 0, 0)
 script = ExtResource("18_3m87l")
 radius = 5.9
-angle_offset_deg = 6.5
+angle_offset_deg = 6.0
 
 [node name="y=x" parent="MathTower/Floor -1/Basics" unique_id=1677694402 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.9)
@@ -1616,76 +1621,82 @@ description = ""
 material = SubResource("ShaderMaterial_5acsn")
 
 [node name="abs" parent="MathTower/Floor -1/Basics" unique_id=1517832246 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.9935719, 0, -0.11320321, 0, 1, 0, 0.11320321, 0, 0.9935719, -0.66789895, 0, 5.862074)
+transform = Transform3D(0.9945219, 0, -0.104528464, 0, 1, 0, 0.104528464, 0, 0.9945219, -0.61671793, 0, 5.867679)
 title = "abs(x)"
 description = ""
 material = SubResource("ShaderMaterial_xifpy")
 
 [node name="sign" parent="MathTower/Floor -1/Basics" unique_id=772776314 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.97437006, 0, -0.22495104, 0, 1, 0, 0.22495104, 0, 0.97437006, -1.3272113, 0, 5.7487836)
+transform = Transform3D(0.9781476, 0, -0.2079117, 0, 1, 0, 0.2079117, 0, 0.9781476, -1.226679, 0, 5.771071)
 title = "sign"
 description = ""
 material = SubResource("ShaderMaterial_cs2co")
 
 [node name="max" parent="MathTower/Floor -1/Basics" unique_id=1893296936 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.9426415, 0, -0.33380687, 0, 1, 0, 0.33380687, 0, 0.9426415, -1.9694605, 0, 5.561585)
+transform = Transform3D(0.95105654, 0, -0.309017, 0, 1, 0, 0.309017, 0, 0.95105654, -1.8232002, 0, 5.611233)
 title = "max(x, a)"
 description = ""
 material = SubResource("ShaderMaterial_iocoe")
 
 [node name="min" parent="MathTower/Floor -1/Basics" unique_id=2089219258 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.89879405, 0, -0.43837115, 0, 1, 0, 0.43837115, 0, 0.89879405, -2.5863898, 0, 5.302885)
+transform = Transform3D(0.9135454, 0, -0.40673664, 0, 1, 0, 0.40673664, 0, 0.9135454, -2.3997462, 0, 5.3899183)
 title = "min(x, a)"
 description = ""
 material = SubResource("ShaderMaterial_mnp87")
 
 [node name="clamp" parent="MathTower/Floor -1/Basics" unique_id=637073798 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.84339136, 0, -0.5372996, 0, 1, 0, 0.5372996, 0, 0.84339136, -3.1700678, 0, 4.9760094)
+transform = Transform3D(0.86602527, 0, -0.49999994, 0, 1, 0, 0.49999994, 0, 0.86602527, -2.95, 0, 5.10955)
 title = "clamp(x, a, b)"
 description = ""
 material = SubResource("ShaderMaterial_ii2fx")
 
 [node name="fract" parent="MathTower/Floor -1/Basics" unique_id=761992402 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.77714586, 0, -0.6293203, 0, 1, 0, 0.6293203, 0, 0.77714586, -3.7129903, 0, 4.585161)
+transform = Transform3D(0.8090169, 0, -0.5877852, 0, 1, 0, 0.5877852, 0, 0.8090169, -3.467933, 0, 4.7732)
 title = "fract(x)"
 description = ""
 material = SubResource("ShaderMaterial_qdfnp")
 
 [node name="mod" parent="MathTower/Floor -1/Basics" unique_id=1091081500 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.7009092, 0, -0.7132504, 0, 1, 0, 0.7132504, 0, 0.7009092, -4.2081776, 0, 4.1353645)
+transform = Transform3D(0.74314475, 0, -0.66913056, 0, 1, 0, 0.66913056, 0, 0.74314475, -3.9478705, 0, 4.3845544)
 title = "mod(x, a)"
 description = ""
 material = SubResource("ShaderMaterial_p17ao")
 
 [node name="floor" parent="MathTower/Floor -1/Basics" unique_id=277415584 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.61566144, 0, -0.78801066, 0, 1, 0, 0.78801066, 0, 0.61566144, -4.6492634, 0, 3.6324027)
+transform = Transform3D(0.6691305, 0, -0.7431448, 0, 1, 0, 0.7431448, 0, 0.6691305, -4.3845544, 0, 3.9478705)
 title = " floor(x)"
 description = ""
 material = SubResource("ShaderMaterial_jrc4g")
 
 [node name="ceil" parent="MathTower/Floor -1/Basics" unique_id=528456228 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.5224984, 0, -0.85264015, 0, 1, 0, 0.85264015, 0, 0.5224984, -5.030577, 0, 3.0827415)
+transform = Transform3D(0.5877852, 0, -0.80901694, 0, 1, 0, 0.80901694, 0, 0.5877852, -4.7732, 0, 3.467933)
 title = " ceil(x)"
 description = ""
 material = SubResource("ShaderMaterial_aof11")
 
 [node name="round" parent="MathTower/Floor -1/Basics" unique_id=1559120285 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.4226182, 0, -0.90630776, 0, 1, 0, 0.90630776, 0, 0.4226182, -5.347216, 0, 2.4934478)
+transform = Transform3D(0.49999994, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, 0.49999994, -5.10955, 0, 2.95)
 title = " round(x)"
 description = ""
 material = SubResource("ShaderMaterial_xbh4r")
 
 [node name="trunc" parent="MathTower/Floor -1/Basics" unique_id=2094218785 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.31730467, 0, -0.9483236, 0, 1, 0, 0.9483236, 0, 0.31730467, -5.5951095, 0, 1.8720975)
+transform = Transform3D(0.40673658, 0, -0.9135454, 0, 1, 0, 0.9135454, 0, 0.40673658, -5.3899183, 0, 2.3997462)
 title = " trunc(x)"
 description = ""
 material = SubResource("ShaderMaterial_of8ie")
 
 [node name="mix" parent="MathTower/Floor -1/Basics" unique_id=242642787 instance=ExtResource("7_ycgrn")]
-transform = Transform3D(0.20791164, 0, -0.97814757, 0, 1, 0, 0.97814757, 0, 0.20791164, -5.771071, 0, 1.226679)
+transform = Transform3D(0.30901694, 0, -0.9510565, 0, 1, 0, 0.9510565, 0, 0.30901694, -5.611233, 0, 1.8232002)
 title = " mix(a, b, x)"
 description = ""
 material = SubResource("ShaderMaterial_avgq5")
+
+[node name="exp" parent="MathTower/Floor -1/Basics" unique_id=1892321336 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.30901694, 0, -0.9510565, 0, 1, 0, 0.9510565, 0, 0.30901694, -5.611233, 0, 1.8232002)
+title = "exp(x) = e^x"
+description = ""
+material = SubResource("ShaderMaterial_qimaa")
 
 [node name="Step" type="Node3D" parent="MathTower/Floor -1" unique_id=1735348688]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)

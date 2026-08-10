@@ -17,9 +17,14 @@
 [ext_resource type="Script" uid="uid://chh5q26c43rj1" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gd" id="10_audxr"]
 [ext_resource type="Shader" uid="uid://vxntuktjatt6" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.gdshader" id="19_7bi4b"]
 [ext_resource type="Shader" uid="uid://b17fmwkwmh5tn" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/UVUnwrap.gdshader" id="19_ho06g"]
-[ext_resource type="PackedScene" uid="uid://dpfesrmd4bdni" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/DemoBush.blend" id="19_kclyp"]
 [ext_resource type="Shader" uid="uid://b1e8cj8658npo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/InnerOpaqueMesh.gdshader" id="20_1duxy"]
 [ext_resource type="Texture2D" uid="uid://dydlmg56olrbb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.png" id="20_rci2t"]
+[ext_resource type="Shader" uid="uid://dh5uru3f56so5" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicTransparencyWater.gdshader" id="23_rci2t"]
+[ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Depth.gdshader" id="24_1duxy"]
+[ext_resource type="Shader" uid="uid://20vgvccpcamo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/TransparencyFromScreen.gdshader" id="24_d21qw"]
+[ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="25_1qlh3"]
+[ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/DistoredTransparency.gdshader" id="25_h6w3f"]
+[ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/EdgeFoam.gdshader" id="26_j8r8k"]
 [ext_resource type="PackedScene" uid="uid://b5fk8nux5pax5" path="res://ShaderCastleForGodot/Assets/Meshes/Tree.blend" id="67_whso2"]
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="68_ea70n"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="69_8opo1"]
@@ -35,6 +40,12 @@ sky_material = SubResource("ProceduralSkyMaterial_0ocln")
 background_mode = 2
 sky = SubResource("Sky_7gogb")
 glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2jtpy"]
+render_priority = 0
+shader = ExtResource("19_7bi4b")
+shader_parameter/offset = 0.70000003325
+shader_parameter/albedo_map = ExtResource("20_rci2t")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g6kx5"]
 data = PackedVector3Array(-50, -1, 50, -50, -1, -50, -50, 1, -50, 50, -1, -50, -50, -1, -50, -50, -1, 50, -50, 1, -50, -50, -1, -50, 50, -1, -50, -50, 1, -50, -50, 1, 50, -50, -1, 50, -50, -1, 50, -50, 1, 50, 50, 1, 50, 50, 1, 50, -50, 1, 50, -50, 1, -50, -50, -1, 50, 50, -1, 50, 50, -1, -50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, -1, -50, 50, -1, 50, 50, 1, 50, 50, -1, -50, 50, 1, -50, -50, 1, -50, -50, 1, -50, 50, 1, -50, 50, 1, 50, 50, 1, 50, 50, 1, -50, 50, -1, -50)
@@ -363,6 +374,61 @@ shader = ExtResource("20_1duxy")
 shader_parameter/offset = 2.3749999966682367e-08
 shader_parameter/albedo = Color(0.5137255, 0.6, 0.34117648, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d21qw"]
+render_priority = 0
+shader = ExtResource("23_rci2t")
+shader_parameter/albedo = Color(0.14500001, 0.22191668, 0.5, 0.7490196)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7bi4b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bld8a"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78sem"]
+render_priority = 0
+shader = ExtResource("24_d21qw")
+shader_parameter/water_albedo = Color(0.14509805, 0.22352941, 0.5019608, 0.7490196)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ujh1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h6w3f"]
+noise = SubResource("FastNoiseLite_7ujh1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4o58"]
+render_priority = 0
+shader = ExtResource("25_h6w3f")
+shader_parameter/water_albedo = Color(0.14509805, 0.22352941, 0.5019608, 0.7490196)
+shader_parameter/distortion = 0.0070000003325
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_h6w3f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6w3f"]
+render_priority = 0
+shader = ExtResource("24_1duxy")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d21qw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j8r8k"]
+noise = SubResource("FastNoiseLite_d21qw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a26no"]
+render_priority = 0
+shader = ExtResource("26_j8r8k")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_j8r8k")
+shader_parameter/water_color = Color(0.24000001, 0.40466672, 1, 0.6862745)
+shader_parameter/foam_color = Color(0.414, 0.52439994, 0.69, 0.7882353)
+shader_parameter/noise_scale = 5.0
+shader_parameter/noise_strength = 0.0310000014725
+shader_parameter/depth_cutoff = 0.02800000133
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ujh1"]
+render_priority = 0
+shader = ExtResource("25_1qlh3")
+shader_parameter/absorption_coefficients = Vector3(0.5, 0.08, 0.01)
+shader_parameter/water_base_color = Color(0.1488, 0.25089338, 0.62, 1)
+shader_parameter/scale = 200.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ujh1"]
+
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1469896497]
@@ -373,7 +439,10 @@ transform = Transform3D(-0.9238795, 0.34682897, -0.161729, 0, 0.42261824, 0.9063
 shadow_enabled = true
 
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("67_whso2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 0, -27.756)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 0, -6.3826613)
+
+[node name="Leaves" parent="Tree" index="1" unique_id=2013304247]
+surface_material_override/0 = SubResource("ShaderMaterial_2jtpy")
 
 [node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("68_ea70n")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -563,9 +632,96 @@ material = SubResource("ShaderMaterial_j8r8k")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="DemoBush" parent="." unique_id=738037160 instance=ExtResource("19_kclyp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5056696, 0.4911111, 6.7859426)
+[node name="Water" type="Node3D" parent="." unique_id=1767500007]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 9.469526)
 
+[node name="BasicTransparency" parent="Water" unique_id=2128189775 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9242805e-08, 0, 0.21365786)
+title = "Basic transparency water"
+description = ""
+material = SubResource("ShaderMaterial_d21qw")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/BasicTransparency" unique_id=1911826912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.05, 0.4, 0.05)
+material = SubResource("StandardMaterial3D_bld8a")
+
+[node name="TransparencyFromScreen" parent="Water" unique_id=1401212748 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9830935, 0, 0.21365738)
+title = "Transparency from screen"
+description = ""
+material = SubResource("ShaderMaterial_78sem")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/TransparencyFromScreen" unique_id=1659362642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.05, 0.4, 0.05)
+material = SubResource("StandardMaterial3D_bld8a")
+
+[node name="Distored screen UV" parent="Water" unique_id=1032948277 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0569293, 0, 0.21365738)
+title = "Distored transparency"
+description = ""
+material = SubResource("ShaderMaterial_c4o58")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/Distored screen UV" unique_id=30262412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.05, 0.4, 0.05)
+material = SubResource("StandardMaterial3D_bld8a")
+
+[node name="Depth" parent="Water" unique_id=1994549843 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2894747, 0, 0.21365738)
+title = "Depth"
+description = ""
+material = SubResource("ShaderMaterial_h6w3f")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/Depth" unique_id=1260472463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.05, 0.4, 0.05)
+material = SubResource("StandardMaterial3D_bld8a")
+
+[node name="Edge foam" parent="Water" unique_id=2085528281 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5272474, 0, 0.21365738)
+title = "Edge foam from depth"
+description = ""
+material = SubResource("ShaderMaterial_a26no")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/Edge foam" unique_id=41940762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_bld8a")
+
+[node name="BeersLaw" parent="Water" unique_id=1140976894 instance=ExtResource("4_akt4p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.587154, 0, 0.21365833)
+title = "Beer's law"
+description = "Glacial / Pure: 0.25, 0.03, 0.005
+Tropical ocean: 0.50, 0.08, 0.01
+Murky Pond: 0.80, 0.30, 0.50
+"
+material = SubResource("ShaderMaterial_7ujh1")
+meshToDisplay = SubResource("QuadMesh_7ujh1")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/BeersLaw" unique_id=2108072253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.05, 0.4, 0.05)
+material = SubResource("StandardMaterial3D_bld8a")
+
+[editable path="Tree"]
 [editable path="Grass/Many blades"]
 [editable path="Grass/Many blades/3D UI"]
-[editable path="DemoBush"]
