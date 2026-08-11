@@ -1,6 +1,6 @@
 shader_type spatial;
 
-render_mode cull_disabled;
+render_mode cull_disabled, unshaded;
 
 void vertex() {
 	vec3 uv_pos = vec3(UV, 0.0) - 0.5;

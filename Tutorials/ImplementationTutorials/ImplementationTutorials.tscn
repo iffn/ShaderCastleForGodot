@@ -489,7 +489,7 @@ render_priority = 0
 shader = ExtResource("41_mex2c")
 shader_parameter/absorption_coefficients = Vector3(0.5, 0.08, 0.01)
 shader_parameter/water_base_color = Color(0.1488, 0.25089338, 0.62, 1)
-shader_parameter/scale = 200.0
+shader_parameter/scale = 1000.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_7ujh1"]
 
