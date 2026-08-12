@@ -946,7 +946,7 @@ display_scale = 0.4
 
 [node name="Gerstner wave ocean2" parent="Displays/Water" unique_id=534253883 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
-title = "Gerstner wave direction"
+title = "Multiple Gerstner waves"
 description = ""
 material = SubResource("ShaderMaterial_j31vm")
 meshToDisplay = SubResource("QuadMesh_yuj0a")

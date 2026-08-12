@@ -86,7 +86,9 @@
 [ext_resource type="Shader" uid="uid://b8xdqcuvjim8t" path="res://ShaderCastleForGodot/Tutorials/VertexShader/MultiMeshDemo.gdshader" id="72_85xq7"]
 [ext_resource type="Shader" uid="uid://bc5r7l8x7f3u2" path="res://ShaderCastleForGodot/Tutorials/Buffer/Transparency/Transparency.gdshader" id="73_ae5aw"]
 [ext_resource type="Shader" uid="uid://cbyo8m2lo1qhj" path="res://ShaderCastleForGodot/Tutorials/Buffer/Transparency/Discard.gdshader" id="74_x4cfj"]
+[ext_resource type="Shader" uid="uid://d4dut20g8i7do" path="res://ShaderCastleForGodot/Tutorials/ComputeLike/Buffer.gdshader" id="76_og1t3"]
 [ext_resource type="Shader" uid="uid://b17fmwkwmh5tn" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/UVUnwrap.gdshader" id="77_8001b"]
+[ext_resource type="Shader" uid="uid://bicvydwbjx61k" path="res://ShaderCastleForGodot/Tutorials/ComputeLike/Paint.gdshader" id="77_k7ccs"]
 [ext_resource type="Shader" uid="uid://vxntuktjatt6" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.gdshader" id="82_eqath"]
 [ext_resource type="Texture2D" uid="uid://dydlmg56olrbb" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/Leaves.png" id="83_26u2x"]
 
@@ -113,14 +115,14 @@ shader_parameter/red = 1.0
 shader_parameter/green = 1.0
 shader_parameter/blue = 0.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_wb0ph"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_k7ccs"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_og1t3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s6h4"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_wb0ph")
+albedo_texture = SubResource("ViewportTexture_k7ccs")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ocln"]
 render_priority = 0
@@ -231,18 +233,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_jceew")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_k7ccs"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s6h4"]
-resource_local_to_scene = true
-transparency = 1
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_k7ccs")
-
-[sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
-size = Vector2(1.5, 1.5)
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_36d40"]
 viewport_path = NodePath("SubViewport")
 
@@ -251,6 +241,18 @@ resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_36d40")
+
+[sub_resource type="QuadMesh" id="QuadMesh_65i8n"]
+size = Vector2(1.5, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2mxhl"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qimaa"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_2mxhl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8001b"]
 render_priority = 0
@@ -1271,6 +1273,29 @@ shader = ExtResource("73_ae5aw")
 render_priority = 0
 shader = ExtResource("74_x4cfj")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_ih8ix"]
+viewport_path = NodePath("Compute")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2kon"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_ih8ix")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2s6h4"]
+viewport_path = NodePath("Textures and color/Floor 1/2D Display/Buffer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2kon"]
+resource_local_to_scene = true
+shader = ExtResource("77_k7ccs")
+shader_parameter/buffer_map = SubResource("ViewportTexture_2s6h4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_oq33n"]
+viewport_path = NodePath("Textures and color/Floor 1/2D Display/Compute")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ih8ix"]
+resource_local_to_scene = true
+shader = ExtResource("76_og1t3")
+shader_parameter/simulation = SubResource("ViewportTexture_oq33n")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_52rap"]
 render_priority = 0
 shader = ExtResource("22_5gf47")
@@ -1386,7 +1411,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MeshInstance3D" parent="Entrance/Basics/Color picker/3D UI" parent_id_path=PackedInt32Array(784542166, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_og1t3")
+surface_material_override/0 = SubResource("StandardMaterial3D_2s6h4")
 
 [node name="UV" parent="Entrance/Basics" unique_id=526377955 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -3, 0, -29.547018)
@@ -1502,7 +1527,7 @@ text = "MultiMeshInstance3D"
 text = " "
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/MultiMeshInstance3D/3D UI" parent_id_path=PackedInt32Array(912002243, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_2s6h4")
+surface_material_override/0 = SubResource("StandardMaterial3D_oq33n")
 
 [node name="Where is the geometry shader" parent="Entrance/Vertex shader" unique_id=2030272435 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.6885948, 3, 12.110512)
@@ -1527,7 +1552,6 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 
 [node name="DisplayQuad" parent="Entrance/Vertex shader/Where is the geometry shader/DisplayOrigin" parent_id_path=PackedInt32Array(2030272435, 595881598) index="0" unique_id=1420667322]
 visible = false
-surface_material_override/0 = null
 
 [node name="3D UI" parent="Entrance/Vertex shader/Where is the geometry shader" index="1" unique_id=498438476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53149414, -0.001)
@@ -1565,7 +1589,7 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 
 [node name="MeshInstance3D" parent="Entrance/Vertex shader/Where is the geometry shader/3D UI" index="1" unique_id=121505346]
 mesh = SubResource("QuadMesh_65i8n")
-surface_material_override/0 = SubResource("StandardMaterial3D_oq33n")
+surface_material_override/0 = SubResource("StandardMaterial3D_qimaa")
 
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
 
@@ -2033,88 +2057,128 @@ title = "Discard"
 material = SubResource("ShaderMaterial_oq33n")
 meshToDisplay = SubResource("QuadMesh_26u2x")
 
-[node name="Light" type="Node3D" parent="." unique_id=89350575]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50.6, 15.7, 38.85)
+[node name="Textures and color" type="Node3D" parent="." unique_id=1497441575]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.300003, 12.7, 41.370003)
 
-[node name="Textures and color" type="Node3D" parent="Light" unique_id=1497441575]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5200043, -3, 35.299995)
+[node name="Floor 1" type="Node3D" parent="Textures and color" unique_id=362661485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="TextureSampling" type="Node3D" parent="Light/Textures and color" unique_id=946963916]
+[node name="FirstPersonPlayer" parent="Textures and color/Floor 1" unique_id=270315669 instance=ExtResource("41_xbh4r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4234734, 0, -2.5674095)
 
-[node name="Texture sampling with scaling" parent="Light/Textures and color/TextureSampling" unique_id=1824459064 instance=ExtResource("7_ycgrn")]
+[node name="2D Display" parent="Textures and color/Floor 1" unique_id=1820357434 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(-1, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -1, 2.50206, 0, -4.7752247)
+title = "Compute like system"
+material = SubResource("StandardMaterial3D_x2kon")
+
+[node name="Compute" type="SubViewport" parent="Textures and color/Floor 1/2D Display" unique_id=865859099]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Textures and color/Floor 1/2D Display/Compute" unique_id=1139930359]
+material = SubResource("ShaderMaterial_x2kon")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="SubViewport" parent="Textures and color/Floor 1/2D Display" unique_id=1191529763]
+disable_3d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Textures and color/Floor 1/2D Display/Buffer" unique_id=1438871800]
+material = SubResource("ShaderMaterial_ih8ix")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Floor 0" type="Node3D" parent="Textures and color" unique_id=946963916]
+
+[node name="Texture sampling with scaling" parent="Textures and color/Floor 0" unique_id=1824459064 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.62119675, 0, -8)
 title = "Texture display with tiling"
 description = "When creating a shader, it is often good to think of the overall workflow where the final shader is used. Many people don't know shader programming and creating a separate shader for small adjustments, which doesn't make much sense.A very common use case is the tiling of textures with scale and offset. This can also be shared between different texture types like normal maps."
 material = SubResource("ShaderMaterial_52rap")
 
-[node name="Mip maps" parent="Light/Textures and color/TextureSampling" unique_id=1875498350 instance=ExtResource("7_ycgrn")]
+[node name="Mip maps" parent="Textures and color/Floor 0" unique_id=1875498350 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.806694, 0, -8)
 title = "Mip maps"
 description = "Just sampling the pixels of textures results in noise, especially when scaling it down. Incorporating surrounding pixels makes it better. These can be precalculated and stored. Therefore, blurry, low resolution versions of the textures are used to make it smoother."
 material = SubResource("ShaderMaterial_y60jv")
 
-[node name="UV unwrap Godot Cube" parent="Light/Textures and color/TextureSampling" unique_id=221302399 instance=ExtResource("7_xewg6")]
+[node name="UV unwrap Godot Cube" parent="Textures and color/Floor 0" unique_id=221302399 instance=ExtResource("7_xewg6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.4917257, 0, -5.5661497)
 title = "UV unwrap: Godot Cube"
 material = SubResource("ShaderMaterial_2mxhl")
 euler_angles = Vector3(0, 180, 0)
 
-[node name="UV unwrap Godot Cylinder" parent="Light/Textures and color/TextureSampling" unique_id=558420759 instance=ExtResource("7_xewg6")]
+[node name="UV unwrap Godot Cylinder" parent="Textures and color/Floor 0" unique_id=558420759 instance=ExtResource("7_xewg6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.4917257, 0, -6.519559)
 title = "UV unwrap: Godot cylinder"
 material = SubResource("ShaderMaterial_2mxhl")
 meshToDisplay = SubResource("CylinderMesh_8001b")
 euler_angles = Vector3(0, 180, 0)
 
-[node name="UV unwrap Godot Sphere" parent="Light/Textures and color/TextureSampling" unique_id=418752896 instance=ExtResource("7_xewg6")]
+[node name="UV unwrap Godot Sphere" parent="Textures and color/Floor 0" unique_id=418752896 instance=ExtResource("7_xewg6")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.4917257, 0, -7.403943)
 title = "UV unwrap: Godot sphere"
 material = SubResource("ShaderMaterial_2mxhl")
 meshToDisplay = SubResource("SphereMesh_8001b")
 euler_angles = Vector3(0, 180, 0)
 
-[node name="TexturesAndColor" parent="Light/Textures and color" unique_id=923315454 instance=ExtResource("3_otk75")]
+[node name="TexturesAndColor" parent="Textures and color" unique_id=923315454 instance=ExtResource("3_otk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.536743e-07)
 
-[node name="Light" type="Node3D" parent="Light" unique_id=213631958]
+[node name="Light pos" type="Node3D" parent="Textures and color" unique_id=199953585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.520008, 3, -35.299995)
 
-[node name="Godot light" type="Node3D" parent="Light/Light" unique_id=1295060319]
+[node name="Light" type="Node3D" parent="." unique_id=213631958]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50.6, 15.7, 38.85)
+
+[node name="Godot light" type="Node3D" parent="Light" unique_id=1295060319]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("18_3m87l")
 radius = -2.5
 angle_offset_deg = 22.5
 arrange_around_the_center = true
 
-[node name="Albedo" parent="Light/Light/Godot light" unique_id=1840847962 instance=ExtResource("7_xewg6")]
+[node name="Albedo" parent="Light/Godot light" unique_id=1840847962 instance=ExtResource("7_xewg6")]
 transform = Transform3D(0.8314696, 0, 0.55557024, 0, 1, 0, -0.55557024, 0, 0.8314696, -1.3889256, 0, -2.078674)
 title = "Albedo"
 material = SubResource("ShaderMaterial_m4po6")
 meshToDisplay = SubResource("SphereMesh_yfnap")
 
-[node name="FragmentOutputs" parent="Light/Light/Godot light" unique_id=639742030 instance=ExtResource("7_xewg6")]
+[node name="FragmentOutputs" parent="Light/Godot light" unique_id=639742030 instance=ExtResource("7_xewg6")]
 transform = Transform3D(0.98078525, 0, 0.19509032, 0, 1, 0, -0.19509032, 0, 0.98078525, -0.4877258, 0, -2.4519632)
 title = "FragmentOutputs"
 material = SubResource("ShaderMaterial_75l2c")
 meshToDisplay = SubResource("SphereMesh_htnhy")
 
-[node name="NormalMap" parent="Light/Light/Godot light" unique_id=986707564 instance=ExtResource("7_xewg6")]
+[node name="NormalMap" parent="Light/Godot light" unique_id=986707564 instance=ExtResource("7_xewg6")]
 transform = Transform3D(0.9807852, 0, -0.19509031, 0, 1, 0, 0.19509031, 0, 0.9807852, 0.4877258, 0, -2.4519632)
 title = "Normal maps"
 material = SubResource("ShaderMaterial_17ntp")
 meshToDisplay = SubResource("BoxMesh_htnhy")
 
-[node name="ARM" parent="Light/Light/Godot light" unique_id=1082447127 instance=ExtResource("7_xewg6")]
+[node name="ARM" parent="Light/Godot light" unique_id=1082447127 instance=ExtResource("7_xewg6")]
 transform = Transform3D(0.83146954, 0, -0.5555702, 0, 1, 0, 0.5555702, 0, 0.83146954, 1.3889256, 0, -2.078674)
 title = "ARM map"
 material = SubResource("ShaderMaterial_sv1xp")
 meshToDisplay = SubResource("BoxMesh_yfnap")
 
-[node name="Light" parent="Light/Light" unique_id=45035212 instance=ExtResource("4_ycgrn")]
+[node name="Light" parent="Light" unique_id=45035212 instance=ExtResource("4_ycgrn")]
+
+[node name="Texture pos" type="Node3D" parent="Light" unique_id=1755677207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.520008, -3, 35.299995)
 
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("6_kkpaq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.817, 10.695, -27.756)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
+[node name="Leaves" parent="Tree" index="1" unique_id=829533945]
 surface_material_override/0 = SubResource("ShaderMaterial_2s6h4")
 
 [node name="Water" type="CSGBox3D" parent="." unique_id=204811492]
@@ -2122,7 +2186,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(5000, 2, 5000)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("41_xbh4r")]
+[node name="Spawn" type="Node3D" parent="." unique_id=491589379]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.022746, 11.90971, -27.542038)
 
 [node name="SetupControls" parent="." unique_id=1595231349 instance=ExtResource("42_of8ie")]
