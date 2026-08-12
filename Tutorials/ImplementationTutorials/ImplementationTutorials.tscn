@@ -40,6 +40,7 @@
 [ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/DistoredTransparency.gdshader" id="38_p8ay6"]
 [ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Depth.gdshader" id="39_y6tib"]
 [ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/EdgeFoam.gdshader" id="40_m26rk"]
+[ext_resource type="Shader" uid="uid://dwee2biy3lwt0" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicDepthBlend.gdshader" id="41_0qqwe"]
 [ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="41_mex2c"]
 [ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/SineWave.gdshader" id="42_7vcyf"]
 [ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWave.gdshader" id="43_t5bg0"]
@@ -469,6 +470,22 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_h6w3f")
 render_priority = 0
 shader = ExtResource("39_y6tib")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuj0a"]
+render_priority = 0
+shader = ExtResource("41_0qqwe")
+shader_parameter/water_surface_color = Color(0, 0.54509807, 0.6784314, 1)
+shader_parameter/water_depth_color = Color(0, 0, 0.8352941, 1)
+shader_parameter/depth_blend = 0.3
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ujh1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ujh1"]
+render_priority = 0
+shader = ExtResource("41_mex2c")
+shader_parameter/absorption_coefficients = Vector3(0.5, 0.08, 0.01)
+shader_parameter/water_base_color = Color(0.1488, 0.25089338, 0.62, 1)
+shader_parameter/scale = 1000.0
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_d21qw"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j8r8k"]
@@ -483,15 +500,6 @@ shader_parameter/foam_color = Color(0.414, 0.52439994, 0.69, 0.7882353)
 shader_parameter/noise_scale = 5.0
 shader_parameter/noise_strength = 0.0310000014725
 shader_parameter/depth_cutoff = 0.02800000133
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ujh1"]
-render_priority = 0
-shader = ExtResource("41_mex2c")
-shader_parameter/absorption_coefficients = Vector3(0.5, 0.08, 0.01)
-shader_parameter/water_base_color = Color(0.1488, 0.25089338, 0.62, 1)
-shader_parameter/scale = 1000.0
-
-[sub_resource type="QuadMesh" id="QuadMesh_7ujh1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_peyk1"]
 render_priority = 0
@@ -525,7 +533,7 @@ shadow_enabled = true
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("1_waw53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.644658, -4.7683716e-07, 6.467231)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
+[node name="Leaves" parent="Tree" index="1" unique_id=829533945]
 surface_material_override/0 = SubResource("ShaderMaterial_2jtpy")
 
 [node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("4_ib04r")]
@@ -805,24 +813,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Edge foam" parent="Water" unique_id=2085528281 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5272474, 0, 0)
-title = "Edge foam from depth"
-description = ""
-material = SubResource("ShaderMaterial_a26no")
-meshToDisplay = SubResource("QuadMesh_7bi4b")
+[node name="Basic blend" parent="Water" unique_id=69315516 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.545724, 0, 0)
+title = "Beer's law"
+description = "Using the linear depth, a depth blend effect can be created. However, by simply mixing the 2 colors, no blending with the submerged color is achieved.
+"
+material = SubResource("ShaderMaterial_yuj0a")
+meshToDisplay = SubResource("QuadMesh_7ujh1")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/Edge foam" unique_id=41940762]
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/Basic blend" unique_id=618519696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-size = Vector3(0.1, 0.4, 0.1)
+size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
 [node name="BeersLaw" parent="Water" unique_id=1140976894 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.587154, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79551, 0, 0)
 title = "Beer's law"
-description = "Glacial / Pure: 0.25, 0.03, 0.005
+description = "Beer's law describes how much light is absorbed when traveling through a substance like water.
+How muchl ight is absorbed depends on the color.
+Glacial / Pure: 0.25, 0.03, 0.005
 Tropical ocean: 0.50, 0.08, 0.01
 Murky Pond: 0.80, 0.30, 0.50
 "
@@ -836,8 +847,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
+[node name="Edge foam" parent="Water" unique_id=2085528281 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8595114, 0, 0)
+title = "Edge foam from depth"
+description = ""
+material = SubResource("ShaderMaterial_a26no")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Water/Edge foam" unique_id=41940762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+size = Vector3(0.1, 0.4, 0.1)
+material = SubResource("StandardMaterial3D_bld8a")
+
 [node name="Sine wave" parent="Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5683837, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.025878, 0, 0)
 title = "Sine wave"
 description = "
 "
@@ -847,7 +872,7 @@ display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
 [node name="Gerstner wave" parent="Water" unique_id=2006104574 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.512921, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.147435, 0, 0)
 title = "Gerstner wave"
 description = "
 "

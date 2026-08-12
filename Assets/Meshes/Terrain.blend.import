@@ -43,7 +43,7 @@ _subresources={
 "materials": {
 "Terrain": {
 "use_external/enabled": true,
-"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Environment/TriplanarTerrain.tres",
+"use_external/fallback_path": "res://ShaderCastleForGodot/Implementations/Environment/Terrain/TriplanarTerrain.tres",
 "use_external/path": "uid://dw84tx25dgt3c"
 }
 }
