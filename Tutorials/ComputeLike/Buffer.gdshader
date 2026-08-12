@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
-uniform sampler2D simulation : filter_nearest, source_color;
+uniform sampler2D compute_map : filter_nearest, source_color;
 
 void fragment() {
-	COLOR = texture(simulation, UV).rgba;
+	COLOR = texture(compute_map, UV).rgba;
 }
