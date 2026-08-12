@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="4_ib04r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="5_b7uom"]
 [ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="6_cm48o"]
+[ext_resource type="Script" uid="uid://bas6287o75xh1" path="res://ShaderCastleForGodot/Assets/UI/LinearArrangement.gd" id="6_yuj0a"]
 [ext_resource type="Shader" uid="uid://bbk1p0k4lyhba" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/ARMMap.gdshader" id="7_ixm00"]
 [ext_resource type="Texture2D" uid="uid://ce7ch8g3s6nmb" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="8_umf0y"]
 [ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="9_q5ne7"]
@@ -550,49 +551,54 @@ size = Vector3(100, 2, 100)
 [node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=925622205]
 shape = SubResource("ConcavePolygonShape3D_g6kx5")
 
-[node name="Wall textures" type="Node3D" parent="." unique_id=1246741554]
+[node name="Displays" type="Node3D" parent="." unique_id=463746712]
+script = ExtResource("6_yuj0a")
+offset = Vector3(0, 0, -3)
 
-[node name="Wall texture" parent="Wall textures" unique_id=320400435 instance=ExtResource("6_cm48o")]
+[node name="Wall textures" type="Node3D" parent="Displays" unique_id=1246741554]
+script = ExtResource("6_yuj0a")
+
+[node name="Wall texture" parent="Displays/Wall textures" unique_id=320400435 instance=ExtResource("6_cm48o")]
 title = "Wall texture"
 description = ""
 material = SubResource("ShaderMaterial_eaq5x")
 meshToDisplay = SubResource("QuadMesh_j31vm")
 
-[node name="Damaged texture" parent="Wall textures" unique_id=215308863 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1896262, 0, 9.928757e-08)
+[node name="Damaged texture" parent="Displays/Wall textures" unique_id=215308863 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 title = "Damaged texture"
 description = ""
 material = SubResource("ShaderMaterial_d4ria")
 meshToDisplay = SubResource("QuadMesh_j31vm")
 
-[node name="Overgrowth" parent="Wall textures" unique_id=922751477 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5812516, 0, 1.8907093e-07)
+[node name="Overgrowth" parent="Displays/Wall textures" unique_id=922751477 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 title = "Overgrown texture"
 description = ""
 material = SubResource("ShaderMaterial_np01h")
 meshToDisplay = SubResource("QuadMesh_j31vm")
 
-[node name="StylizedBricks" type="Node3D" parent="." unique_id=2106297097]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0274732)
+[node name="StylizedBricks" type="Node3D" parent="Displays" unique_id=2106297097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+script = ExtResource("6_yuj0a")
 
-[node name="Bevel" parent="StylizedBricks" unique_id=565844488 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.745216e-10, 0, 0.006453991)
+[node name="Bevel" parent="Displays/StylizedBricks" unique_id=565844488 instance=ExtResource("6_cm48o")]
 title = "Bevel"
 description = "A bevel added to the edge of the brick breaks up the sharp edges."
 material = SubResource("ShaderMaterial_rudpd")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Vertex offset" parent="StylizedBricks" unique_id=1076800984 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0702138, 0, 0.047785044)
+[node name="Vertex offset" parent="Displays/StylizedBricks" unique_id=1076800984 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 title = "Vertex offset"
 description = "Subdividing the mesh and adding a small vertex offset makes the brick look more realistic. "
 material = SubResource("ShaderMaterial_s66ov")
 meshToDisplay = SubResource("ArrayMesh_u38ar")
 display_scale = 0.18
 
-[node name="Painted shadows" parent="StylizedBricks" unique_id=1423633360 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3721838, 0, 2.3841858e-07)
+[node name="Painted shadows" parent="Displays/StylizedBricks" unique_id=1423633360 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 title = "Painted features"
 description = "Hand painting features alows for a large amount of artistic control. This often involves understanding and painting the light. Note that the painted light interactions are set  and do not react to the scene light.
 - A dark to bright gradient from the bottom to the top represents that the bottom is usualyl less well lit.
@@ -603,27 +609,28 @@ material = SubResource("ShaderMaterial_636rn")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="OmniLight3D" type="OmniLight3D" parent="StylizedBricks" unique_id=1238048709]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9765897, 1.6028607, -0.007033825)
-
-[node name="Noise" parent="StylizedBricks" unique_id=1061568170 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6093698, 0, -2.3841858e-06)
+[node name="Noise" parent="Displays/StylizedBricks" unique_id=1061568170 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 title = "Noise"
 material = SubResource("ShaderMaterial_8dipx")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Cracks" parent="StylizedBricks" unique_id=1935030776 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7815523, 0, -2.1457672e-06)
+[node name="OmniLight3D" type="OmniLight3D" parent="Displays/StylizedBricks/Noise" unique_id=1238048709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.4892504, 0)
+
+[node name="Cracks" parent="Displays/StylizedBricks" unique_id=1935030776 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 title = "Cracks"
 material = SubResource("ShaderMaterial_xavbm")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Grass" type="Node3D" parent="." unique_id=352304854]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.1313243)
+[node name="Grass" type="Node3D" parent="Displays" unique_id=352304854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+script = ExtResource("6_yuj0a")
 
-[node name="Grass texture" parent="Grass" unique_id=1185929385 instance=ExtResource("6_cm48o")]
+[node name="Grass texture" parent="Displays/Grass" unique_id=1185929385 instance=ExtResource("6_cm48o")]
 title = "Grass texture"
 description = "A basic way to display grass is with a texture. A normal map can further help improve the display."
 material = SubResource("ShaderMaterial_6pixo")
@@ -631,63 +638,63 @@ meshToDisplay = SubResource("QuadMesh_svmtb")
 euler_angles = Vector3(270, 0, 0)
 hovering = false
 
-[node name="Grass blade" parent="Grass" unique_id=1313429169 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8271184, 0, 0)
+[node name="Grass blade" parent="Displays/Grass" unique_id=1313429169 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 title = "Grass blade"
 description = "A basic grass blade can be represented by a simple triangle with a color"
 material = SubResource("ShaderMaterial_intij")
 meshToDisplay = SubResource("ArrayMesh_svmtb")
 hovering = false
 
-[node name="Color blend" parent="Grass" unique_id=719679880 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6569774, 0, 2.3841858e-07)
+[node name="Color blend" parent="Displays/Grass" unique_id=719679880 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 title = "Color blend"
 description = "Adding a color blend helps with the beliavability. Since less light reaches the bottom of the grass, a darker color makes sense."
 material = SubResource("ShaderMaterial_ynafr")
 meshToDisplay = SubResource("ArrayMesh_oy7ja")
 hovering = false
 
-[node name="Billboard" parent="Grass" unique_id=1253808886 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4698708, 0, 2.3841858e-07)
+[node name="Billboard" parent="Displays/Grass" unique_id=1253808886 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 title = "Vertical billboard"
 description = "When looking at a flat mesh from the side, it gets very flat. A vertical billboard aligns the grass with the view. Note that this usually causes a weird effect on once the user becomes aware of it."
 material = SubResource("ShaderMaterial_uy6ep")
 meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
-[node name="Wind" parent="Grass" unique_id=642143392 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3535893, 0, 2.3841858e-07)
+[node name="Wind" parent="Displays/Grass" unique_id=642143392 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 title = "Wind"
 description = "Adding a vertex offset allows creating a wind effect."
 material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
-[node name="Complex blade" parent="Grass" unique_id=300544721 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.410187, 0, 4.7683716e-07)
+[node name="Complex blade" parent="Displays/Grass" unique_id=300544721 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 title = "Complex grass blade"
 description = "Increasing the complexity of the mesh improves the wind behavior."
 material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_uy6ep")
 hovering = false
 
-[node name="Many blades" parent="Grass" unique_id=1712670358 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6689005, 0, 4.7683716e-07)
+[node name="Many blades" parent="Displays/Grass" unique_id=1712670358 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 title = "Grass field"
 description = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 material = SubResource("ShaderMaterial_svmtb")
 meshToDisplay = SubResource("ArrayMesh_uy6ep")
 hovering = false
 
-[node name="DisplayOrigin" parent="Grass/Many blades" index="1" unique_id=1716011669]
+[node name="DisplayOrigin" parent="Displays/Grass/Many blades" index="1" unique_id=1716011669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.001, 0)
 
-[node name="MeshInstance3D" parent="Grass/Many blades/DisplayOrigin" index="0" unique_id=1657387828]
+[node name="MeshInstance3D" parent="Displays/Grass/Many blades/DisplayOrigin" index="0" unique_id=1657387828]
 visible = false
 mesh = SubResource("ArrayMesh_uy6ep")
 surface_material_override/0 = SubResource("ShaderMaterial_svmtb")
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Grass/Many blades/DisplayOrigin" index="1" unique_id=1298894310 node_paths=PackedStringArray("linkedMultipMesh")]
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="Displays/Grass/Many blades/DisplayOrigin" index="1" unique_id=1298894310 node_paths=PackedStringArray("linkedMultipMesh")]
 transform = Transform3D(-9.934766e-08, 0, -0.99999994, 0, 0.99999994, 0, 0.99999994, 0, -9.934766e-08, 0, 0, 0)
 script = ExtResource("32_clvp6")
 linkedMultipMesh = NodePath(".")
@@ -697,20 +704,20 @@ instance_count = 100
 side_length = 0.4
 mesh_scale = Vector3(0.2, 0.2, 0.2)
 
-[node name="Title" parent="Grass/Many blades/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="0" unique_id=1140415981]
+[node name="Title" parent="Displays/Grass/Many blades/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="0" unique_id=1140415981]
 text = "Grass field"
 
-[node name="Description" parent="Grass/Many blades/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="1" unique_id=518187765]
+[node name="Description" parent="Displays/Grass/Many blades/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1712670358, 1302590422) index="1" unique_id=518187765]
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
-[node name="MeshInstance3D" parent="Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
+[node name="MeshInstance3D" parent="Displays/Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
 surface_material_override/0 = SubResource("StandardMaterial3D_0qqwe")
 
-[node name="Bushes" type="Node3D" parent="." unique_id=1570795030]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05948104e-07, 0, -9.4532995)
+[node name="Bushes" type="Node3D" parent="Displays" unique_id=1570795030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+script = ExtResource("6_yuj0a")
 
-[node name="Basic mesh" parent="Bushes" unique_id=1266656380 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9242805e-08, 0, 0.21365786)
+[node name="Basic mesh" parent="Displays/Bushes" unique_id=1266656380 instance=ExtResource("6_cm48o")]
 title = "Basic bush mesh"
 description = "This can be created in Blender:
 - Start with a basic cube
@@ -722,43 +729,43 @@ material = SubResource("ShaderMaterial_7bi4b")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="PlanarOffset" parent="Bushes" unique_id=19384415 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3071079, 0, 0.21365786)
+[node name="PlanarOffset" parent="Displays/Bushes" unique_id=19384415 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 title = "Offset"
 description = "Vertex offset relative to center of UV in Tangent and Binormal direction."
 material = SubResource("ShaderMaterial_saxa7")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Leaf shader" parent="Bushes" unique_id=787674492 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5555081, 0, 0.21365786)
+[node name="Leaf shader" parent="Displays/Bushes" unique_id=787674492 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 title = "Leaf texture"
 description = ""
 material = SubResource("ShaderMaterial_1duxy")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Innter mesh" parent="Bushes" unique_id=1085078669 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8563492, 0, 0.21365833)
+[node name="Innter mesh" parent="Displays/Bushes" unique_id=1085078669 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 title = "Inner opaque mesh"
 description = "Opaque mesh to reduce overdraw"
 material = SubResource("ShaderMaterial_rci2t")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Opaque LOD" parent="Bushes" unique_id=1277920801 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2376876, 0, 0.21365833)
+[node name="Opaque LOD" parent="Displays/Bushes" unique_id=1277920801 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 title = "Opaque LOD"
 description = ""
 material = SubResource("ShaderMaterial_j8r8k")
 meshToDisplay = SubResource("ArrayMesh_ho06g")
 display_scale = 0.18
 
-[node name="Water" type="Node3D" parent="." unique_id=1767500007]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.326484e-07, 0, -12.638846)
+[node name="Water" type="Node3D" parent="Displays" unique_id=1767500007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12)
+script = ExtResource("6_yuj0a")
 
-[node name="BasicTransparency" parent="Water" unique_id=2128189775 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9242805e-08, 0, 0)
+[node name="BasicTransparency" parent="Displays/Water" unique_id=2128189775 instance=ExtResource("6_cm48o")]
 title = "Basic transparency water"
 description = ""
 material = SubResource("ShaderMaterial_d21qw")
@@ -766,13 +773,13 @@ meshToDisplay = SubResource("QuadMesh_7bi4b")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/BasicTransparency" unique_id=1911826912]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/BasicTransparency" unique_id=1911826912]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="TransparencyFromScreen" parent="Water" unique_id=1401212748 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9830935, 0, 0)
+[node name="TransparencyFromScreen" parent="Displays/Water" unique_id=1401212748 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
 title = "Transparency from screen"
 description = ""
 material = SubResource("ShaderMaterial_78sem")
@@ -780,13 +787,13 @@ meshToDisplay = SubResource("QuadMesh_7bi4b")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/TransparencyFromScreen" unique_id=1659362642]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/TransparencyFromScreen" unique_id=1659362642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Distored screen UV" parent="Water" unique_id=1032948277 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0569293, 0, 0)
+[node name="Distored screen UV" parent="Displays/Water" unique_id=1032948277 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 title = "Distored transparency"
 description = ""
 material = SubResource("ShaderMaterial_c4o58")
@@ -794,13 +801,13 @@ meshToDisplay = SubResource("QuadMesh_7bi4b")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/Distored screen UV" unique_id=30262412]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/Distored screen UV" unique_id=30262412]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Depth" parent="Water" unique_id=1994549843 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2894747, 0, 0)
+[node name="Depth" parent="Displays/Water" unique_id=1994549843 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 title = "Depth"
 description = ""
 material = SubResource("ShaderMaterial_h6w3f")
@@ -808,13 +815,13 @@ meshToDisplay = SubResource("QuadMesh_7bi4b")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/Depth" unique_id=1260472463]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/Depth" unique_id=1260472463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Basic blend" parent="Water" unique_id=69315516 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.545724, 0, 0)
+[node name="Basic blend" parent="Displays/Water" unique_id=69315516 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 title = "Beer's law"
 description = "Using the linear depth, a depth blend effect can be created. However, by simply mixing the 2 colors, no blending with the submerged color is achieved.
 "
@@ -823,13 +830,13 @@ meshToDisplay = SubResource("QuadMesh_7ujh1")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/Basic blend" unique_id=618519696]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/Basic blend" unique_id=618519696]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="BeersLaw" parent="Water" unique_id=1140976894 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79551, 0, 0)
+[node name="BeersLaw" parent="Displays/Water" unique_id=1140976894 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 title = "Beer's law"
 description = "Beer's law describes how much light is absorbed when traveling through a substance like water.
 How muchl ight is absorbed depends on the color.
@@ -842,13 +849,13 @@ meshToDisplay = SubResource("QuadMesh_7ujh1")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/BeersLaw" unique_id=2108072253]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/BeersLaw" unique_id=2108072253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.05, 0.4, 0.05)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Edge foam" parent="Water" unique_id=2085528281 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8595114, 0, 0)
+[node name="Edge foam" parent="Displays/Water" unique_id=2085528281 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 title = "Edge foam from depth"
 description = ""
 material = SubResource("ShaderMaterial_a26no")
@@ -856,13 +863,13 @@ meshToDisplay = SubResource("QuadMesh_7bi4b")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Water/Edge foam" unique_id=41940762]
+[node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/Edge foam" unique_id=41940762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.1, 0.4, 0.1)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Sine wave" parent="Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.025878, 0, 0)
+[node name="Sine wave" parent="Displays/Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
 title = "Sine wave"
 description = "
 "
@@ -871,8 +878,8 @@ meshToDisplay = SubResource("QuadMesh_2jtpy")
 display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
-[node name="Gerstner wave" parent="Water" unique_id=2006104574 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.147435, 0, 0)
+[node name="Gerstner wave" parent="Displays/Water" unique_id=2006104574 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 title = "Gerstner wave"
 description = "
 "
@@ -882,5 +889,5 @@ display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
 [editable path="Tree"]
-[editable path="Grass/Many blades"]
-[editable path="Grass/Many blades/3D UI"]
+[editable path="Displays/Grass/Many blades"]
+[editable path="Displays/Grass/Many blades/3D UI"]
