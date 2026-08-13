@@ -36,22 +36,23 @@
 [ext_resource type="Shader" uid="uid://b17fmwkwmh5tn" path="res://ShaderCastleForGodot/Tutorials/TextureSampling/UVUnwrap.gdshader" id="33_vvt2v"]
 [ext_resource type="Shader" uid="uid://ba0s4k8qxv1hu" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/PlanarOffset.gdshader" id="34_sefrs"]
 [ext_resource type="Shader" uid="uid://b1e8cj8658npo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Foiliage/Bushes/InnerOpaqueMesh.gdshader" id="35_gfib7"]
-[ext_resource type="Shader" uid="uid://dh5uru3f56so5" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicTransparencyWater.gdshader" id="36_f8h0c"]
-[ext_resource type="Shader" uid="uid://20vgvccpcamo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/TransparencyFromScreen.gdshader" id="37_cps0w"]
-[ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/DistoredTransparency.gdshader" id="38_p8ay6"]
-[ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Depth.gdshader" id="39_y6tib"]
-[ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/EdgeFoam.gdshader" id="40_m26rk"]
-[ext_resource type="Shader" uid="uid://dwee2biy3lwt0" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BasicDepthBlend.gdshader" id="41_0qqwe"]
-[ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="41_mex2c"]
-[ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/SineWave.gdshader" id="42_7vcyf"]
-[ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWave.gdshader" id="43_t5bg0"]
-[ext_resource type="Shader" uid="uid://dmuixwjlmx7jk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/ScreenSpaceReflection.gdshader" id="44_eaq5x"]
+[ext_resource type="Shader" uid="uid://dh5uru3f56so5" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/BasicTransparencyWater.gdshader" id="36_f8h0c"]
+[ext_resource type="Shader" uid="uid://20vgvccpcamo" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/TransparencyFromScreen.gdshader" id="37_cps0w"]
+[ext_resource type="Shader" uid="uid://djo3t01hji75f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/DistoredTransparency.gdshader" id="38_p8ay6"]
+[ext_resource type="Shader" uid="uid://de38ioup5yt1f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/Depth.gdshader" id="39_y6tib"]
+[ext_resource type="Shader" uid="uid://dlkbpjyfk83sj" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/EdgeFoam.gdshader" id="40_m26rk"]
+[ext_resource type="Shader" uid="uid://dwee2biy3lwt0" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/BasicDepthBlend.gdshader" id="41_0qqwe"]
+[ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/BeersLaw.gdshader" id="41_mex2c"]
+[ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/SineWave.gdshader" id="42_7vcyf"]
+[ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/GerstnerWave.gdshader" id="43_t5bg0"]
+[ext_resource type="Shader" uid="uid://dmuixwjlmx7jk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/ScreenSpaceReflection.gdshader" id="44_eaq5x"]
 [ext_resource type="Texture2D" uid="uid://dtonig55rmb7w" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/japanese_stone_wall/japanese_stone_wall_diff_1k.png" id="45_j31vm"]
-[ext_resource type="Shader" uid="uid://c748inkb6v46f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/RealisticGerstnerWave.gdshader" id="46_4dgu6"]
-[ext_resource type="Shader" uid="uid://paewro0wbs2r" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWaveDirection.gdshader" id="46_pt6y8"]
-[ext_resource type="Shader" uid="uid://bo808mhl3usxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/MultipleGerstnerWaves.gdshader" id="47_4dgu6"]
+[ext_resource type="Shader" uid="uid://c748inkb6v46f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/RealisticGerstnerWave.gdshader" id="46_4dgu6"]
+[ext_resource type="Shader" uid="uid://paewro0wbs2r" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/GerstnerWaveDirection.gdshader" id="46_pt6y8"]
+[ext_resource type="Shader" uid="uid://bo808mhl3usxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/MultipleGerstnerWaves.gdshader" id="47_4dgu6"]
 [ext_resource type="Shader" uid="uid://cw4cg8mfgjygc" path="res://ShaderCastleForGodot/Tutorials/Basics/TextureLookup.gdshader" id="52_428gs"]
-[ext_resource type="Shader" uid="uid://jflu84kaqp0f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/WaveMovement.gdshader" id="53_g7yku"]
+[ext_resource type="Shader" uid="uid://c1tot6kri8k2y" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/WaveSimulation.gdshader" id="52_np01h"]
+[ext_resource type="Shader" uid="uid://jflu84kaqp0f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/WaveMovement.gdshader" id="53_g7yku"]
 [ext_resource type="Shader" uid="uid://d4dut20g8i7do" path="res://ShaderCastleForGodot/Tutorials/ComputeLike/Buffer.gdshader" id="54_k821b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
@@ -364,14 +365,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_eaq5x"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_g7yku"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j31vm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_428gs"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_eaq5x")
+albedo_texture = SubResource("ViewportTexture_g7yku")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
@@ -577,31 +578,57 @@ shader_parameter/wave_scale = 0.01200000022074
 shader_parameter/simulation_speed = 1.0000000475
 shader_parameter/gravity = 9.81
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_428gs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_f4hs1"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7yku"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k821b"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("52_428gs")
-shader_parameter/albedo = SubResource("ViewportTexture_428gs")
+shader_parameter/albedo = SubResource("ViewportTexture_f4hs1")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bld8a"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_428gs"]
+viewport_path = NodePath("Displays/Water/Computed movement2/ComputeSetup/Buffer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7yku"]
+resource_local_to_scene = true
+shader = ExtResource("52_np01h")
+shader_parameter/buffer_map = SubResource("ViewportTexture_428gs")
+shader_parameter/ABSORBTION_LAYER_THICKNESS = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k821b"]
+viewport_path = NodePath("Displays/Water/Computed movement2/ComputeSetup/Compute")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yyrso"]
+resource_local_to_scene = true
+shader = ExtResource("54_k821b")
+shader_parameter/compute_map = SubResource("ViewportTexture_k821b")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yyrso"]
+viewport_path = NodePath("ComputeSetup/Compute")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggvjk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("52_428gs")
+shader_parameter/albedo = SubResource("ViewportTexture_yyrso")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
 viewport_path = NodePath("Displays/Water/Computed movement/ComputeSetup/Buffer")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iedc8"]
 resource_local_to_scene = true
 shader = ExtResource("53_g7yku")
-shader_parameter/buffer_map = SubResource("ViewportTexture_bld8a")
+shader_parameter/buffer_map = SubResource("ViewportTexture_jvspd")
 shader_parameter/ABSORBTION_LAYER_THICKNESS = 1.0
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lpj5r"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_00dio"]
 viewport_path = NodePath("Displays/Water/Computed movement/ComputeSetup/Compute")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_te8f3"]
 resource_local_to_scene = true
 shader = ExtResource("54_k821b")
-shader_parameter/compute_map = SubResource("ViewportTexture_lpj5r")
+shader_parameter/compute_map = SubResource("ViewportTexture_00dio")
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
@@ -792,7 +819,7 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Displays/Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_j31vm")
+surface_material_override/0 = SubResource("StandardMaterial3D_428gs")
 
 [node name="Bushes" type="Node3D" parent="Displays" unique_id=1570795030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
@@ -1016,11 +1043,47 @@ material = SubResource("ShaderMaterial_j31vm")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
-[node name="Computed movement" parent="Displays/Water" unique_id=1006119014 instance=ExtResource("6_cm48o")]
+[node name="Computed movement2" parent="Displays/Water" unique_id=687539930 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
 title = "Computed movement"
 description = ""
+material = SubResource("ShaderMaterial_k821b")
+meshToDisplay = SubResource("QuadMesh_yuj0a")
+display_scale = 0.4
+
+[node name="ComputeSetup" type="Node3D" parent="Displays/Water/Computed movement2" unique_id=1262613550]
+
+[node name="Compute" type="SubViewport" parent="Displays/Water/Computed movement2/ComputeSetup" unique_id=558409827]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Computed movement2/ComputeSetup/Compute" unique_id=1122077033]
 material = SubResource("ShaderMaterial_g7yku")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="SubViewport" parent="Displays/Water/Computed movement2/ComputeSetup" unique_id=589966452]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Computed movement2/ComputeSetup/Buffer" unique_id=461153540]
+material = SubResource("ShaderMaterial_yyrso")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Computed movement" parent="Displays/Water" unique_id=1006119014 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+title = "Computed movement"
+description = ""
+material = SubResource("ShaderMaterial_ggvjk")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 

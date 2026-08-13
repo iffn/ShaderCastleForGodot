@@ -66,4 +66,5 @@ void fragment() {
 	fragColor = clamp(fragColor, 0.0, 1.0);
 	
 	COLOR = vec4(fragColor.rgb, 1.0);
+	//COLOR = vec4(.0, .0, .0, 1.0);
 }
