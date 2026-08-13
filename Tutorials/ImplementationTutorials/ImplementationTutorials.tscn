@@ -50,6 +50,9 @@
 [ext_resource type="Shader" uid="uid://c748inkb6v46f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/RealisticGerstnerWave.gdshader" id="46_4dgu6"]
 [ext_resource type="Shader" uid="uid://paewro0wbs2r" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWaveDirection.gdshader" id="46_pt6y8"]
 [ext_resource type="Shader" uid="uid://bo808mhl3usxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/MultipleGerstnerWaves.gdshader" id="47_4dgu6"]
+[ext_resource type="Shader" uid="uid://cw4cg8mfgjygc" path="res://ShaderCastleForGodot/Tutorials/Basics/TextureLookup.gdshader" id="52_428gs"]
+[ext_resource type="Shader" uid="uid://jflu84kaqp0f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/WaveMovement.gdshader" id="53_g7yku"]
+[ext_resource type="Shader" uid="uid://d4dut20g8i7do" path="res://ShaderCastleForGodot/Tutorials/ComputeLike/Buffer.gdshader" id="54_k821b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -560,7 +563,7 @@ shader = ExtResource("46_pt6y8")
 shader_parameter/wavelength = 0.5
 shader_parameter/steepness = 0.5
 shader_parameter/simulation_speed = 1.0
-shader_parameter/heading_deg = 0.0
+shader_parameter/heading_deg = 304.898014482655
 
 [sub_resource type="QuadMesh" id="QuadMesh_yuj0a"]
 subdivide_width = 50
@@ -573,6 +576,32 @@ shader = ExtResource("47_4dgu6")
 shader_parameter/wave_scale = 0.01200000022074
 shader_parameter/simulation_speed = 1.0000000475
 shader_parameter/gravity = 9.81
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_428gs"]
+viewport_path = NodePath("ComputeSetup/Compute")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7yku"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("52_428gs")
+shader_parameter/albedo = SubResource("ViewportTexture_428gs")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bld8a"]
+viewport_path = NodePath("Displays/Water/Computed movement/ComputeSetup/Buffer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iedc8"]
+resource_local_to_scene = true
+shader = ExtResource("53_g7yku")
+shader_parameter/buffer_map = SubResource("ViewportTexture_bld8a")
+shader_parameter/ABSORBTION_LAYER_THICKNESS = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lpj5r"]
+viewport_path = NodePath("Displays/Water/Computed movement/ComputeSetup/Compute")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_te8f3"]
+resource_local_to_scene = true
+shader = ExtResource("54_k821b")
+shader_parameter/compute_map = SubResource("ViewportTexture_lpj5r")
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
@@ -979,13 +1008,49 @@ material = SubResource("ShaderMaterial_4dgu6")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
-[node name="Gerstner wave ocean2" parent="Displays/Water" unique_id=534253883 instance=ExtResource("6_cm48o")]
+[node name="Multiple Gerstner waves" parent="Displays/Water" unique_id=534253883 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 title = "Multiple Gerstner waves"
 description = ""
 material = SubResource("ShaderMaterial_j31vm")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
+
+[node name="Computed movement" parent="Displays/Water" unique_id=1006119014 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
+title = "Computed movement"
+description = ""
+material = SubResource("ShaderMaterial_g7yku")
+meshToDisplay = SubResource("QuadMesh_yuj0a")
+display_scale = 0.4
+
+[node name="ComputeSetup" type="Node3D" parent="Displays/Water/Computed movement" unique_id=784200026]
+
+[node name="Compute" type="SubViewport" parent="Displays/Water/Computed movement/ComputeSetup" unique_id=1308367956]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Computed movement/ComputeSetup/Compute" unique_id=201706919]
+material = SubResource("ShaderMaterial_iedc8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="SubViewport" parent="Displays/Water/Computed movement/ComputeSetup" unique_id=1733943213]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Computed movement/ComputeSetup/Buffer" unique_id=2138875718]
+material = SubResource("ShaderMaterial_te8f3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [editable path="Tree"]
 [editable path="Displays/Grass/Many blades"]

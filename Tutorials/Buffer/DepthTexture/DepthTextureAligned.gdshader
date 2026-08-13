@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded; // Disables 3D lighting so the screen texture displays as-is
+render_mode unshaded;
 
 uniform sampler2D depth_texture : hint_depth_texture, filter_nearest;
 
