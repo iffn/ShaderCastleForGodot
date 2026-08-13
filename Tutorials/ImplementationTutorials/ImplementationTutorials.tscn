@@ -45,6 +45,8 @@
 [ext_resource type="Shader" uid="uid://c08xpic7n8nvk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/BeersLaw.gdshader" id="41_mex2c"]
 [ext_resource type="Shader" uid="uid://c07ypvki03rcy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/SineWave.gdshader" id="42_7vcyf"]
 [ext_resource type="Shader" uid="uid://xmeluqc1yjfk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWave.gdshader" id="43_t5bg0"]
+[ext_resource type="Shader" uid="uid://dmuixwjlmx7jk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/ScreenSpaceReflection.gdshader" id="44_eaq5x"]
+[ext_resource type="Texture2D" uid="uid://dtonig55rmb7w" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/japanese_stone_wall/japanese_stone_wall_diff_1k.png" id="45_j31vm"]
 [ext_resource type="Shader" uid="uid://c748inkb6v46f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/RealisticGerstnerWave.gdshader" id="46_4dgu6"]
 [ext_resource type="Shader" uid="uid://paewro0wbs2r" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/GerstnerWaveDirection.gdshader" id="46_pt6y8"]
 [ext_resource type="Shader" uid="uid://bo808mhl3usxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/MultipleGerstnerWaves.gdshader" id="47_4dgu6"]
@@ -359,14 +361,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g3van"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_eaq5x"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qqwe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j31vm"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_g3van")
+albedo_texture = SubResource("ViewportTexture_eaq5x")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
@@ -505,6 +507,20 @@ shader_parameter/noise_scale = 5.0
 shader_parameter/noise_strength = 0.0310000014725
 shader_parameter/depth_cutoff = 0.02800000133
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yrxpa"]
+render_priority = 0
+shader = ExtResource("44_eaq5x")
+shader_parameter/ssr_resolution = 0.0030000001425
+shader_parameter/ssr_max_travel = 6.000000285
+shader_parameter/ssr_max_diff = 0.0110000005225
+
+[sub_resource type="PrismMesh" id="PrismMesh_eaq5x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yrxpa"]
+albedo_texture = ExtResource("45_j31vm")
+
+[sub_resource type="SphereMesh" id="SphereMesh_j31vm"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_peyk1"]
 render_priority = 0
 shader = ExtResource("42_7vcyf")
@@ -570,7 +586,7 @@ shadow_enabled = true
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("1_waw53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.644658, -4.7683716e-07, 6.467231)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=829533945]
+[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
 surface_material_override/0 = SubResource("ShaderMaterial_2jtpy")
 
 [node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("4_ib04r")]
@@ -747,7 +763,7 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Displays/Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_0qqwe")
+surface_material_override/0 = SubResource("StandardMaterial3D_j31vm")
 
 [node name="Bushes" type="Node3D" parent="Displays" unique_id=1570795030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
@@ -904,8 +920,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
 size = Vector3(0.1, 0.4, 0.1)
 material = SubResource("StandardMaterial3D_bld8a")
 
-[node name="Sine wave" parent="Displays/Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
+[node name="Edge foam2" parent="Displays/Water" unique_id=211935955 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+title = "ScreenSpaceReflection"
+description = ""
+material = SubResource("ShaderMaterial_yrxpa")
+meshToDisplay = SubResource("QuadMesh_7bi4b")
+display_scale = 0.4
+euler_angles = Vector3(270, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Water/Edge foam2" unique_id=1848290836]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.08414827, 1.35, 0)
+mesh = SubResource("PrismMesh_eaq5x")
+surface_material_override/0 = SubResource("StandardMaterial3D_yrxpa")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Displays/Water/Edge foam2" unique_id=571962655]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.07923283, 1.3788997, 0)
+mesh = SubResource("SphereMesh_j31vm")
+surface_material_override/0 = SubResource("StandardMaterial3D_yrxpa")
+
+[node name="Sine wave" parent="Displays/Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 title = "Sine wave"
 description = "
 "
@@ -915,7 +950,7 @@ display_scale = 0.4
 euler_angles = Vector3(270, 0, 0)
 
 [node name="Gerstner wave" parent="Displays/Water" unique_id=2006104574 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
 title = "Gerstner wave"
 description = "
 "
@@ -925,7 +960,7 @@ display_scale = 1.0
 euler_angles = Vector3(270, 0, 0)
 
 [node name="Realistic Gerstner wave" parent="Displays/Water" unique_id=588116716 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 title = "Realistic Gerstner wave"
 description = "Because of hte way gravity works, there is a correlation between wave speed and wave length.
 waveSpeed =
@@ -937,7 +972,7 @@ display_scale = 1.0
 euler_angles = Vector3(270, 0, 0)
 
 [node name="Gerstner wave ocean" parent="Displays/Water" unique_id=910961031 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
 title = "Gerstner wave direction"
 description = ""
 material = SubResource("ShaderMaterial_4dgu6")
@@ -945,7 +980,7 @@ meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
 [node name="Gerstner wave ocean2" parent="Displays/Water" unique_id=534253883 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 title = "Multiple Gerstner waves"
 description = ""
 material = SubResource("ShaderMaterial_j31vm")
