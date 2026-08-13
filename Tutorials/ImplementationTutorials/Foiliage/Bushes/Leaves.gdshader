@@ -1,5 +1,7 @@
 shader_type spatial;
 
+render_mode cull_disabled;
+
 uniform float offset : hint_range(0.0, 1.0) = 0.2;
 uniform sampler2D albedo_map;
 

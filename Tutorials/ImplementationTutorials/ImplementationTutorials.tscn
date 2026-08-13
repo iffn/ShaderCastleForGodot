@@ -50,9 +50,10 @@
 [ext_resource type="Shader" uid="uid://c748inkb6v46f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/RealisticGerstnerWave.gdshader" id="46_4dgu6"]
 [ext_resource type="Shader" uid="uid://paewro0wbs2r" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/GerstnerWaveDirection.gdshader" id="46_pt6y8"]
 [ext_resource type="Shader" uid="uid://bo808mhl3usxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/MultipleGerstnerWaves.gdshader" id="47_4dgu6"]
-[ext_resource type="Shader" uid="uid://cw4cg8mfgjygc" path="res://ShaderCastleForGodot/Tutorials/Basics/TextureLookup.gdshader" id="52_428gs"]
+[ext_resource type="Shader" uid="uid://b3fu4ogx03y8b" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/SimulationWater.gdshader" id="51_428gs"]
 [ext_resource type="Shader" uid="uid://c1tot6kri8k2y" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/WaveSimulation.gdshader" id="52_np01h"]
 [ext_resource type="Shader" uid="uid://jflu84kaqp0f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/WaveMovement.gdshader" id="53_g7yku"]
+[ext_resource type="Shader" uid="uid://csuf0ktftf854" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/AbsorptionLayer.gdshader" id="54_428gs"]
 [ext_resource type="Shader" uid="uid://d4dut20g8i7do" path="res://ShaderCastleForGodot/Tutorials/ComputeLike/Buffer.gdshader" id="54_k821b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
@@ -578,17 +579,19 @@ shader_parameter/wave_scale = 0.01200000022074
 shader_parameter/simulation_speed = 1.0000000475
 shader_parameter/gravity = 9.81
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f4hs1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k821b"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("52_428gs")
-shader_parameter/albedo = SubResource("ViewportTexture_f4hs1")
+shader = ExtResource("51_428gs")
+shader_parameter/compute = SubResource("ViewportTexture_jvspd")
+shader_parameter/base_color = Color(0, 0, 1, 1)
+shader_parameter/peak_color = Color(0.45, 0.45, 1, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_428gs"]
-viewport_path = NodePath("Displays/Water/Computed movement2/ComputeSetup/Buffer")
+viewport_path = NodePath("Displays/Water/Wave simulation/ComputeSetup/Buffer")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g7yku"]
 resource_local_to_scene = true
@@ -597,7 +600,7 @@ shader_parameter/buffer_map = SubResource("ViewportTexture_428gs")
 shader_parameter/ABSORBTION_LAYER_THICKNESS = 1.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_k821b"]
-viewport_path = NodePath("Displays/Water/Computed movement2/ComputeSetup/Compute")
+viewport_path = NodePath("Displays/Water/Wave simulation/ComputeSetup/Compute")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yyrso"]
 resource_local_to_scene = true
@@ -607,19 +610,49 @@ shader_parameter/compute_map = SubResource("ViewportTexture_k821b")
 [sub_resource type="ViewportTexture" id="ViewportTexture_yyrso"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3v6y"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("51_428gs")
+shader_parameter/compute = SubResource("ViewportTexture_yyrso")
+shader_parameter/base_color = Color(0, 0, 1, 1)
+shader_parameter/peak_color = Color(0, 0.57254905, 1, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iedc8"]
+viewport_path = NodePath("Displays/Water/Absorption layers/ComputeSetup/Buffer")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_428gs"]
+resource_local_to_scene = true
+shader = ExtResource("54_428gs")
+shader_parameter/buffer_map = SubResource("ViewportTexture_iedc8")
+shader_parameter/ABSORBTION_LAYER_THICKNESS = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_te8f3"]
+viewport_path = NodePath("Displays/Water/Absorption layers/ComputeSetup/Compute")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4hs1"]
+resource_local_to_scene = true
+shader = ExtResource("54_k821b")
+shader_parameter/compute_map = SubResource("ViewportTexture_te8f3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m3v6y"]
+viewport_path = NodePath("ComputeSetup/Compute")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ggvjk"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("52_428gs")
-shader_parameter/albedo = SubResource("ViewportTexture_yyrso")
+shader = ExtResource("51_428gs")
+shader_parameter/compute = SubResource("ViewportTexture_m3v6y")
+shader_parameter/base_color = Color(0, 0, 1, 1)
+shader_parameter/peak_color = Color(0.120000005, 0.8973332, 1, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_f4hs1"]
 viewport_path = NodePath("Displays/Water/Computed movement/ComputeSetup/Buffer")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iedc8"]
 resource_local_to_scene = true
 shader = ExtResource("53_g7yku")
-shader_parameter/buffer_map = SubResource("ViewportTexture_jvspd")
+shader_parameter/buffer_map = SubResource("ViewportTexture_f4hs1")
 shader_parameter/ABSORBTION_LAYER_THICKNESS = 1.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_00dio"]
@@ -1043,22 +1076,22 @@ material = SubResource("ShaderMaterial_j31vm")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
-[node name="Computed movement2" parent="Displays/Water" unique_id=687539930 instance=ExtResource("6_cm48o")]
+[node name="Wave simulation" parent="Displays/Water" unique_id=687539930 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
-title = "Computed movement"
+title = "Wave simulation"
 description = ""
 material = SubResource("ShaderMaterial_k821b")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
-[node name="ComputeSetup" type="Node3D" parent="Displays/Water/Computed movement2" unique_id=1262613550]
+[node name="ComputeSetup" type="Node3D" parent="Displays/Water/Wave simulation" unique_id=1262613550]
 
-[node name="Compute" type="SubViewport" parent="Displays/Water/Computed movement2/ComputeSetup" unique_id=558409827]
+[node name="Compute" type="SubViewport" parent="Displays/Water/Wave simulation/ComputeSetup" unique_id=558409827]
 disable_3d = true
 use_hdr_2d = true
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="Displays/Water/Computed movement2/ComputeSetup/Compute" unique_id=1122077033]
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Wave simulation/ComputeSetup/Compute" unique_id=1122077033]
 material = SubResource("ShaderMaterial_g7yku")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1066,12 +1099,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Buffer" type="SubViewport" parent="Displays/Water/Computed movement2/ComputeSetup" unique_id=589966452]
+[node name="Buffer" type="SubViewport" parent="Displays/Water/Wave simulation/ComputeSetup" unique_id=589966452]
 disable_3d = true
 use_hdr_2d = true
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="Displays/Water/Computed movement2/ComputeSetup/Buffer" unique_id=461153540]
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Wave simulation/ComputeSetup/Buffer" unique_id=461153540]
 material = SubResource("ShaderMaterial_yyrso")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1079,8 +1112,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Computed movement" parent="Displays/Water" unique_id=1006119014 instance=ExtResource("6_cm48o")]
+[node name="Absorption layers" parent="Displays/Water" unique_id=6890870 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+title = "Absorption layers"
+description = ""
+material = SubResource("ShaderMaterial_m3v6y")
+meshToDisplay = SubResource("QuadMesh_yuj0a")
+display_scale = 0.4
+
+[node name="ComputeSetup" type="Node3D" parent="Displays/Water/Absorption layers" unique_id=166918563]
+
+[node name="Compute" type="SubViewport" parent="Displays/Water/Absorption layers/ComputeSetup" unique_id=1956771268]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Absorption layers/ComputeSetup/Compute" unique_id=1221613946]
+material = SubResource("ShaderMaterial_428gs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Buffer" type="SubViewport" parent="Displays/Water/Absorption layers/ComputeSetup" unique_id=1070446274]
+disable_3d = true
+use_hdr_2d = true
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="Displays/Water/Absorption layers/ComputeSetup/Buffer" unique_id=1646612574]
+material = SubResource("ShaderMaterial_f4hs1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Computed movement" parent="Displays/Water" unique_id=1006119014 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 title = "Computed movement"
 description = ""
 material = SubResource("ShaderMaterial_ggvjk")
