@@ -243,6 +243,49 @@ shader_parameter/normal = ExtResource("27_8hgyt")
 
 [sub_resource type="QuadMesh" id="QuadMesh_svmtb"]
 
+[sub_resource type="Gradient" id="Gradient_8sl6j"]
+colors = PackedColorArray(0, 0.21, 0, 1, 0.5418, 0.72, 0.324, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ryabi"]
+noise_type = 4
+frequency = 0.005
+fractal_type = 3
+fractal_octaves = 9
+fractal_lacunarity = 10.896
+fractal_gain = 1.0
+fractal_ping_pong_strength = 2.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_428gs"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_ryabi")
+color_ramp = SubResource("Gradient_8sl6j")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_f4hs1"]
+colors = PackedColorArray(0, 0.243137, 0, 1, 0.486275, 0.756863, 0.14902, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7ucal"]
+noise_type = 4
+frequency = 0.005
+fractal_type = 2
+fractal_lacunarity = 2.416
+fractal_ping_pong_strength = 2.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k821b"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_7ucal")
+color_ramp = SubResource("Gradient_f4hs1")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yyrso"]
+albedo_texture = SubResource("NoiseTexture2D_428gs")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_k821b")
+texture_filter = 5
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_intij"]
 render_priority = 0
 shader = ExtResource("28_lu3au")
@@ -366,14 +409,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g7yku"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yyrso"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_428gs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3v6y"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_g7yku")
+albedo_texture = SubResource("ViewportTexture_yyrso")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
@@ -579,14 +622,14 @@ shader_parameter/wave_scale = 0.01200000022074
 shader_parameter/simulation_speed = 1.0000000475
 shader_parameter/gravity = 9.81
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ggvjk"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k821b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvspd"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_jvspd")
+shader_parameter/compute = SubResource("ViewportTexture_ggvjk")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0.45, 0.45, 1, 1)
 
@@ -607,14 +650,14 @@ resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_k821b")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yyrso"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ga4c8"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3v6y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00dio"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_yyrso")
+shader_parameter/compute = SubResource("ViewportTexture_ga4c8")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0, 0.57254905, 1, 1)
 
@@ -635,14 +678,14 @@ resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_te8f3")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m3v6y"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_retet"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggvjk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pu16f"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_m3v6y")
+shader_parameter/compute = SubResource("ViewportTexture_retet")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0.120000005, 0.8973332, 1, 1)
 
@@ -662,6 +705,160 @@ viewport_path = NodePath("Displays/Water/Computed movement/ComputeSetup/Compute"
 resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_00dio")
+
+[sub_resource type="Gradient" id="Gradient_pheaa"]
+offsets = PackedFloat32Array(0.0243902, 1)
+colors = PackedColorArray(0.65, 0.50743335, 0.34449998, 1, 0.87, 0.6873, 0.4785, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nwsqr"]
+noise_type = 3
+fractal_octaves = 8
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yyrso"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_nwsqr")
+color_ramp = SubResource("Gradient_pheaa")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qi0cj"]
+fractal_octaves = 3
+fractal_lacunarity = 1.612
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m3v6y"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_qi0cj")
+seamless = true
+as_normal_map = true
+bump_strength = 16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iedc8"]
+albedo_texture = SubResource("NoiseTexture2D_yyrso")
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_m3v6y")
+texture_filter = 5
+
+[sub_resource type="Gradient" id="Gradient_16ij7"]
+colors = PackedColorArray(0.6, 0.8, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qbhty"]
+frequency = 0.003
+fractal_type = 2
+fractal_lacunarity = 2.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iedc8"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_qbhty")
+color_ramp = SubResource("Gradient_16ij7")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5tmlw"]
+frequency = 0.003
+fractal_type = 2
+fractal_octaves = 10
+fractal_lacunarity = 1.342
+fractal_gain = 0.776
+fractal_weighted_strength = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_te8f3"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_5tmlw")
+seamless = true
+as_normal_map = true
+bump_strength = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggvjk"]
+albedo_texture = SubResource("NoiseTexture2D_iedc8")
+metallic_specular = 1.0
+roughness = 0.0
+normal_enabled = true
+normal_texture = SubResource("NoiseTexture2D_te8f3")
+backlight_enabled = true
+backlight = Color(0.3, 0.4, 0.5, 1)
+texture_filter = 5
+
+[sub_resource type="SphereMesh" id="SphereMesh_428gs"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fr1s0"]
+noise_type = 2
+frequency = 0.02
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 4.0
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2jt1v"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_fr1s0")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2wd1j"]
+noise_type = 2
+frequency = 0.02
+fractal_type = 0
+cellular_distance_function = 1
+cellular_jitter = 4.0
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bcsi8"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_2wd1j")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5vse"]
+transparency = 1
+albedo_color = Color(0.423529, 0.517647, 0.623529, 0.627451)
+roughness = 0.3
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = SubResource("NoiseTexture2D_2jt1v")
+refraction_enabled = true
+refraction_texture = SubResource("NoiseTexture2D_bcsi8")
+uv1_world_triplanar = true
+texture_filter = 5
+
+[sub_resource type="Gradient" id="Gradient_8ut3h"]
+colors = PackedColorArray(0.55, 0.55, 0.55, 1, 0.683077, 0.683077, 0.683077, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bgo3j"]
+noise_type = 0
+frequency = 0.08
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b5vse"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_bgo3j")
+color_ramp = SubResource("Gradient_8ut3h")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_ac24k"]
+colors = PackedColorArray(0, 0.258824, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t6fbr"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5ifku"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_t6fbr")
+color_ramp = SubResource("Gradient_ac24k")
+seamless = true
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_5ifku"]
+albedo_texture = SubResource("NoiseTexture2D_b5vse")
+orm_texture = SubResource("NoiseTexture2D_5ifku")
+ao_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1q4wo"]
 
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
@@ -779,8 +976,17 @@ meshToDisplay = SubResource("QuadMesh_svmtb")
 euler_angles = Vector3(270, 0, 0)
 hovering = false
 
-[node name="Grass blade" parent="Displays/Grass" unique_id=1313429169 instance=ExtResource("6_cm48o")]
+[node name="Grass noise texture" parent="Displays/Grass" unique_id=751492968 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+title = "Grass from noise texture"
+description = "A grass looking material can be created from noise textures. This one is from the Procedural Material demo of Godot."
+material = SubResource("StandardMaterial3D_yyrso")
+meshToDisplay = SubResource("QuadMesh_svmtb")
+euler_angles = Vector3(270, 0, 0)
+hovering = false
+
+[node name="Grass blade" parent="Displays/Grass" unique_id=1313429169 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 title = "Grass blade"
 description = "A basic grass blade can be represented by a simple triangle with a color"
 material = SubResource("ShaderMaterial_intij")
@@ -788,7 +994,7 @@ meshToDisplay = SubResource("ArrayMesh_svmtb")
 hovering = false
 
 [node name="Color blend" parent="Displays/Grass" unique_id=719679880 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 title = "Color blend"
 description = "Adding a color blend helps with the beliavability. Since less light reaches the bottom of the grass, a darker color makes sense."
 material = SubResource("ShaderMaterial_ynafr")
@@ -796,7 +1002,7 @@ meshToDisplay = SubResource("ArrayMesh_oy7ja")
 hovering = false
 
 [node name="Billboard" parent="Displays/Grass" unique_id=1253808886 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
 title = "Vertical billboard"
 description = "When looking at a flat mesh from the side, it gets very flat. A vertical billboard aligns the grass with the view. Note that this usually causes a weird effect on once the user becomes aware of it."
 material = SubResource("ShaderMaterial_uy6ep")
@@ -804,7 +1010,7 @@ meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
 [node name="Wind" parent="Displays/Grass" unique_id=642143392 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
 title = "Wind"
 description = "Adding a vertex offset allows creating a wind effect."
 material = SubResource("ShaderMaterial_svmtb")
@@ -812,7 +1018,7 @@ meshToDisplay = SubResource("ArrayMesh_636rn")
 hovering = false
 
 [node name="Complex blade" parent="Displays/Grass" unique_id=300544721 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 title = "Complex grass blade"
 description = "Increasing the complexity of the mesh improves the wind behavior."
 material = SubResource("ShaderMaterial_svmtb")
@@ -820,7 +1026,7 @@ meshToDisplay = SubResource("ArrayMesh_uy6ep")
 hovering = false
 
 [node name="Many blades" parent="Displays/Grass" unique_id=1712670358 instance=ExtResource("6_cm48o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
 title = "Grass field"
 description = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 material = SubResource("ShaderMaterial_svmtb")
@@ -852,7 +1058,7 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Displays/Grass/Many blades/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_428gs")
+surface_material_override/0 = SubResource("StandardMaterial3D_m3v6y")
 
 [node name="Bushes" type="Node3D" parent="Displays" unique_id=1570795030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
@@ -1080,7 +1286,7 @@ display_scale = 0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
 title = "Wave simulation"
 description = ""
-material = SubResource("ShaderMaterial_k821b")
+material = SubResource("ShaderMaterial_jvspd")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1116,7 +1322,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
 title = "Absorption layers"
 description = ""
-material = SubResource("ShaderMaterial_m3v6y")
+material = SubResource("ShaderMaterial_00dio")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1152,7 +1358,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 title = "Computed movement"
 description = ""
-material = SubResource("ShaderMaterial_ggvjk")
+material = SubResource("ShaderMaterial_pu16f")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1183,6 +1389,42 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="General environment" type="Node3D" parent="Displays" unique_id=1816523950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+script = ExtResource("6_yuj0a")
+
+[node name="Procedural sand" parent="Displays/General environment" unique_id=233699144 instance=ExtResource("6_cm48o")]
+title = "Procedural sand"
+description = "This one is from the Procedural Material demo of Godot."
+material = SubResource("StandardMaterial3D_iedc8")
+meshToDisplay = SubResource("QuadMesh_j31vm")
+euler_angles = Vector3(270, 0, 0)
+hovering = false
+
+[node name="Procedural snow" parent="Displays/General environment" unique_id=1840605005 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+title = "Procedural snow"
+description = "This one is from the Procedural Material demo of Godot."
+material = SubResource("StandardMaterial3D_ggvjk")
+meshToDisplay = SubResource("SphereMesh_428gs")
+
+[node name="Procedural glass" parent="Displays/General environment" unique_id=55457182 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+title = "Procedural glass"
+description = "This one is from the Procedural Material demo of Godot."
+material = SubResource("StandardMaterial3D_b5vse")
+meshToDisplay = SubResource("SphereMesh_428gs")
+
+[node name="Procedural concrete" parent="Displays/General environment" unique_id=54931749 instance=ExtResource("6_cm48o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+title = "Procedural concrete"
+description = "This one is from the Procedural Material demo of Godot."
+material = SubResource("ORMMaterial3D_5ifku")
+meshToDisplay = SubResource("BoxMesh_1q4wo")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="." unique_id=144823804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3792548, 1.7416084, -12.369983)
 
 [editable path="Tree"]
 [editable path="Displays/Grass/Many blades"]
