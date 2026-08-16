@@ -1169,9 +1169,8 @@ material = SubResource("StandardMaterial3D_bld8a")
 
 [node name="Basic blend" parent="Displays/Water" unique_id=69315516 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
-title = "Beer's law"
-description = "Using the linear depth, a depth blend effect can be created. However, by simply mixing the 2 colors, no blending with the submerged color is achieved.
-"
+title = "Depth blend"
+description = "Using the linear depth, a depth blend effect can be created. However, by simply mixing the 2 colors, object color is ignored."
 material = SubResource("ShaderMaterial_yuj0a")
 meshToDisplay = SubResource("QuadMesh_7ujh1")
 display_scale = 0.4
