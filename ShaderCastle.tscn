@@ -33,6 +33,7 @@
 [ext_resource type="Shader" uid="uid://bnm0epgkvd3em" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/ValueNoise.gdshader" id="23_g5oki"]
 [ext_resource type="Shader" uid="uid://bgiqrwlnikc3d" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/GradientNoise.gdshader" id="23_hh0ue"]
 [ext_resource type="Shader" uid="uid://bk8musfdtsssx" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/min.gdshader" id="23_seb52"]
+[ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Assets/UI/3D UI.tscn" id="24_3njfs"]
 [ext_resource type="Shader" uid="uid://dww8ffvh0xb3g" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/clamp.gdshader" id="24_iocoe"]
 [ext_resource type="Shader" uid="uid://cl8tq7ses0dg3" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/BuiltIn/mix.gdshader" id="24_seb52"]
 [ext_resource type="Shader" uid="uid://cpipdeqke5d1c" path="res://ShaderCastleForGodot/Tutorials/Math/Functions/Noise/SimplexNoise.gdshader" id="25_haf7y"]
@@ -261,6 +262,29 @@ transparency = 1
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_41nnq")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3njfs"]
+render_priority = 0
+shader = ExtResource("98_3njfs")
+
+[sub_resource type="SphereMesh" id="SphereMesh_x2kon"]
+radial_segments = 6
+rings = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_41nnq"]
+render_priority = 0
+shader = ExtResource("98_3njfs")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3njfs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mgyqk"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bl36p"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_mgyqk")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8001b"]
 render_priority = 0
 shader = ExtResource("23_g5oki")
@@ -276,6 +300,18 @@ render_priority = 0
 shader = ExtResource("25_haf7y")
 shader_parameter/scale = 10.00000047174012
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3njfs"]
+noise_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3njfs"]
+noise = SubResource("FastNoiseLite_3njfs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bl36p"]
+render_priority = 0
+shader = ExtResource("26_er7f8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_3njfs")
+shader_parameter/scale = 1.0
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_er7f8"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_haf7y"]
@@ -285,6 +321,65 @@ noise = SubResource("FastNoiseLite_er7f8")
 render_priority = 0
 shader = ExtResource("26_er7f8")
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_haf7y")
+shader_parameter/scale = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_41nnq"]
+noise_type = 2
+fractal_gain = 0.0
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mgyqk"]
+noise = SubResource("FastNoiseLite_41nnq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2opk"]
+render_priority = 0
+shader = ExtResource("26_er7f8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_mgyqk")
+shader_parameter/scale = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3njfs"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_41nnq"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_3njfs")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_awf4b"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xaqwn"]
+noise = SubResource("FastNoiseLite_awf4b")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gslk"]
+render_priority = 0
+shader = ExtResource("26_er7f8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_xaqwn")
+shader_parameter/scale = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mgyqk"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bl36p"]
+noise = SubResource("FastNoiseLite_mgyqk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaqwn"]
+render_priority = 0
+shader = ExtResource("26_er7f8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bl36p")
+shader_parameter/scale = 1.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_h0e04"]
+noise_type = 5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5gslk"]
+noise = SubResource("FastNoiseLite_h0e04")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y48ra"]
+render_priority = 0
+shader = ExtResource("26_er7f8")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_5gslk")
 shader_parameter/scale = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5acsn"]
@@ -1412,18 +1507,6 @@ shader_parameter/albedo_map = ExtResource("83_26u2x")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bld8a"]
 albedo_color = Color(0.07450981, 0.22745098, 1, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3njfs"]
-render_priority = 0
-shader = ExtResource("98_3njfs")
-
-[sub_resource type="SphereMesh" id="SphereMesh_x2kon"]
-radial_segments = 6
-rings = 3
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_41nnq"]
-render_priority = 0
-shader = ExtResource("98_3njfs")
-
 [node name="ShaderCastle" type="Node3D" unique_id=784902689]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1469896497]
@@ -1652,7 +1735,78 @@ Introduced as a modern replacement for geometry and tessellation shaders, mesh s
 mesh = SubResource("QuadMesh_65i8n")
 surface_material_override/0 = SubResource("StandardMaterial3D_mgyqk")
 
+[node name="Projection" type="Node3D" parent="Entrance" unique_id=130339924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, -26.3)
+
+[node name="NormalPointingAway" parent="Entrance/Projection" unique_id=1047147759 instance=ExtResource("7_xewg6")]
+transform = Transform3D(7.5497894e-08, 0, 1, 0, 1, 0, -1, 0, 7.5497894e-08, -2.030202, -9.536743e-07, -5.5753136)
+title = "Normals pointing away"
+description = "A side effect of the interpolation is that the normal vector can point away from the view direction. 
+This can be detected if the dot product of the view and normal is negative.
+This can result in unwanted side effects for certain shaders. This effect is strong on low poly smooth meshes."
+material = SubResource("ShaderMaterial_3njfs")
+meshToDisplay = SubResource("SphereMesh_x2kon")
+
+[node name="ProblematicNormals" parent="Entrance/Projection/NormalPointingAway" unique_id=1127840710 instance=ExtResource("97_x2kon")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.36365888, 1.3, 5.3290707e-16)
+
+[node name="Cube" parent="Entrance/Projection/NormalPointingAway/ProblematicNormals" index="0" unique_id=1050232938]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_41nnq")
+
 [node name="Entrance" parent="Entrance" unique_id=704400997 instance=ExtResource("2_jw4j1")]
+
+[node name="Performance" type="Node3D" parent="Entrance" unique_id=1075843743]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -20)
+
+[node name="Wall" type="Node3D" parent="Entrance/Performance" unique_id=1590936761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+
+[node name="Branching paths" type="Node3D" parent="Entrance/Performance/Wall" unique_id=632904458]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.0468879e-08, 0, 0.23950005)
+
+[node name="3D UI" parent="Entrance/Performance/Wall/Branching paths" unique_id=57926462 instance=ExtResource("24_3njfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0009994507, 0, -0.010267257)
+
+[node name="SubViewport" parent="Entrance/Performance/Wall/Branching paths/3D UI" index="0" unique_id=1631946190]
+size = Vector2i(512, 512)
+
+[node name="Panel" type="Panel" parent="Entrance/Performance/Wall/Branching paths/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(57926462, 600475954) index="0" unique_id=1189420690]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Entrance/Performance/Wall/Branching paths/3D UI/SubViewport/Control" parent_id_path=PackedInt32Array(57926462, 600475954) index="1" unique_id=355743666]
+custom_minimum_size = Vector2(512, 0)
+custom_maximum_size = Vector2(512, -1)
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 648.0
+
+[node name="Title" type="Label" parent="Entrance/Performance/Wall/Branching paths/3D UI/SubViewport/Control/VBoxContainer" unique_id=2029253400]
+layout_mode = 2
+text = "Branching paths:"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Entrance/Performance/Wall/Branching paths/3D UI/SubViewport/Control/VBoxContainer" unique_id=447501760]
+layout_mode = 2
+text = "In normal programming, if statements are very common. However, due to the paralell nature of shaders, they have a very bad reputation in shaders.
+There is a safe way of using them though. The problem is branching paths. If for example some pixels follow one branch of the if statement and others another, it's bad for performance. If they all follow the same one, it's fine though.
+Therefore, this is fine: 
+if(TIME > 0.5) {}
+While this is bad:
+if(UV.x > 0.5) {}
+As an alternative, GPU implement functions that are highly optimized. For example:
+step(0.5, UV.x)
+This returns 1.0 if UV.x >= 0.5, and 0.0 otherwise.
+"
+autowrap_mode = 3
+
+[node name="MeshInstance3D" parent="Entrance/Performance/Wall/Branching paths/3D UI" index="1" unique_id=121505346]
+transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, 1.0279284, 0)
+mesh = SubResource("QuadMesh_3njfs")
+surface_material_override/0 = SubResource("StandardMaterial3D_bl36p")
 
 [node name="MathTower" type="Node3D" parent="." unique_id=1428825792]
 transform = Transform3D(-0.7095708, 0, -0.70463413, 0, 1, 0, 0.70463413, 0, -0.7095708, 22.07228, 12.7, 63)
@@ -1684,11 +1838,67 @@ title = "Simplex noise"
 description = ""
 material = SubResource("ShaderMaterial_wb0ph")
 
-[node name="NoiseTexture" parent="MathTower/Floor 1/Noise" unique_id=555432939 instance=ExtResource("7_ycgrn")]
+[node name="Simplex noise texture" parent="MathTower/Floor 1/Noise" unique_id=650186667 instance=ExtResource("7_ycgrn")]
 transform = Transform3D(0.9426415, 0, -0.33380687, 0, 1, 0, 0.33380687, 0, 0.9426415, -1.9694605, 0, 5.561585)
-title = "Noise texture"
+title = "Simplex noise texture"
+description = ""
+material = SubResource("ShaderMaterial_bl36p")
+
+[node name="Simplex smooth noise texture" parent="MathTower/Floor 1/Noise" unique_id=555432939 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.89879405, 0, -0.43837115, 0, 1, 0, 0.43837115, 0, 0.89879405, -2.5863898, 0, 5.302885)
+title = "Simplex smooth noise texture"
 description = ""
 material = SubResource("ShaderMaterial_og1t3")
+
+[node name="Cellular noise" parent="MathTower/Floor 1/Noise" unique_id=1138016957 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.8433914, 0, -0.53729963, 0, 1, 0, 0.53729963, 0, 0.8433914, -3.1700678, 0, 4.9760094)
+title = "Cellular noise"
+description = ""
+material = SubResource("ShaderMaterial_t2opk")
+
+[node name="DisplayQuad" parent="MathTower/Floor 1/Noise/Cellular noise/DisplayOrigin" parent_id_path=PackedInt32Array(1138016957, 595881598) index="0" unique_id=1420667322]
+surface_material_override/0 = SubResource("ShaderMaterial_t2opk")
+
+[node name="Title" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1138016957, 1806436609) index="0" unique_id=1954479272]
+text = "Cellular noise"
+
+[node name="Description" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1138016957, 1806436609) index="1" unique_id=410209021]
+text = ""
+
+[node name="SliderTitle" type="Label" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1138016957, 1806436609) index="2" unique_id=2144026979]
+layout_mode = 2
+text = "Grain (0...2)"
+
+[node name="HSlider" type="HSlider" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1138016957, 1806436609) index="3" unique_id=1951813034]
+layout_mode = 2
+
+[node name="SliderTitle2" type="Label" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1138016957, 1806436609) index="4" unique_id=1844416656]
+layout_mode = 2
+text = "Jitter (0...4)"
+
+[node name="HSlider2" type="HSlider" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI/SubViewport/Control/VBoxContainer" parent_id_path=PackedInt32Array(1138016957, 1806436609) index="5" unique_id=1588685131]
+layout_mode = 2
+
+[node name="MeshInstance3D" parent="MathTower/Floor 1/Noise/Cellular noise/3D UI" parent_id_path=PackedInt32Array(1138016957, 498438476) index="1" unique_id=121505346]
+surface_material_override/0 = SubResource("StandardMaterial3D_41nnq")
+
+[node name="Perlin noise" parent="MathTower/Floor 1/Noise" unique_id=57827874 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.7771459, 0, -0.6293204, 0, 1, 0, 0.6293204, 0, 0.7771459, -3.7129903, 0, 4.585161)
+title = "Perlin noise"
+description = ""
+material = SubResource("ShaderMaterial_5gslk")
+
+[node name="Value cubic noise" parent="MathTower/Floor 1/Noise" unique_id=1930489577 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.70090926, 0, -0.71325046, 0, 1, 0, 0.71325046, 0, 0.70090926, -4.2081776, 0, 4.1353645)
+title = "Value cubic noise"
+description = ""
+material = SubResource("ShaderMaterial_xaqwn")
+
+[node name="Value noise" parent="MathTower/Floor 1/Noise" unique_id=316740212 instance=ExtResource("7_ycgrn")]
+transform = Transform3D(0.6156615, 0, -0.7880107, 0, 1, 0, 0.7880107, 0, 0.6156615, -4.6492634, 0, 3.6324027)
+title = "Value noise"
+description = ""
+material = SubResource("ShaderMaterial_y48ra")
 
 [node name="Floor -1" type="Node3D" parent="MathTower" unique_id=324425365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
@@ -2301,27 +2511,14 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.0
 [node name="Node3D" type="Node3D" parent="." unique_id=1555027478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-07, 10.602706, -17.609594)
 
-[node name="3D display" parent="." unique_id=1047147759 instance=ExtResource("7_xewg6")]
-transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 9.530205, 12.699999, 31.875313)
-title = "Normals pointing away"
-description = "A side effect of the interpolation is that the normal vector can point away from the view direction. 
-This can be detected if the dot product of the view and normal is negative.
-This can result in unwanted side effects for certain shaders. This effect is strong on low poly smooth meshes."
-material = SubResource("ShaderMaterial_3njfs")
-meshToDisplay = SubResource("SphereMesh_x2kon")
-
-[node name="ProblematicNormals" parent="3D display" unique_id=1127840710 instance=ExtResource("97_x2kon")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.36365888, 1.3, 5.3290707e-16)
-
-[node name="Cube" parent="3D display/ProblematicNormals" index="0" unique_id=1050232938]
-transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
-surface_material_override/0 = SubResource("ShaderMaterial_41nnq")
-
 [editable path="Entrance/Basics/Color picker"]
 [editable path="Entrance/Basics/Color picker/3D UI"]
 [editable path="Entrance/Vertex shader/MultiMeshInstance3D"]
 [editable path="Entrance/Vertex shader/MultiMeshInstance3D/3D UI"]
 [editable path="Entrance/Vertex shader/Where is the geometry shader"]
 [editable path="Entrance/Vertex shader/Where is the geometry shader/3D UI"]
+[editable path="Entrance/Projection/NormalPointingAway/ProblematicNormals"]
+[editable path="Entrance/Performance/Wall/Branching paths/3D UI"]
+[editable path="MathTower/Floor 1/Noise/Cellular noise"]
+[editable path="MathTower/Floor 1/Noise/Cellular noise/3D UI"]
 [editable path="Tree"]
-[editable path="3D display/ProblematicNormals"]
