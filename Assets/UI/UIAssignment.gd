@@ -28,6 +28,7 @@ extends Node
 			material = displayMesh.get_surface_override_material(0)
 
 func apply_data() -> void:
+	name = title
 	title_label.text = title
 	description_label.text = description
 	if meshToDisplay:
