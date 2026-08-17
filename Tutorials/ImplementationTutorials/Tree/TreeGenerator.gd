@@ -38,14 +38,14 @@ func _on_branch_changed() -> void:
 	request_rebuild()
 
 
-func _collect_branch_chain() -> Array[BranchNode]:
-	var chain: Array[BranchNode] = []
-	var current: Node = self
-	
+func _collect_child_chain(start_node: BranchNode) -> Array[BranchNode]:
+	var chain: Array[BranchNode] = [start_node]
+	var current: Node = start_node
+
 	while true:
 		var next_branch: BranchNode = null
 		for child in current.get_children():
-			if child is BranchNode:
+			if child is BranchNode and child.is_inside_tree() and not child.is_queued_for_deletion():
 				next_branch = child
 				break
 		if is_instance_valid(next_branch):
@@ -53,7 +53,7 @@ func _collect_branch_chain() -> Array[BranchNode]:
 			current = next_branch
 		else:
 			break
-			
+
 	return chain
 
 
@@ -61,22 +61,51 @@ func _rebuild_tree_mesh() -> void:
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
 
-	var chain: Array[BranchNode] = _collect_branch_chain()
-	if chain.is_empty():
+	# Gather direct BranchNode children (Child 1 = Branch, Child 2 = Root)
+	var direct_children: Array[BranchNode] = []
+	for child in get_children():
+		if child is BranchNode and child.is_inside_tree() and not child.is_queued_for_deletion():
+			direct_children.append(child)
+
+	if direct_children.is_empty():
 		mesh = null
 		return
 
-	# Gather positions in TreeGenerator local space and cumulative radii
-	var positions: Array[Vector3] = [Vector3.ZERO]
-	var radii: Array[float] = [base_radius]
+	var positions: Array[Vector3] = []
+	var radii: Array[float] = []
 
-	var current_radius: float = base_radius
-	for branch in chain:
-		if not is_instance_valid(branch) or not branch.is_inside_tree() or branch.is_queued_for_deletion():
-			break
-		positions.append(to_local(branch.global_position))
-		current_radius *= branch._get_radius_multiplier()
-		radii.append(current_radius)
+	# 1. Process Root Chain (Second child, if present)
+	if direct_children.size() > 1:
+		var root_nodes: Array[BranchNode] = _collect_child_chain(direct_children[1])
+		var root_positions: Array[Vector3] = []
+		var root_radii: Array[float] = []
+		var current_radius: float = base_radius
+
+		for node in root_nodes:
+			root_positions.append(to_local(node.global_position))
+			current_radius *= node._get_radius_multiplier()
+			root_radii.append(current_radius)
+
+		# Reverse arrays so sequence goes from tip (Root B) down to base (Root A)
+		root_positions.reverse()
+		root_radii.reverse()
+
+		positions.append_array(root_positions)
+		radii.append_array(root_radii)
+
+	# 2. Process Tree Root Node (Origin)
+	positions.append(Vector3.ZERO)
+	radii.append(base_radius)
+
+	# 3. Process Branch Chain (First child, if present)
+	if direct_children.size() > 0:
+		var branch_nodes: Array[BranchNode] = _collect_child_chain(direct_children[0])
+		var current_radius: float = base_radius
+
+		for node in branch_nodes:
+			positions.append(to_local(node.global_position))
+			current_radius *= node._get_radius_multiplier()
+			radii.append(current_radius)
 
 	_generate_chain_mesh(positions, radii)
 
