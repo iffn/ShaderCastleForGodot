@@ -97,19 +97,18 @@ func _rebuild_tree_mesh() -> void:
 				initial_right = Vector3.RIGHT.cross(start_dir)
 			initial_right = initial_right.normalized()
 
-		# 1. Main Trunk Subtree (Child 0)
-		var start_ring: Dictionary = _generate_ring(st, Vector3.ZERO, start_dir, base_radius, initial_right, 0.0)
-		_build_branch_subtree(st, trunk_node, start_ring.indices, start_dir, start_ring.right, start_ring.up, base_radius, 0.0)
+		# Single shared origin ring at Vector3.ZERO for both trunk and roots
+		var base_ring: Dictionary = _generate_ring(st, Vector3.ZERO, start_dir, base_radius, initial_right, 0.0)
 
-		# 2. Root Y-Split Subtrees (Child 1 & Child 2) using a dedicated downward-facing root junction ring
+		# 1. Main Trunk Subtree (Child 0)
+		_build_branch_subtree(st, trunk_node, base_ring.indices, start_dir, base_ring.right, base_ring.up, base_radius, 0.0)
+
+		# 2. Root Y-Split Subtrees (Child 1 & Child 2) sharing base_ring indices
 		var root_down_dir: Vector3 = -(dir_a + dir_b).normalized()
 		if root_down_dir.length_squared() < 0.001:
 			root_down_dir = -start_dir
 
-		var root_junction_ring: Dictionary = _generate_ring(st, Vector3.ZERO, root_down_dir, base_radius, initial_right, 0.0)
-
-		# Spatial alignment check
-		var junction_up: Vector3 = root_down_dir.cross(root_junction_ring.right).normalized()
+		var junction_up: Vector3 = root_down_dir.cross(base_ring.right).normalized()
 		if dir_a.dot(junction_up) < dir_b.dot(junction_up):
 			var temp_node: BranchNode = root_a
 			root_a = root_b
@@ -134,20 +133,20 @@ func _rebuild_tree_mesh() -> void:
 
 		var ring_a_indices: Array[int] = []
 		for i in range(half_count + 1):
-			ring_a_indices.append(root_junction_ring.indices[i])
+			ring_a_indices.append(base_ring.indices[i])
 		ring_a_indices.append(crotch_idx)
 
 		var ring_b_indices: Array[int] = []
 		for i in range(half_count, radial_segments):
-			ring_b_indices.append(root_junction_ring.indices[i])
-		ring_b_indices.append(root_junction_ring.indices[0])
+			ring_b_indices.append(base_ring.indices[i])
+		ring_b_indices.append(base_ring.indices[0])
 		ring_b_indices.append(crotch_idx)
 
-		var right_a: Vector3 = _transport_frame(root_down_dir, dir_a, root_junction_ring.right)
-		var up_a: Vector3 = _transport_frame(root_down_dir, dir_a, root_junction_ring.up)
+		var right_a: Vector3 = _transport_frame(start_dir, dir_a, base_ring.right)
+		var up_a: Vector3 = _transport_frame(start_dir, dir_a, base_ring.up)
 
-		var right_b: Vector3 = _transport_frame(root_down_dir, dir_b, -root_junction_ring.right)
-		var up_b: Vector3 = _transport_frame(root_down_dir, dir_b, -root_junction_ring.up)
+		var right_b: Vector3 = _transport_frame(start_dir, dir_b, -base_ring.right)
+		var up_b: Vector3 = _transport_frame(start_dir, dir_b, -base_ring.up)
 
 		_build_branch_subtree(st, root_a, ring_a_indices, dir_a, right_a, up_a, base_radius * 0.75, 0.0)
 		_build_branch_subtree(st, root_b, ring_b_indices, dir_b, right_b, up_b, base_radius * 0.75, 0.0)
@@ -159,18 +158,17 @@ func _rebuild_tree_mesh() -> void:
 			initial_right = Vector3.RIGHT.cross(start_dir)
 		initial_right = initial_right.normalized()
 
-		var start_ring: Dictionary = _generate_ring(st, Vector3.ZERO, start_dir, base_radius, initial_right, 0.0)
-		_build_branch_subtree(st, trunk_node, start_ring.indices, start_dir, start_ring.right, start_ring.up, base_radius, 0.0)
+		var base_ring: Dictionary = _generate_ring(st, Vector3.ZERO, start_dir, base_radius, initial_right, 0.0)
+		_build_branch_subtree(st, trunk_node, base_ring.indices, start_dir, base_ring.right, base_ring.up, base_radius, 0.0)
 
 		var root_node: BranchNode = direct_children[1]
 		var root_dir: Vector3 = (to_local(root_node.global_position) - Vector3.ZERO).normalized()
 		if root_dir.length_squared() < 0.001:
 			root_dir = -start_dir
 
-		var root_start_ring: Dictionary = _generate_ring(st, Vector3.ZERO, root_dir, base_radius, initial_right, 0.0)
-		var root_right: Vector3 = _transport_frame(root_dir, root_dir, root_start_ring.right)
-		var root_up: Vector3 = _transport_frame(root_dir, root_dir, root_start_ring.up)
-		_build_branch_subtree(st, root_node, root_start_ring.indices, root_dir, root_right, root_up, base_radius, 0.0)
+		var root_right: Vector3 = _transport_frame(start_dir, root_dir, base_ring.right)
+		var root_up: Vector3 = _transport_frame(start_dir, root_dir, base_ring.up)
+		_build_branch_subtree(st, root_node, base_ring.indices, root_dir, root_right, root_up, base_radius, 0.0)
 
 	else:
 		# Single trunk only, cap base
@@ -179,9 +177,9 @@ func _rebuild_tree_mesh() -> void:
 			initial_right = Vector3.RIGHT.cross(start_dir)
 		initial_right = initial_right.normalized()
 
-		var start_ring: Dictionary = _generate_ring(st, Vector3.ZERO, start_dir, base_radius, initial_right, 0.0)
-		_cap_ring(st, start_ring.indices, Vector3.ZERO, -start_dir)
-		_build_branch_subtree(st, trunk_node, start_ring.indices, start_dir, start_ring.right, start_ring.up, base_radius, 0.0)
+		var base_ring: Dictionary = _generate_ring(st, Vector3.ZERO, start_dir, base_radius, initial_right, 0.0)
+		_cap_ring(st, base_ring.indices, Vector3.ZERO, -start_dir)
+		_build_branch_subtree(st, trunk_node, base_ring.indices, start_dir, base_ring.right, base_ring.up, base_radius, 0.0)
 
 	mesh = st.commit()
 
