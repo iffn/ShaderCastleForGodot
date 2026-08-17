@@ -54,7 +54,6 @@ func _get_valid_branch_children(node: Node, max_count: int = 2) -> Array[BranchN
 				break
 	return valid_children
 
-
 func _rebuild_tree_mesh() -> void:
 	if not is_inside_tree() or is_queued_for_deletion():
 		return
@@ -104,12 +103,16 @@ func _rebuild_tree_mesh() -> void:
 		_build_branch_subtree(st, trunk_node, base_ring.indices, start_dir, base_ring.right, base_ring.up, base_radius, 0.0)
 
 		# 2. Root Y-Split Subtrees (Child 1 & Child 2) sharing base_ring indices
-		var root_down_dir: Vector3 = -(dir_a + dir_b).normalized()
-		if root_down_dir.length_squared() < 0.001:
-			root_down_dir = -start_dir
+		# REVERSE the base ring indices to flip winding order for downward growth
+		var rev_base_indices: Array[int] = []
+		for i in range(radial_segments):
+			rev_base_indices.append(base_ring.indices[(radial_segments - i) % radial_segments])
 
-		var junction_up: Vector3 = root_down_dir.cross(base_ring.right).normalized()
-		if dir_a.dot(junction_up) < dir_b.dot(junction_up):
+		var rev_right: Vector3 = base_ring.right
+		var rev_up: Vector3 = -base_ring.up
+		var rev_in_dir: Vector3 = -start_dir
+
+		if dir_a.dot(rev_up) < dir_b.dot(rev_up):
 			var temp_node: BranchNode = root_a
 			root_a = root_b
 			root_b = temp_node
@@ -120,7 +123,7 @@ func _rebuild_tree_mesh() -> void:
 
 		var split_dir: Vector3 = (dir_a + dir_b).normalized()
 		if split_dir.length_squared() < 0.001:
-			split_dir = -start_dir
+			split_dir = rev_in_dir
 
 		var crotch_pos: Vector3 = Vector3.ZERO + split_dir * (base_radius * crotch_offset_factor)
 		st.set_normal(split_dir)
@@ -133,20 +136,20 @@ func _rebuild_tree_mesh() -> void:
 
 		var ring_a_indices: Array[int] = []
 		for i in range(half_count + 1):
-			ring_a_indices.append(base_ring.indices[i])
+			ring_a_indices.append(rev_base_indices[i])
 		ring_a_indices.append(crotch_idx)
 
 		var ring_b_indices: Array[int] = []
 		for i in range(half_count, radial_segments):
-			ring_b_indices.append(base_ring.indices[i])
-		ring_b_indices.append(base_ring.indices[0])
+			ring_b_indices.append(rev_base_indices[i])
+		ring_b_indices.append(rev_base_indices[0])
 		ring_b_indices.append(crotch_idx)
 
-		var right_a: Vector3 = _transport_frame(start_dir, dir_a, base_ring.right)
-		var up_a: Vector3 = _transport_frame(start_dir, dir_a, base_ring.up)
+		var right_a: Vector3 = _transport_frame(rev_in_dir, dir_a, rev_right)
+		var up_a: Vector3 = _transport_frame(rev_in_dir, dir_a, rev_up)
 
-		var right_b: Vector3 = _transport_frame(start_dir, dir_b, -base_ring.right)
-		var up_b: Vector3 = _transport_frame(start_dir, dir_b, -base_ring.up)
+		var right_b: Vector3 = _transport_frame(rev_in_dir, dir_b, -rev_right)
+		var up_b: Vector3 = _transport_frame(rev_in_dir, dir_b, -rev_up)
 
 		_build_branch_subtree(st, root_a, ring_a_indices, dir_a, right_a, up_a, base_radius * 0.75, 0.0)
 		_build_branch_subtree(st, root_b, ring_b_indices, dir_b, right_b, up_b, base_radius * 0.75, 0.0)
@@ -166,9 +169,18 @@ func _rebuild_tree_mesh() -> void:
 		if root_dir.length_squared() < 0.001:
 			root_dir = -start_dir
 
-		var root_right: Vector3 = _transport_frame(start_dir, root_dir, base_ring.right)
-		var root_up: Vector3 = _transport_frame(start_dir, root_dir, base_ring.up)
-		_build_branch_subtree(st, root_node, base_ring.indices, root_dir, root_right, root_up, base_radius, 0.0)
+		# Reverse the base ring for single downward root
+		var rev_base_indices: Array[int] = []
+		for i in range(radial_segments):
+			rev_base_indices.append(base_ring.indices[(radial_segments - i) % radial_segments])
+
+		var rev_right: Vector3 = base_ring.right
+		var rev_up: Vector3 = -base_ring.up
+		var rev_in_dir: Vector3 = -start_dir
+
+		var root_right: Vector3 = _transport_frame(rev_in_dir, root_dir, rev_right)
+		var root_up: Vector3 = _transport_frame(rev_in_dir, root_dir, rev_up)
+		_build_branch_subtree(st, root_node, rev_base_indices, root_dir, root_right, root_up, base_radius, 0.0)
 
 	else:
 		# Single trunk only, cap base
@@ -182,7 +194,6 @@ func _rebuild_tree_mesh() -> void:
 		_build_branch_subtree(st, trunk_node, base_ring.indices, start_dir, base_ring.right, base_ring.up, base_radius, 0.0)
 
 	mesh = st.commit()
-
 
 func _build_branch_subtree(st: SurfaceTool, current_node: BranchNode, parent_indices: Array[int], in_dir: Vector3, parent_right: Vector3, parent_up: Vector3, parent_radius: float, uv_y: float) -> void:
 	var node_pos: Vector3 = to_local(current_node.global_position)
