@@ -458,14 +458,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_428gs"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_f4hs1"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4hs1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3v6y"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_428gs")
+albedo_texture = SubResource("ViewportTexture_f4hs1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
@@ -671,14 +671,14 @@ shader_parameter/wave_scale = 0.01200000022074
 shader_parameter/simulation_speed = 1.0000000475
 shader_parameter/gravity = 9.81
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_k821b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iedc8"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m3v6y"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggvjk"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_k821b")
+shader_parameter/compute = SubResource("ViewportTexture_iedc8")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0.45, 0.45, 1, 1)
 
@@ -699,14 +699,14 @@ resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_ee1st")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iedc8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggvjk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ga4c8"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_iedc8")
+shader_parameter/compute = SubResource("ViewportTexture_jvspd")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0, 0.57254905, 1, 1)
 
@@ -727,14 +727,14 @@ resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_pu16f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_00dio"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ga4c8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_retet"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_jvspd")
+shader_parameter/compute = SubResource("ViewportTexture_00dio")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0.120000005, 0.8973332, 1, 1)
 
@@ -999,7 +999,7 @@ shadow_enabled = true
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("1_waw53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.644658, -4.7683716e-07, 6.467231)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
+[node name="Leaves" parent="Tree" index="1" unique_id=829533945]
 surface_material_override/0 = SubResource("ShaderMaterial_2jtpy")
 
 [node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("4_ib04r")]
@@ -1213,7 +1213,7 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Displays/Grass/Grass field/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_f4hs1")
+surface_material_override/0 = SubResource("StandardMaterial3D_m3v6y")
 
 [node name="Bushes" type="Node3D" parent="Displays" unique_id=1570795030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
@@ -1440,7 +1440,7 @@ display_scale = 0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
 title = "Wave simulation"
 description = ""
-material = SubResource("ShaderMaterial_m3v6y")
+material = SubResource("ShaderMaterial_ggvjk")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1476,7 +1476,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
 title = "Absorption layers"
 description = ""
-material = SubResource("ShaderMaterial_ggvjk")
+material = SubResource("ShaderMaterial_ga4c8")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1512,7 +1512,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 title = "Computed movement"
 description = ""
-material = SubResource("ShaderMaterial_ga4c8")
+material = SubResource("ShaderMaterial_retet")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
