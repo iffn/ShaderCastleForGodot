@@ -4,12 +4,12 @@ extends MeshInstance3D
 @export_range(3, 32) var radial_segments: int = 8:
 	set(value):
 		radial_segments = value
-		_rebuild_tree_mesh()
+		request_rebuild()
 
 @export var base_radius: float = 0.1:
 	set(value):
 		base_radius = value
-		_rebuild_tree_mesh()
+		request_rebuild()
 
 
 # ==============================================================================
@@ -17,105 +17,153 @@ extends MeshInstance3D
 # ==============================================================================
 
 func _ready() -> void:
-	child_entered_tree.connect(_on_child_tree_changed)
-	child_exiting_tree.connect(_on_child_tree_changed)
-	_connect_branch_signals()
-	_rebuild_tree_mesh()
+	request_rebuild()
 
 
 # ==============================================================================
 # Public Functions
 # ==============================================================================
 
-# Public API for external node interactions can be added here as needed.
+func request_rebuild() -> void:
+	if not is_inside_tree():
+		return
+	call_deferred("_rebuild_tree_mesh")
 
 
 # ==============================================================================
 # Private Functions
 # ==============================================================================
 
-func _on_child_tree_changed(_node: Node) -> void:
-	_connect_branch_signals()
-	_rebuild_tree_mesh()
+func _on_branch_changed() -> void:
+	request_rebuild()
 
 
-func _connect_branch_signals() -> void:
-	for child in get_children():
-		if child is BranchNode:
-			if not child.branch_changed.is_connected(_rebuild_tree_mesh):
-				child.branch_changed.connect(_rebuild_tree_mesh)
-
-
-func _get_first_branch_child() -> BranchNode:
-	for child in get_children():
-		if child is BranchNode:
-			return child
-	return null
+func _collect_branch_chain() -> Array[BranchNode]:
+	var chain: Array[BranchNode] = []
+	var current: Node = self
+	
+	while true:
+		var next_branch: BranchNode = null
+		for child in current.get_children():
+			if child is BranchNode:
+				next_branch = child
+				break
+		if is_instance_valid(next_branch):
+			chain.append(next_branch)
+			current = next_branch
+		else:
+			break
+			
+	return chain
 
 
 func _rebuild_tree_mesh() -> void:
-	var branch: BranchNode = _get_first_branch_child()
-	if not is_instance_valid(branch):
+	if not is_inside_tree() or is_queued_for_deletion():
+		return
+
+	var chain: Array[BranchNode] = _collect_branch_chain()
+	if chain.is_empty():
 		mesh = null
 		return
 
-	var target_pos: Vector3 = branch.position
-	var length: float = target_pos.length()
-	if length < 0.001:
+	# Gather positions in TreeGenerator local space and cumulative radii
+	var positions: Array[Vector3] = [Vector3.ZERO]
+	var radii: Array[float] = [base_radius]
+
+	var current_radius: float = base_radius
+	for branch in chain:
+		if not is_instance_valid(branch) or not branch.is_inside_tree() or branch.is_queued_for_deletion():
+			break
+		positions.append(to_local(branch.global_position))
+		current_radius *= branch._get_radius_multiplier()
+		radii.append(current_radius)
+
+	_generate_chain_mesh(positions, radii)
+
+
+func _generate_chain_mesh(positions: Array[Vector3], radii: Array[float]) -> void:
+	var node_count: int = positions.size()
+	if node_count < 2:
 		mesh = null
 		return
 
-	var radius_multiplier: float = branch._get_radius_multiplier()
-	_generate_tube(target_pos, radius_multiplier)
+	# 1. Calculate segment direction vectors
+	var segment_dirs: Array[Vector3] = []
+	for i in range(node_count - 1):
+		var dir: Vector3 = (positions[i + 1] - positions[i]).normalized()
+		if dir.length_squared() < 0.001:
+			dir = Vector3.UP
+		segment_dirs.append(dir)
 
+	# 2. Calculate forward alignment direction at each node (bisector framing)
+	var forward_dirs: Array[Vector3] = []
+	for i in range(node_count):
+		if i == 0:
+			forward_dirs.append(segment_dirs[0])
+		elif i == node_count - 1:
+			forward_dirs.append(segment_dirs[node_count - 2])
+		else:
+			var bisector: Vector3 = (segment_dirs[i - 1] + segment_dirs[i]).normalized()
+			if bisector.length_squared() < 0.001:
+				bisector = segment_dirs[i - 1]
+			forward_dirs.append(bisector)
 
-func _generate_tube(target_pos: Vector3, child_radius_multiplier: float) -> void:
-	var dir: Vector3 = target_pos.normalized()
-	var right: Vector3 = Vector3.UP.cross(dir)
-	if right.length_squared() < 0.001:
-		right = Vector3.RIGHT.cross(dir)
-	right = right.normalized()
-	var forward: Vector3 = dir.cross(right).normalized()
-
-	var top_radius: float = base_radius * child_radius_multiplier
-
+	# 3. Generate cross-sectional rings along the chain
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 
-	# Generate vertex rings at origin (base_radius) and target_pos (top_radius)
-	for i in range(radial_segments):
-		var angle: float = (float(i) / radial_segments) * TAU
-		var normal: Vector3 = (right * cos(angle) + forward * sin(angle)).normalized()
-		var bottom_offset: Vector3 = normal * base_radius
-		var top_offset: Vector3 = normal * top_radius
+	var prev_right: Vector3 = Vector3.ZERO
 
-		# Bottom ring vertex (Origin)
-		st.set_normal(normal)
-		st.set_uv(Vector2(float(i) / radial_segments, 0.0))
-		st.add_vertex(bottom_offset)
+	for k in range(node_count):
+		var fwd: Vector3 = forward_dirs[k]
+		var right: Vector3
 
-		# Top ring vertex (Child Position)
-		st.set_normal(normal)
-		st.set_uv(Vector2(float(i) / radial_segments, 1.0))
-		st.add_vertex(target_pos + top_offset)
+		if k == 0 or prev_right.length_squared() < 0.001:
+			right = Vector3.UP.cross(fwd)
+			if right.length_squared() < 0.001:
+				right = Vector3.RIGHT.cross(fwd)
+			right = right.normalized()
+		else:
+			right = (prev_right - fwd * prev_right.dot(fwd)).normalized()
+			if right.length_squared() < 0.001:
+				right = Vector3.UP.cross(fwd).normalized()
 
-	# Bridge rings with quad triangles
-	for i in range(radial_segments):
-		var next_i: int = (i + 1) % radial_segments
+		prev_right = right
+		var up: Vector3 = fwd.cross(right).normalized()
+		var node_pos: Vector3 = positions[k]
+		var radius: float = radii[k]
 
-		var b_curr: int = i * 2
-		var t_curr: int = i * 2 + 1
-		var b_next: int = next_i * 2
-		var t_next: int = next_i * 2 + 1
+		# Add vertices for ring k
+		for i in range(radial_segments):
+			var angle: float = (float(i) / radial_segments) * TAU
+			var normal: Vector3 = (right * cos(angle) + up * sin(angle)).normalized()
+			var vertex_offset: Vector3 = normal * radius
 
-		# Quad Triangle 1
-		st.add_index(b_curr)
-		st.add_index(t_curr)
-		st.add_index(t_next)
+			st.set_normal(normal)
+			st.set_uv(Vector2(float(i) / radial_segments, float(k) / float(node_count - 1)))
+			st.add_vertex(node_pos + vertex_offset)
 
-		# Quad Triangle 2
-		st.add_index(b_curr)
-		st.add_index(t_next)
-		st.add_index(b_next)
+	# 4. Bridge adjacent rings with quads
+	for k in range(node_count - 1):
+		var ring_a_start: int = k * radial_segments
+		var ring_b_start: int = (k + 1) * radial_segments
+
+		for i in range(radial_segments):
+			var next_i: int = (i + 1) % radial_segments
+
+			var b_curr: int = ring_a_start + i
+			var b_next: int = ring_a_start + next_i
+			var t_curr: int = ring_b_start + i
+			var t_next: int = ring_b_start + next_i
+
+			# Quad Triangle 1
+			st.add_index(b_curr)
+			st.add_index(t_curr)
+			st.add_index(t_next)
+
+			# Quad Triangle 2
+			st.add_index(b_curr)
+			st.add_index(t_next)
+			st.add_index(b_next)
 
 	mesh = st.commit()

@@ -5,15 +5,15 @@
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_c8jbq"]
 _surfaces = [{
-"aabb": AABB(-0.2, 0, -0.2, 0.4, 1, 0.4),
-"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAAAACAPwAAgD4AAAAAAACAPgAAgD8AAAA/AAAAAAAAAD8AAIA/AABAPwAAAAAAAEA/AACAPw=="),
+"aabb": AABB(-0.2, 0, -1.2235165, 0.805369, 2.3686798, 1.4235165),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAIA+AAAAAAAAAD8AAAAAAABAPwAAAAAAAAAAAACAPgAAgD4AAIA+AAAAPwAAgD4AAEA/AACAPgAAAAAAAAA/AACAPgAAAD8AAAA/AAAAPwAAQD8AAAA/AAAAAAAAQD8AAIA+AABAPwAAAD8AAEA/AABAPwAAQD8AAAAAAACAPwAAgD4AAIA/AAAAPwAAgD8AAEA/AACAPw=="),
 "format": 34359742487,
-"index_count": 24,
-"index_data": PackedByteArray("AAABAAMAAAADAAIAAgADAAUAAgAFAAQABAAFAAcABAAHAAYABgAHAAEABgABAAAA"),
+"index_count": 96,
+"index_data": PackedByteArray("AAAEAAUAAAAFAAEAAQAFAAYAAQAGAAIAAgAGAAcAAgAHAAMAAwAHAAQAAwAEAAAABAAIAAkABAAJAAUABQAJAAoABQAKAAYABgAKAAsABgALAAcABwALAAgABwAIAAQACAAMAA0ACAANAAkACQANAA4ACQAOAAoACgAOAA8ACgAPAAsACwAPAAwACwAMAAgADAAQABEADAARAA0ADQARABIADQASAA4ADgASABMADgATAA8ADwATABAADwAQAAwA"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAAAAAAADNzEw+AAAAAAAAgD/NzEw+zcxMPgAAAABn5mEjzcxMPgAAgD9n5mEjZ+bhIwAAAADNzEy+Z+bhIwAAgD/NzEy+zcxMvgAAAIDNbCmkzcxMvgAAgD/NbCmk/3//f/9/AID/f/9//38AgP///3//f/+/////f/9//7///////38AgP//////fwCAAAD/f/9//78AAP9//3//vw==")
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAAAAAAAADNzEw+zcxMPgAAAABn5mEjZ+bhIwAAAADNzEy+zcxMvgAAAADNbCmkIaIoPMNVcD+dziA+UlIaPjUwWz8K16OwIaIovJ2OYT+dziC+UlIaviu0dj8K16MwELL7PhM8xD+MWy2+d/kaP8mpuT9uD5G+Sk/uPslCsz9Q/sW+bA60PhPVvT+onIu+n9MiPvq8AkCgEhW/FpSBPjMO/D/lCCq/tbUTPuQD8j+o/je/nIRNPaVv+z9jCCO/BgmmPnOYF0AA8pC/vMbJPtcREkDXLZW/9uOcPu/0DkAwnJy/gUxyPot7FEBZYJi//3//f/9/AID///9//3//v///////fwCAAAD/f/9//7+2htSSB3ZrjlneWl4HdZ2w1BK3Bgd2a46lIaShB3WdsOSIHq0pYfmi9PFebc6C0rgfLeUIKWH5oqASCo7OgtK4OoYtwH5MOq9c/YaRHI9RwC5AOwZ+TDqvhhFdfRyPUcBeidDGxj0pto3bFGrWbEK00EZeCcY9KbbrFXCk1mxCtA==")
 }]
 
 [node name="TreeGeneratorTest" type="Node3D" unique_id=1390021124]
@@ -25,5 +25,17 @@ radial_segments = 4
 base_radius = 0.2
 
 [node name="Node3D" type="Node3D" parent="MeshInstance3D" unique_id=170975070]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0.9099455, 0)
+script = ExtResource("2_0dvbt")
+
+[node name="Node3D2" type="Node3D" parent="MeshInstance3D/Node3D" unique_id=970847856]
+transform = Transform3D(0.8000001, 0, 0, 0, 0.8000001, 0, 0, 0, 0.8000001, 0.59815097, 0.69604254, -0.34750026)
+script = ExtResource("2_0dvbt")
+
+[node name="Node3D3" type="Node3D" parent="MeshInstance3D/Node3D/Node3D2" unique_id=74741444]
+transform = Transform3D(0.7999999, 0, 0, 0, 0.7999999, 0, 0, 0, 0.7999999, -0.5107682, 0.7812257, -0.58206606)
+script = ExtResource("2_0dvbt")
+
+[node name="Node3D4" type="Node3D" parent="MeshInstance3D/Node3D/Node3D2/Node3D3" unique_id=96721154]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.31978133, 0.65317535, -1.0301335)
 script = ExtResource("2_0dvbt")
