@@ -1,0 +1,29 @@
+[gd_scene format=4 uid="uid://de37hngxyqfga"]
+
+[ext_resource type="Script" uid="uid://cdf8qh12vxfwy" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Tree/TreeGenerator.gd" id="1_c8jbq"]
+[ext_resource type="Script" uid="uid://ctjl1evqexso8" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Tree/BranchNode.gd" id="2_0dvbt"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_c8jbq"]
+_surfaces = [{
+"aabb": AABB(-0.2, 0, -0.2, 0.4, 1, 0.4),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAAAACAPwAAgD4AAAAAAACAPgAAgD8AAAA/AAAAAAAAAD8AAIA/AABAPwAAAAAAAEA/AACAPw=="),
+"format": 34359742487,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAMAAAADAAIAAgADAAUAAgAFAAQABAAFAAcABAAHAAYABgAHAAEABgABAAAA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAAAAAADNzEw+AAAAAAAAgD/NzEw+zcxMPgAAAABn5mEjzcxMPgAAgD9n5mEjZ+bhIwAAAADNzEy+Z+bhIwAAgD/NzEy+zcxMvgAAAIDNbCmkzcxMvgAAgD/NbCmk/3//f/9/AID/f/9//38AgP///3//f/+/////f/9//7///////38AgP//////fwCAAAD/f/9//78AAP9//3//vw==")
+}]
+
+[node name="TreeGeneratorTest" type="Node3D" unique_id=1390021124]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1155862761]
+mesh = SubResource("ArrayMesh_c8jbq")
+script = ExtResource("1_c8jbq")
+radial_segments = 4
+base_radius = 0.2
+
+[node name="Node3D" type="Node3D" parent="MeshInstance3D" unique_id=170975070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_0dvbt")
