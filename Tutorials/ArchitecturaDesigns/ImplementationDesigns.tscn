@@ -1,0 +1,292 @@
+[gd_scene format=3 uid="uid://u7ubjbl2wr7l"]
+
+[ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="4_fnamw"]
+[ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="5_xo42n"]
+[ext_resource type="Script" uid="uid://bas6287o75xh1" path="res://ShaderCastleForGodot/Implementations/UI/LinearArrangement.gd" id="6_g4b06"]
+[ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="7_8k5no"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0ocln"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_7gogb"]
+sky_material = SubResource("ProceduralSkyMaterial_0ocln")
+
+[sub_resource type="Environment" id="Environment_660i6"]
+background_mode = 2
+sky = SubResource("Sky_7gogb")
+glow_enabled = true
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g6kx5"]
+data = PackedVector3Array(-50, -1, 50, -50, -1, -50, -50, 1, -50, 50, -1, -50, -50, -1, -50, -50, -1, 50, -50, 1, -50, -50, -1, -50, 50, -1, -50, -50, 1, -50, -50, 1, 50, -50, -1, 50, -50, -1, 50, -50, 1, 50, 50, 1, 50, 50, 1, 50, -50, 1, 50, -50, 1, -50, -50, -1, 50, 50, -1, 50, 50, -1, -50, 50, 1, 50, 50, -1, 50, -50, -1, 50, 50, -1, -50, 50, -1, 50, 50, 1, 50, 50, -1, -50, 50, 1, -50, -50, 1, -50, -50, 1, -50, 50, 1, -50, 50, 1, 50, 50, 1, 50, 50, 1, -50, 50, -1, -50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hytk"]
+albedo_color = Color(0.68, 0.68, 0.68, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_biu70"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b1p0m"]
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tkejg"]
+top_radius = 0.0
+height = 1.0
+
+[sub_resource type="Curve" id="Curve_nhmr2"]
+_data = [Vector2(0, 0), 0.0, 0.53846097, 0, 0, Vector2(0.5, 0.50427353), 2.160536, 2.160536, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_ryov8"]
+radial_steps = 16
+curve = SubResource("Curve_nhmr2")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hyltu"]
+top_radius = 0.0
+bottom_radius = 0.35
+height = 0.5
+radial_segments = 4
+rings = 0
+
+[sub_resource type="PrismMesh" id="PrismMesh_b1p0m"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_lipnw"]
+left_to_right = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_tkejg"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_bld8a"]
+size = Vector3(1.2, 0.5, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ryov8"]
+top_radius = 0.0
+bottom_radius = 0.8
+height = 0.5
+radial_segments = 4
+rings = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_hyltu"]
+size = Vector3(0.4, 1, 0.4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nhmr2"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5vrt3"]
+top_radius = 0.0
+bottom_radius = 0.3
+height = 0.5
+radial_segments = 16
+rings = 0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lipnw"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lpj5r"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_tkejg"]
+size = Vector3(0.3, 1, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b1p0m"]
+size = Vector3(0.4, 0.2, 0.4)
+
+[node name="ShaderCastle" type="Node3D" unique_id=784902689]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1469896497]
+environment = SubResource("Environment_660i6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2101350115]
+transform = Transform3D(0.6959127, -0.6508435, 0.30349326, 0, 0.42261824, 0.9063078, -0.71812624, -0.6307112, 0.29410544, 0, 0, 0)
+shadow_enabled = true
+
+[node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("4_fnamw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0660412, 0, 1.9402081)
+
+[node name="SetupControls" parent="." unique_id=1595231349 instance=ExtResource("5_xo42n")]
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=560271195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(100, 2, 100)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=2084312545]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=925622205]
+shape = SubResource("ConcavePolygonShape3D_g6kx5")
+
+[node name="Displays" type="Node3D" parent="." unique_id=463746712]
+script = ExtResource("6_g4b06")
+offset = Vector3(0, 0, -3)
+
+[node name="Basic shapes" type="Node3D" parent="Displays" unique_id=1246741554]
+script = ExtResource("6_g4b06")
+
+[node name="Box" parent="Displays/Basic shapes" unique_id=320400435 instance=ExtResource("7_8k5no")]
+title = "Box"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("BoxMesh_biu70")
+
+[node name="Cylinder" parent="Displays/Basic shapes" unique_id=1185929385 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+title = "Cylinder"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("CylinderMesh_b1p0m")
+
+[node name="Cone" parent="Displays/Basic shapes" unique_id=1666832340 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+title = "Cone"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("CylinderMesh_tkejg")
+
+[node name="Shaped cone" parent="Displays/Basic shapes" unique_id=579999048 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+title = "Shaped cone"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("TubeTrailMesh_ryov8")
+
+[node name="Pyramid" parent="Displays/Basic shapes" unique_id=1039537176 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+title = "Pyramid"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("CylinderMesh_hyltu")
+euler_angles = Vector3(0, 45, 0)
+
+[node name="Prism" parent="Displays/Basic shapes" unique_id=264191943 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+title = "Prism"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("PrismMesh_b1p0m")
+
+[node name="Half prism" parent="Displays/Basic shapes" unique_id=172177431 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+title = "Half prism"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("PrismMesh_lipnw")
+
+[node name="Sphere" parent="Displays/Basic shapes" unique_id=14551224 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+title = "Sphere"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("SphereMesh_tkejg")
+
+[node name="Basic shapes2" type="Node3D" parent="Displays" unique_id=22762328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+script = ExtResource("6_g4b06")
+
+[node name="Modern house" parent="Displays/Basic shapes2" unique_id=1482858577 instance=ExtResource("7_8k5no")]
+title = "Modern house"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("BoxMesh_biu70")
+
+[node name="Simple house A" parent="Displays/Basic shapes2" unique_id=1761481618 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+title = "Simple house A"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("BoxMesh_biu70")
+
+[node name="Mesh origin" type="Node3D" parent="Displays/Basic shapes2/Simple house A" unique_id=2094159034]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Basic shapes2/Simple house A/Mesh origin" unique_id=1902215558]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.75082684, 0)
+mesh = SubResource("PrismMesh_bld8a")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="Simple house B" parent="Displays/Basic shapes2" unique_id=1426610423 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+title = "Simple house B"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("BoxMesh_biu70")
+
+[node name="Mesh origin" type="Node3D" parent="Displays/Basic shapes2/Simple house B" unique_id=531962695]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Basic shapes2/Simple house B/Mesh origin" unique_id=386091140]
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 0.99999994, 0, -0.7071067, 0, 0.7071067, 0, 0.75082684, 0)
+mesh = SubResource("CylinderMesh_ryov8")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="Tower A" parent="Displays/Basic shapes2" unique_id=1754042534 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+title = "Tower A"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("BoxMesh_hyltu")
+
+[node name="Mesh origin" type="Node3D" parent="Displays/Basic shapes2/Tower A" unique_id=520088130]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Basic shapes2/Tower A/Mesh origin" unique_id=976113482]
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 0.99999994, 0, -0.7071067, 0, 0.7071067, 0, 0.75082684, 0)
+mesh = SubResource("CylinderMesh_hyltu")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="Tower B" parent="Displays/Basic shapes2" unique_id=976958845 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+title = "Tower B"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("CylinderMesh_nhmr2")
+
+[node name="Mesh origin" type="Node3D" parent="Displays/Basic shapes2/Tower B" unique_id=679088245]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Basic shapes2/Tower B/Mesh origin" unique_id=667051925]
+transform = Transform3D(0.7071067, 0, 0.7071067, 0, 0.99999994, 0, -0.7071067, 0, 0.7071067, 0, 0.75082684, 0)
+mesh = SubResource("CylinderMesh_5vrt3")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="Column A" parent="Displays/Basic shapes2" unique_id=416144344 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+title = "Column A"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("CylinderMesh_lipnw")
+
+[node name="Mesh origin" type="Node3D" parent="Displays/Basic shapes2/Column A" unique_id=871785905]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Basic shapes2/Column A/Mesh origin" unique_id=279877044]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 0.6, 0)
+mesh = SubResource("CylinderMesh_lpj5r")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Displays/Basic shapes2/Column A/Mesh origin" unique_id=1234522649]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, -0.6, 0)
+mesh = SubResource("CylinderMesh_lpj5r")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="Column B" parent="Displays/Basic shapes2" unique_id=1552645976 instance=ExtResource("7_8k5no")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+title = "Column B"
+description = ""
+material = SubResource("StandardMaterial3D_6hytk")
+meshToDisplay = SubResource("BoxMesh_tkejg")
+
+[node name="Mesh origin" type="Node3D" parent="Displays/Basic shapes2/Column B" unique_id=844492743]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.3, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Basic shapes2/Column B/Mesh origin" unique_id=1073172745]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, 0.6, 0)
+mesh = SubResource("BoxMesh_b1p0m")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Displays/Basic shapes2/Column B/Mesh origin" unique_id=625113558]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 0.9999999, 0, -0.6, 0)
+mesh = SubResource("BoxMesh_b1p0m")
+surface_material_override/0 = SubResource("StandardMaterial3D_6hytk")
