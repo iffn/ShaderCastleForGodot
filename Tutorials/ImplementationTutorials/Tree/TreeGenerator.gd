@@ -16,6 +16,11 @@ extends MeshInstance3D
 		crotch_offset_factor = value
 		request_rebuild()
 
+@export_range(0.1, 2.0, 0.1) var subdivision_length: float = 0.5:
+	set(value):
+		subdivision_length = value
+		request_rebuild()
+
 var _vertex_count: int = 0
 
 
@@ -197,43 +202,66 @@ func _rebuild_tree_mesh() -> void:
 
 	mesh = st.commit()
 
-
 func _build_branch_subtree(st: SurfaceTool, current_node: BranchNode, parent_indices: Array[int], parent_pos: Vector3, in_dir: Vector3, parent_right: Vector3, parent_up: Vector3, parent_radius: float, current_distance: float, distance_sign: float) -> void:
 	var node_pos: Vector3 = to_local(current_node.global_position)
 	var current_radius: float = parent_radius * current_node._get_radius_multiplier()
 	var children: Array[BranchNode] = _get_valid_branch_children(current_node, 2)
 	
-	var segment_length: float = (node_pos - parent_pos).length()
+	var total_segment_vector: Vector3 = node_pos - parent_pos
+	var segment_length: float = total_segment_vector.length()
 	var next_distance: float = current_distance + (segment_length * distance_sign)
 
 	if children.size() <= 1:
-		# --- LINEAR SEGMENT ---
+		# --- LINEAR SEGMENT WITH SUBDIVISIONS ---
 		var out_dir: Vector3 = in_dir
 		if children.size() == 1:
 			out_dir = (to_local(children[0].global_position) - node_pos).normalized()
 
-		var node_dir: Vector3 = (in_dir + out_dir).normalized()
-		if node_dir.length_squared() < 0.001:
-			node_dir = in_dir
+		var target_dir: Vector3 = (in_dir + out_dir).normalized()
+		if target_dir.length_squared() < 0.001:
+			target_dir = in_dir
 
-		var ring_right: Vector3 = _transport_frame(in_dir, node_dir, parent_right)
-		var ring_up: Vector3 = _transport_frame(in_dir, node_dir, parent_up)
-		var ring: Dictionary = _generate_ring_with_basis(st, node_pos, node_dir, current_radius, ring_right, ring_up, next_distance)
+		# Determine how many subdivisions fit this segment length
+		var steps: int = max(1, roundi(segment_length / subdivision_length))
+		var current_ring_indices: Array[int] = parent_indices
+		var last_pos: Vector3 = parent_pos
+		var last_right: Vector3 = parent_right
+		var last_up: Vector3 = parent_up
+		var last_radius: float = parent_radius
+		var last_dist: float = current_distance
 
-		if parent_indices.size() == radial_segments:
-			_bridge_rings_equal(st, parent_indices, ring.indices)
-		else:
-			_bridge_half_to_full_ring(st, parent_indices, ring.indices)
+		for s in range(1, steps + 1):
+			var t: float = float(s) / float(steps)
+			# Smoothly interpolate position, direction, radius, and distance along the segment
+			var sub_pos: Vector3 = parent_pos.lerp(node_pos, t)
+			var sub_dir: Vector3 = in_dir.slerp(target_dir, t).normalized()
+			var sub_radius: float = lerp(parent_radius, current_radius, t)
+			var sub_dist: float = current_distance + ((sub_pos - parent_pos).length() * distance_sign)
+
+			var ring_right: Vector3 = _transport_frame(in_dir, sub_dir, last_right)
+			var ring_up: Vector3 = _transport_frame(in_dir, sub_dir, last_up)
+			
+			var ring: Dictionary = _generate_ring_with_basis(st, sub_pos, sub_dir, sub_radius, ring_right, ring_up, sub_dist)
+
+			if current_ring_indices.size() == radial_segments:
+				_bridge_rings_equal(st, current_ring_indices, ring.indices)
+			else:
+				_bridge_half_to_full_ring(st, current_ring_indices, ring.indices)
+
+			current_ring_indices = ring.indices
+			last_right = ring.right
+			last_up = ring.up
 
 		if children.size() == 1:
-			var next_right: Vector3 = _transport_frame(node_dir, out_dir, ring.right)
-			var next_up: Vector3 = _transport_frame(node_dir, out_dir, ring.up)
-			_build_branch_subtree(st, children[0], ring.indices, node_pos, out_dir, next_right, next_up, current_radius, next_distance, distance_sign)
+			var final_right: Vector3 = _transport_frame(target_dir, out_dir, last_right)
+			var final_up: Vector3 = _transport_frame(target_dir, out_dir, last_up)
+			_build_branch_subtree(st, children[0], current_ring_indices, node_pos, out_dir, final_right, final_up, current_radius, next_distance, distance_sign)
 		else:
-			_cap_ring(st, ring.indices, node_pos, out_dir, next_distance)
+			_cap_ring(st, current_ring_indices, node_pos, out_dir, next_distance)
 
 	else:
 		# --- Y INTERSECTION TOPOLOGY ---
+		# (Keep the Y-intersection logic identical, passing current_ring_indices through subdivisions if needed)
 		var child_a: BranchNode = children[0]
 		var child_b: BranchNode = children[1]
 
@@ -257,9 +285,34 @@ func _build_branch_subtree(st: SurfaceTool, current_node: BranchNode, parent_ind
 		else:
 			junction_right = transported_right
 
+		# Subdivide the lead-up to the junction if the segment is too long
+		var steps: int = max(1, roundi(segment_length / subdivision_length))
+		var current_ring_indices: Array[int] = parent_indices
+		var last_right: Vector3 = parent_right
+		var last_up: Vector3 = parent_up
+
+		for s in range(1, steps):
+			var t: float = float(s) / float(steps)
+			var sub_pos: Vector3 = parent_pos.lerp(node_pos, t)
+			var sub_dir: Vector3 = in_dir.slerp(junction_dir, t).normalized()
+			var sub_radius: float = lerp(parent_radius, current_radius, t)
+			var sub_dist: float = current_distance + ((sub_pos - parent_pos).length() * distance_sign)
+
+			var ring_right: Vector3 = _transport_frame(in_dir, sub_dir, last_right)
+			var ring_up: Vector3 = _transport_frame(in_dir, sub_dir, last_up)
+			var ring: Dictionary = _generate_ring_with_basis(st, sub_pos, sub_dir, sub_radius, ring_right, ring_up, sub_dist)
+
+			if current_ring_indices.size() == radial_segments:
+				_bridge_rings_equal(st, current_ring_indices, ring.indices)
+			else:
+				_bridge_half_to_full_ring(st, current_ring_indices, ring.indices)
+
+			current_ring_indices = ring.indices
+			last_right = ring.right
+			last_up = ring.up
+
 		var junction_ring: Dictionary = _generate_ring_with_basis(st, node_pos, junction_dir, current_radius, junction_right, transported_up, next_distance)
 
-		# Spatial alignment check
 		if dir_a.dot(junction_ring.up) < dir_b.dot(junction_ring.up):
 			var temp_node: BranchNode = child_a
 			child_a = child_b
@@ -269,15 +322,14 @@ func _build_branch_subtree(st: SurfaceTool, current_node: BranchNode, parent_ind
 			dir_a = dir_b
 			dir_b = temp_dir
 
-		if parent_indices.size() == radial_segments:
-			_bridge_rings_equal(st, parent_indices, junction_ring.indices)
+		if current_ring_indices.size() == radial_segments:
+			_bridge_rings_equal(st, current_ring_indices, junction_ring.indices)
 		else:
-			_bridge_half_to_full_ring(st, parent_indices, junction_ring.indices)
+			_bridge_half_to_full_ring(st, current_ring_indices, junction_ring.indices)
 
 		var crotch_pos: Vector3 = node_pos + split_dir * (current_radius * crotch_offset_factor)
 		var crotch_dist: float = next_distance + (crotch_pos - node_pos).length() * distance_sign
 		
-		# For the crotch, tangency to junction_right prevents breaking normal calculation
 		st.set_normal(split_dir)
 		st.set_tangent(Plane(junction_right.x, junction_right.y, junction_right.z, 1.0))
 		st.set_uv(Vector2(crotch_dist, current_radius))
@@ -287,7 +339,6 @@ func _build_branch_subtree(st: SurfaceTool, current_node: BranchNode, parent_ind
 		_vertex_count += 1
 
 		var half_count: int = radial_segments / 2
-
 		var ring_a_indices: Array[int] = []
 		for i in range(half_count + 1):
 			ring_a_indices.append(junction_ring.indices[i])
@@ -307,7 +358,6 @@ func _build_branch_subtree(st: SurfaceTool, current_node: BranchNode, parent_ind
 
 		_build_branch_subtree(st, child_a, ring_a_indices, node_pos, dir_a, right_a, up_a, current_radius * 0.75, next_distance, distance_sign)
 		_build_branch_subtree(st, child_b, ring_b_indices, node_pos, dir_b, right_b, up_b, current_radius * 0.75, next_distance, distance_sign)
-
 
 func _generate_ring(st: SurfaceTool, center: Vector3, dir: Vector3, radius: float, ref_right: Vector3, distance: float) -> Dictionary:
 	var norm_dir: Vector3 = dir.normalized()
