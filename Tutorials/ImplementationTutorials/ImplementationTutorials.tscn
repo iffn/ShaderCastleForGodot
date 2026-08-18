@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c7wjy2cr7stg1" path="res://CharacterControllerForGodot/FirstPersonPlayerController.tscn" id="4_ib04r"]
 [ext_resource type="PackedScene" uid="uid://ek71m0gh25lu" path="res://CharacterControllerForGodot/SetupControls.tscn" id="5_b7uom"]
 [ext_resource type="PackedScene" uid="uid://dymt85dn031yc" path="res://ShaderCastleForGodot/Prefabs/3DDisplay.tscn" id="6_cm48o"]
-[ext_resource type="Script" uid="uid://bas6287o75xh1" path="res://ShaderCastleForGodot/Assets/UI/LinearArrangement.gd" id="6_yuj0a"]
+[ext_resource type="Script" uid="uid://bas6287o75xh1" path="res://ShaderCastleForGodot/Implementations/UI/LinearArrangement.gd" id="6_yuj0a"]
 [ext_resource type="Shader" uid="uid://bbk1p0k4lyhba" path="res://ShaderCastleForGodot/Tutorials/Light/GodotLight/ARMMap.gdshader" id="7_ixm00"]
 [ext_resource type="Texture2D" uid="uid://ce7ch8g3s6nmb" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_diff_1k.png" id="8_umf0y"]
 [ext_resource type="Texture2D" uid="uid://c67k8r8pii70v" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/red_brick/red_brick_arm_1k.png" id="9_q5ne7"]
@@ -48,8 +48,10 @@
 [ext_resource type="Shader" uid="uid://dmuixwjlmx7jk" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/ScreenSpaceReflection.gdshader" id="44_eaq5x"]
 [ext_resource type="Texture2D" uid="uid://dtonig55rmb7w" path="res://ShaderCastleForGodot/ExternalAssets/CC0/PolyHaven/japanese_stone_wall/japanese_stone_wall_diff_1k.png" id="45_j31vm"]
 [ext_resource type="Shader" uid="uid://c748inkb6v46f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/RealisticGerstnerWave.gdshader" id="46_4dgu6"]
+[ext_resource type="Shader" uid="uid://qs86rsw6jhcw" path="res://ShaderCastleForGodot/Implementations/UI/ImageAspectRatioDisplay.gdshader" id="46_k821b"]
 [ext_resource type="Shader" uid="uid://paewro0wbs2r" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/GerstnerWaveDirection.gdshader" id="46_pt6y8"]
 [ext_resource type="Shader" uid="uid://bo808mhl3usxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Waves/MultipleGerstnerWaves.gdshader" id="47_4dgu6"]
+[ext_resource type="Texture2D" uid="uid://qrh12wxyp34f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/SSR.drawio.png" id="47_yyrso"]
 [ext_resource type="Shader" uid="uid://b3fu4ogx03y8b" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/SimulationWater.gdshader" id="51_428gs"]
 [ext_resource type="Shader" uid="uid://c1tot6kri8k2y" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/WaveSimulation.gdshader" id="52_np01h"]
 [ext_resource type="Shader" uid="uid://jflu84kaqp0f" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Simulation/WaveMovement.gdshader" id="53_g7yku"]
@@ -458,14 +460,14 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_x3m7a")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f4hs1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_m3v6y"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3v6y"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te8f3"]
 resource_local_to_scene = true
 transparency = 1
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_f4hs1")
+albedo_texture = SubResource("ViewportTexture_m3v6y")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7bi4b"]
 render_priority = 0
@@ -618,6 +620,14 @@ albedo_texture = ExtResource("45_j31vm")
 
 [sub_resource type="SphereMesh" id="SphereMesh_j31vm"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_ggvjk"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvspd"]
+render_priority = 0
+shader = ExtResource("46_k821b")
+shader_parameter/albedo = ExtResource("47_yyrso")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_peyk1"]
 render_priority = 0
 shader = ExtResource("42_7vcyf")
@@ -671,14 +681,14 @@ shader_parameter/wave_scale = 0.01200000022074
 shader_parameter/simulation_speed = 1.0000000475
 shader_parameter/gravity = 9.81
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iedc8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ga4c8"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggvjk"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00dio"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_iedc8")
+shader_parameter/compute = SubResource("ViewportTexture_ga4c8")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0.45, 0.45, 1, 1)
 
@@ -699,14 +709,14 @@ resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_ee1st")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jvspd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_3dyba"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ga4c8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_147vh"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_jvspd")
+shader_parameter/compute = SubResource("ViewportTexture_3dyba")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0, 0.57254905, 1, 1)
 
@@ -727,14 +737,14 @@ resource_local_to_scene = true
 shader = ExtResource("54_k821b")
 shader_parameter/compute_map = SubResource("ViewportTexture_pu16f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_00dio"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qy4aj"]
 viewport_path = NodePath("ComputeSetup/Compute")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_retet"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_144jl"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("51_428gs")
-shader_parameter/compute = SubResource("ViewportTexture_00dio")
+shader_parameter/compute = SubResource("ViewportTexture_qy4aj")
 shader_parameter/base_color = Color(0, 0, 1, 1)
 shader_parameter/peak_color = Color(0.120000005, 0.8973332, 1, 1)
 
@@ -999,7 +1009,7 @@ shadow_enabled = true
 [node name="Tree" parent="." unique_id=239158485 instance=ExtResource("1_waw53")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.644658, -4.7683716e-07, 6.467231)
 
-[node name="Leaves" parent="Tree" index="1" unique_id=829533945]
+[node name="Leaves" parent="Tree" index="1" unique_id=621951644]
 surface_material_override/0 = SubResource("ShaderMaterial_2jtpy")
 
 [node name="FirstPersonPlayer" parent="." unique_id=270315669 instance=ExtResource("4_ib04r")]
@@ -1213,7 +1223,7 @@ text = "Grass field"
 text = "Just copy pasting grass nodes is pretty bad for performance. By using a MultiMeshInstance3D, multiple grass meshes can be placed efficiently."
 
 [node name="MeshInstance3D" parent="Displays/Grass/Grass field/3D UI" parent_id_path=PackedInt32Array(1712670358, 498438476) index="1" unique_id=121505346]
-surface_material_override/0 = SubResource("StandardMaterial3D_m3v6y")
+surface_material_override/0 = SubResource("StandardMaterial3D_te8f3")
 
 [node name="Bushes" type="Node3D" parent="Displays" unique_id=1570795030]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
@@ -1388,6 +1398,14 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.07923283, 1.3788997, 
 mesh = SubResource("SphereMesh_j31vm")
 surface_material_override/0 = SubResource("StandardMaterial3D_yrxpa")
 
+[node name="Node3D" type="Node3D" parent="Displays/Water/ScreenSpaceReflection" unique_id=1999432748]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -7.668911e-09, 0, -0.6431017)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Displays/Water/ScreenSpaceReflection/Node3D" unique_id=196931746]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.5, 0)
+mesh = SubResource("QuadMesh_ggvjk")
+surface_material_override/0 = SubResource("ShaderMaterial_jvspd")
+
 [node name="Sine wave" parent="Displays/Water" unique_id=457383167 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
 title = "Sine wave"
@@ -1440,7 +1458,7 @@ display_scale = 0.4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 0)
 title = "Wave simulation"
 description = ""
-material = SubResource("ShaderMaterial_ggvjk")
+material = SubResource("ShaderMaterial_00dio")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1476,7 +1494,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
 title = "Absorption layers"
 description = ""
-material = SubResource("ShaderMaterial_ga4c8")
+material = SubResource("ShaderMaterial_147vh")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 
@@ -1512,7 +1530,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
 title = "Computed movement"
 description = ""
-material = SubResource("ShaderMaterial_retet")
+material = SubResource("ShaderMaterial_144jl")
 meshToDisplay = SubResource("QuadMesh_yuj0a")
 display_scale = 0.4
 

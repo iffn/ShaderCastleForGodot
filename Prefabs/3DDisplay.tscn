@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dymt85dn031yc"]
 
-[ext_resource type="Script" uid="uid://dplmnaq5cdrkv" path="res://ShaderCastleForGodot/Assets/UI/UIAssignment.gd" id="1_jksge"]
-[ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Assets/UI/3D UI.tscn" id="2_efmhr"]
+[ext_resource type="Script" uid="uid://dplmnaq5cdrkv" path="res://ShaderCastleForGodot/Implementations/UI/UIAssignment.gd" id="1_jksge"]
+[ext_resource type="PackedScene" uid="uid://b5cwubwi7ab1v" path="res://ShaderCastleForGodot/Implementations/UI/3D UI.tscn" id="2_efmhr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_efmhr"]
 
