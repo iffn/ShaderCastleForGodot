@@ -6,19 +6,32 @@ extends MeshInstance3D
 	set(val):
 		generate_river()
 
+@export_range(1, 50, 1) var subdivisions_per_segment: int = 10
+@export_range(1, 20, 1) var subdivisions_width: int = 4
+
 func _ready() -> void:
 	generate_river()
 
 func request_rebuild() -> void:
-	generate_river()
+	if is_inside_tree():
+		call_deferred("generate_river")
 
 func _on_waypoint_changed() -> void:
-	generate_river()
+	if is_inside_tree():
+		call_deferred("generate_river")
+
+func _catmull_rom(p0: Vector3, p1: Vector3, p2: Vector3, p3: Vector3, t: float) -> Vector3:
+	return 0.5 * (
+		(2.0 * p1) +
+		(-p0 + p2) * t +
+		(2.0 * p0 - 5.0 * p1 + 4.0 * p2 - p3) * (t * t) +
+		(-p0 + 3.0 * p1 - 3.0 * p2 + p3) * (t * t * t)
+	)
 
 func generate_river() -> void:
 	var waypoints: Array[Node3D] = []
 	for child in get_children():
-		if child is Node3D:
+		if child is Node3D and child.is_inside_tree():
 			waypoints.append(child)
 	
 	if waypoints.size() < 2:
@@ -27,65 +40,103 @@ func generate_river() -> void:
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
+	var sampled_points: Array[Dictionary] = []
 	var total_length: float = 0.0
-	var distances: PackedFloat32Array = [0.0]
 	
-	for i in range(1, waypoints.size()):
-		var dist = waypoints[i].global_position.distance_to(waypoints[i-1].global_position)
+	for i in range(waypoints.size() - 1):
+		var p0 = waypoints[max(0, i - 1)].global_position
+		var p1 = waypoints[i].global_position
+		var p2 = waypoints[i + 1].global_position
+		var p3 = waypoints[min(waypoints.size() - 1, i + 2)].global_position
+		
+		var w1 = waypoints[i].scale.x
+		var w2 = waypoints[i + 1].scale.x
+		
+		for step in range(subdivisions_per_segment):
+			var t = float(step) / float(subdivisions_per_segment)
+			var pos = _catmull_rom(p0, p1, p2, p3, t)
+			var width = lerp(w1, w2, t)
+			
+			sampled_points.append({
+				"position": pos,
+				"width": width
+			})
+			
+	# Append the final waypoint anchor point
+	var final_wp = waypoints[waypoints.size() - 1]
+	sampled_points.append({
+		"position": final_wp.global_position,
+		"width": final_wp.scale.x
+	})
+	
+	var distances: PackedFloat32Array = [0.0]
+	for i in range(1, sampled_points.size()):
+		var dist = sampled_points[i]["position"].distance_to(sampled_points[i-1]["position"])
 		total_length += dist
 		distances.append(total_length)
 		
 	var inv_transform = global_transform.affine_inverse()
 	var strip_data = []
 	
-	for i in range(waypoints.size()):
-		var wp = waypoints[i]
-		var pos = wp.global_position
+	for i in range(sampled_points.size()):
+		var pt = sampled_points[i]
+		var pos = pt["position"]
+		var width = pt["width"]
+		var uv_y = distances[i]
 		
 		var tangent: Vector3
 		if i == 0:
-			tangent = (waypoints[1].global_position - pos).normalized()
-		elif i == waypoints.size() - 1:
-			tangent = (pos - waypoints[i-1].global_position).normalized()
+			tangent = (sampled_points[1]["position"] - pos).normalized()
+		elif i == sampled_points.size() - 1:
+			tangent = (pos - sampled_points[i-1]["position"]).normalized()
 		else:
-			tangent = (waypoints[i+1].global_position - waypoints[i-1].global_position).normalized()
+			tangent = (sampled_points[i+1]["position"] - sampled_points[i-1]["position"]).normalized()
 			
 		var side = tangent.cross(Vector3.UP).normalized()
 		if side.is_zero_approx():
 			side = Vector3.RIGHT
 			
-		var river_size = wp.scale.x
-		var half_width = river_size * 0.5
+		var half_width = width * 0.5
+		var row = []
 		
-		var left_pos = inv_transform * (pos - side * half_width)
-		var right_pos = inv_transform * (pos + side * half_width)
-		
-		strip_data.append({
-			"left": left_pos,
-			"right": right_pos,
-			"uv_y": distances[i],
-			"size": river_size
-		})
+		for j in range(subdivisions_width + 1):
+			var t_w = float(j) / float(subdivisions_width)
+			var offset = lerp(-half_width, half_width, t_w)
+			var v_pos = inv_transform * (pos + side * offset)
+			var uv_x = t_w * width
+			
+			row.append({
+				"pos": v_pos,
+				"uv": Vector2(uv_x, uv_y)
+			})
+			
+		strip_data.append(row)
 		
 	for i in range(strip_data.size() - 1):
-		var curr = strip_data[i]
-		var next = strip_data[i+1]
+		var curr_row = strip_data[i]
+		var next_row = strip_data[i+1]
 		
-		# Triangle 1
-		st.set_uv(Vector2(0.0, curr.uv_y))
-		st.add_vertex(curr.left)
-		st.set_uv(Vector2(0.0, next.uv_y))
-		st.add_vertex(next.left)
-		st.set_uv(Vector2(curr.size, curr.uv_y))
-		st.add_vertex(curr.right)
-		
-		# Triangle 2
-		st.set_uv(Vector2(curr.size, curr.uv_y))
-		st.add_vertex(curr.right)
-		st.set_uv(Vector2(0.0, next.uv_y))
-		st.add_vertex(next.left)
-		st.set_uv(Vector2(next.size, next.uv_y))
-		st.add_vertex(next.right)
+		for j in range(subdivisions_width):
+			var v00 = curr_row[j]
+			var v10 = curr_row[j+1]
+			var v01 = next_row[j]
+			var v11 = next_row[j+1]
+			
+			# Triangle 1
+			st.set_uv(v00.uv)
+			st.add_vertex(v00.pos)
+			st.set_uv(v01.uv)
+			st.add_vertex(v01.pos)
+			st.set_uv(v10.uv)
+			st.add_vertex(v10.pos)
+			
+			# Triangle 2
+			st.set_uv(v10.uv)
+			st.add_vertex(v10.pos)
+			st.set_uv(v01.uv)
+			st.add_vertex(v01.pos)
+			st.set_uv(v11.uv)
+			st.add_vertex(v11.pos)
 		
 	st.generate_normals()
 	mesh = st.commit()
