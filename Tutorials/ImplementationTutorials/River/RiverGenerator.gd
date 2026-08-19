@@ -8,6 +8,7 @@ extends MeshInstance3D
 
 @export_range(1, 50, 1) var subdivisions_per_segment: int = 10
 @export_range(1, 20, 1) var subdivisions_width: int = 4
+@export var speed_curve: Curve
 
 func _ready() -> void:
 	generate_river()
@@ -41,7 +42,6 @@ func generate_river() -> void:
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
 	var sampled_points: Array[Dictionary] = []
-	var total_length: float = 0.0
 	
 	for i in range(waypoints.size() - 1):
 		var p0 = waypoints[max(0, i - 1)].global_position
@@ -69,11 +69,24 @@ func generate_river() -> void:
 		"width": final_wp.scale.x
 	})
 	
+	# Calculate UV.y based on distance modulated by inclination speed curve
 	var distances: PackedFloat32Array = [0.0]
+	var current_uv_y: float = 0.0
+	
 	for i in range(1, sampled_points.size()):
-		var dist = sampled_points[i]["position"].distance_to(sampled_points[i-1]["position"])
-		total_length += dist
-		distances.append(total_length)
+		var p_prev = sampled_points[i - 1]["position"]
+		var p_curr = sampled_points[i]["position"]
+		var segment_dist = p_curr.distance_to(p_prev)
+		
+		var tangent = (p_curr - p_prev).normalized()
+		var inclination = abs(tangent.y) # 0.0 is flat, 1.0 is vertical
+		
+		var speed_mult = 1.0
+		if speed_curve:
+			speed_mult = speed_curve.sample(inclination)
+			
+		current_uv_y += segment_dist * speed_mult
+		distances.append(current_uv_y)
 		
 	var inv_transform = global_transform.affine_inverse()
 	var strip_data = []
