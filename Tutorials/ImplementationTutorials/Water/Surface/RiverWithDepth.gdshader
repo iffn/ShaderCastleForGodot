@@ -54,7 +54,7 @@ void fragment() {
 	depth_factor = pow(depth_factor, depth_falloff_power);
 	
 	// Flow and UV Setup (Moving horizontally towards UV.x)
-	vec2 flow_direction = vec2(1.0, 0.0);
+	vec2 flow_direction = vec2(0.0, -1.0);
 	vec2 scaled_uv = UV * wave_scale;
 	
 	// Layer 1: Primary Current-Driven Waves

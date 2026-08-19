@@ -1366,7 +1366,7 @@ description = ""
 material = SubResource("ShaderMaterial_5ifku")
 meshToDisplay = SubResource("QuadMesh_iedc8")
 display_scale = 0.4
-euler_angles = Vector3(270, 180, 0)
+euler_angles = Vector3(270, 90, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Displays/Water/River with depth" unique_id=1562288620]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)

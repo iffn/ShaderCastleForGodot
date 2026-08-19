@@ -1,0 +1,60 @@
+[gd_scene format=4 uid="uid://dtc6pgis6fhag"]
+
+[ext_resource type="Shader" uid="uid://3uo2xkr1qoif" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/RiverWithDepth.gdshader" id="1_n3hdr"]
+[ext_resource type="Script" uid="uid://3jigb6qj5nxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/River/RiverGenerator.gd" id="1_pocrv"]
+[ext_resource type="Script" uid="uid://da0x5fj84s4pr" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/River/RiverWaypoint.gd" id="3_rtv0s"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_rtv0s"]
+_surfaces = [{
+"aabb": AABB(0, -1.4968402, -3.1947422, 5.677705, 1.4968402, 3.6947422),
+"attribute_data": PackedByteArray("AAAAAAAAAAAAAAAARbUgQAAAgD8AAAAAAACAPwAAAAAAAAAARbUgQAAAgD9FtSBAAAAAAEW1IEAAAAAAleWNQAAAgD9FtSBAAACAP0W1IEAAAAAAleWNQAAAgD+V5Y1AAAAAAJXljUAAAAAAPgreQAAAgD+V5Y1AAACAP5XljUAAAAAAPgreQAAAgD8+Ct5A"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("AAAAAAAAAAAAAAC/Ai0PQMaYbL9SEfu+AAAAAAAAAAAAAAA/AAAAAAAAAAAAAAA/Ai0PQMaYbL9SEfu+rK0bQMaYbL9SEfs+Ai0PQMaYbL9SEfu+HCluQMiYbL8k0JS/rK0bQMaYbL9SEfs+rK0bQMaYbL9SEfs+HCluQMiYbL8k0JS/FuqNQMiYbL8Ojey+HCluQMiYbL8k0JS/GIqZQHaYv7+odkzAFuqNQMiYbL8Ojey+FuqNQMiYbL8Ojey+GIqZQHaYv7+odkzAwq+1QHaYv798BC7AaqWT2i4vsNAsnEjmlB25zMGmodzjK9vQwaah3OMr29AsnEjmlB25zC+Qf/KmDVzHLJxI5pQducywjTb5bQZ+xi+Qf/KmDVzHL5B/8qYNXMewjTb5bQZ+xiKXC/aMCJXKsI02+W0GfsYOoDXyAAsxziKXC/aMCJXKIpcL9owIlcoOoDXyAAsxzqCdmPUEBxbN")
+}]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_iedc8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m3v6y"]
+noise = SubResource("FastNoiseLite_iedc8")
+seamless = true
+as_normal_map = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rc1sc"]
+render_priority = 0
+shader = ExtResource("1_n3hdr")
+shader_parameter/albedo = Color(0.05, 0.3, 0.5, 1)
+shader_parameter/foam_color = Color(0.8, 0.9, 1, 1)
+shader_parameter/wave_noise_normal = SubResource("NoiseTexture2D_m3v6y")
+shader_parameter/wave_scale = 1.8210000389975
+shader_parameter/base_speed = 0.66800003173
+shader_parameter/ripple_speed_ratio = 0.72800003458
+shader_parameter/wave_intensity = 1.370000065075
+shader_parameter/surface_roughness = 0.1
+shader_parameter/ripple_blend = 0.29600001406
+shader_parameter/depth_fade_distance = 0.25100000866262
+shader_parameter/depth_falloff_power = 0.27900000999262
+
+[node name="RiverTest" type="Node3D" unique_id=1839420929]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1689555546]
+mesh = SubResource("ArrayMesh_rtv0s")
+surface_material_override/0 = SubResource("ShaderMaterial_rc1sc")
+script = ExtResource("1_pocrv")
+
+[node name="Node3D" type="Node3D" parent="MeshInstance3D" unique_id=1887491295]
+script = ExtResource("3_rtv0s")
+
+[node name="Node3D2" type="Node3D" parent="MeshInstance3D" unique_id=754645685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3347986, -0.92420614, 0)
+script = ExtResource("3_rtv0s")
+
+[node name="Node3D3" type="Node3D" parent="MeshInstance3D" unique_id=26019426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.078042, -0.92420626, -0.81230783)
+script = ExtResource("3_rtv0s")
+
+[node name="Node3D4" type="Node3D" parent="MeshInstance3D" unique_id=1469907318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.237906, -1.4968402, -2.956883)
+script = ExtResource("3_rtv0s")
