@@ -5,6 +5,8 @@ extends Node
 @export var material: Material
 @export var instance_count: int = 1000
 @export var side_length: float = 2.0
+@export var min_size = 1.0;
+@export var max_size = 1.0;
 
 @export_group("Transform Options")
 @export var mesh_scale: Vector3 = Vector3.ONE
@@ -43,7 +45,8 @@ func spread_meshes() -> void:
 		var t := Transform3D.IDENTITY
 
 		# Apply scale
-		t = t.scaled(mesh_scale)
+		var scale := randf_range(min_size, max_size)
+		t = t.scaled(mesh_scale * scale)
 
 		# Apply Y-axis rotation
 		t = t.rotated(Vector3.UP, randf() * TAU)
