@@ -137,12 +137,16 @@ albedo_color = Color(1, 0, 1, 1)
 offsets = PackedFloat32Array(0, 0.10752688, 0.19623657, 1)
 colors = PackedColorArray(0.46040472, 0.45603088, 0.4465926, 1, 0.461878, 0.45753813, 0.4481732, 1, 0.47029665, 0.466151, 0.45720515, 1, 0.65, 0.65, 0.65, 1)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_retet"]
+frequency = 0.0135
+
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k821b"]
+noise = SubResource("FastNoiseLite_retet")
 color_ramp = SubResource("Gradient_m3v6y")
 
 [sub_resource type="Gradient" id="Gradient_k821b"]
 offsets = PackedFloat32Array(0, 0.18010753)
-colors = PackedColorArray(0.6, 0.6, 0.6, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.01773239, 0.017732395, 0.017732374, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_yyrso"]
 noise_type = 2
@@ -1158,7 +1162,7 @@ meshToDisplay = SubResource("QuadMesh_j31vm")
 [node name="Snow cover" parent="Displays/Wall textures" unique_id=1185929385 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 title = "Snow cover"
-description = ""
+description = "TBA"
 material = SubResource("StandardMaterial3D_vxc3a")
 meshToDisplay = SubResource("QuadMesh_j31vm")
 
@@ -1219,14 +1223,10 @@ material = SubResource("ShaderMaterial_xavbm")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
 
-[node name="Painted features2" parent="Displays/StylizedBricks" unique_id=1922718617 instance=ExtResource("6_cm48o")]
+[node name="Based on noise" parent="Displays/StylizedBricks" unique_id=1922718617 instance=ExtResource("6_cm48o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.126558, 0, 0)
-title = "Painted features"
-description = "Hand painting features alows for a large amount of artistic control. This often involves understanding and painting the light. Note that the painted light interactions are set  and do not react to the scene light.
-- A dark to bright gradient from the bottom to the top represents that the bottom is usualyl less well lit.
-The edges are usually briger, so they are highlighted
-- Cracks are painted that follow the structure of the shape.
-- The edges of the cracks are highligted. For example, always the bottom and right."
+title = "Based on noise"
+description = ""
 material = SubResource("StandardMaterial3D_k821b")
 meshToDisplay = SubResource("ArrayMesh_s66ov")
 display_scale = 0.18
