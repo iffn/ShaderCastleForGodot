@@ -9,6 +9,7 @@ extends MeshInstance3D
 @export_range(1, 50, 1) var subdivisions_per_segment: int = 10
 @export_range(1, 20, 1) var subdivisions_width: int = 4
 @export var speed_curve: Curve
+@export var texture_tiling_x: float = 1.0
 
 func _ready() -> void:
 	generate_river()
@@ -88,13 +89,16 @@ func generate_river() -> void:
 		current_uv_y += segment_dist * speed_mult
 		distances.append(current_uv_y)
 		
+	# Extract uniform scale factor from global transform to treat the whole generator as a miniature
+	var global_scale_factor = global_transform.basis.get_scale().x
 	var inv_transform = global_transform.affine_inverse()
 	var strip_data = []
 	
 	for i in range(sampled_points.size()):
 		var pt = sampled_points[i]
 		var pos = pt["position"]
-		var width = pt["width"]
+		# Scale width relative to the MeshInstance3D's global scale for miniature support
+		var width = pt["width"] * global_scale_factor
 		var uv_y = distances[i]
 		
 		var tangent: Vector3
@@ -114,9 +118,9 @@ func generate_river() -> void:
 		
 		for j in range(subdivisions_width + 1):
 			var t_w = float(j) / float(subdivisions_width)
-			var offset = lerp(-half_width, half_width, t_w)
-			var v_pos = inv_transform * (pos + side * offset)
-			var uv_x = t_w * width
+			var offset = lerp(-half_width, half_width, t_w) / global_scale_factor
+			var v_pos = inv_transform * (pos + side * (offset * global_scale_factor))
+			var uv_x = t_w * pt["width"] * texture_tiling_x
 			
 			row.append({
 				"pos": v_pos,

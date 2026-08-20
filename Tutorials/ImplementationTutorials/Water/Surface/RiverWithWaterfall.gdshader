@@ -17,7 +17,11 @@ uniform float ripple_blend : hint_range(0.0, 1.0) = 0.5;
 
 // Depth & Obstacle Controls
 uniform float depth_fade_distance : hint_range(0.1, 5.0) = 1.0;
-uniform float depth_falloff_power : hint_range(0.1, 3.0) = 0.4; // Lower = normals stay strong longer
+uniform float depth_falloff_power : hint_range(0.1, 3.0) = 0.4;
+
+// Waterfall Foam Controls
+uniform float waterfall_steepness : hint_range(0.0, 1.0) = 0.5; // Threshold for when slopes turn into waterfalls
+uniform float waterfall_foam_amount : hint_range(0.0, 2.0) = 1.0;
 
 float linear_depth(float depth_raw, vec3 vertex, vec2 screen_uv, mat4 inv_projection_matrix) {
 	vec4 ndc;
@@ -71,17 +75,34 @@ void fragment() {
 	
 	vec2 blended_xy = mix(normal_main.xy, normal_main.xy + normal_ripple.xy, ripple_blend);
 	
-	// Apply Curred Depth Suppression to Wave Intensity
+	// Apply Curved Depth Suppression to Wave Intensity
 	float adjusted_intensity = wave_intensity * depth_factor;
 	vec3 final_normal = normalize(vec3(blended_xy, 1.0 / max(adjusted_intensity, 0.001)));
 	
 	NORMAL_MAP = final_normal * 0.5 + 0.5;
 	NORMAL_MAP_DEPTH = adjusted_intensity;
 	
-	// Multi-Layer Noise Foam Calculation
+	// --- World Normal Waterfall Foam Calculation ---
+	// Transform fragment normal from view space to world space
+	vec3 world_normal = (INV_VIEW_MATRIX * vec4(NORMAL, 0.0)).xyz;
+	float up_dot = dot(normalize(world_normal), vec3(0.0, 1.0, 0.0));
+	
+	// Invert up_dot so that steep/vertical slopes yield a high value (0.0 = flat, 1.0 = vertical wall)
+	float slope_factor = clamp(1.0 - up_dot, 0.0, 1.0);
+	float waterfall_mask = smoothstep(waterfall_steepness - 0.2, waterfall_steepness + 0.2, slope_factor);
+	
+	// --- Combined Foam Calculation (Obstacle/Shore + Waterfall) ---
 	float depth_foam_mask = clamp(1.0 - (water_depth / (depth_fade_distance * 0.4)), 0.0, 1.0);
 	float combined_noise = mix(tex_main.r, (tex_main.r + tex_ripple.r) * 0.5, ripple_blend);
-	float final_foam = smoothstep(0.4, 0.7, depth_foam_mask * combined_noise);
+	
+	// Shore/Obstacle foam
+	float edge_foam = smoothstep(0.4, 0.7, depth_foam_mask * combined_noise);
+	
+	// Waterfall drop foam (driven by vertical slope + noise)
+	float fall_foam = smoothstep(0.3, 0.6, waterfall_mask * combined_noise * waterfall_foam_amount);
+	
+	// Merge both foam types together
+	float final_foam = clamp(edge_foam + fall_foam, 0.0, 1.0);
 	
 	// Apply color and synchronized foam
 	ALBEDO = mix(albedo, foam_color, final_foam);

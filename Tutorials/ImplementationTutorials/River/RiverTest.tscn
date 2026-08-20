@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dtc6pgis6fhag"]
 
-[ext_resource type="Shader" uid="uid://3uo2xkr1qoif" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/RiverWithDepth.gdshader" id="1_n3hdr"]
 [ext_resource type="Script" uid="uid://3jigb6qj5nxe" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/River/RiverGenerator.gd" id="1_pocrv"]
+[ext_resource type="Shader" uid="uid://c1mqtnd0oun0" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/Water/Surface/RiverWithWaterfall.gdshader" id="1_rtv0s"]
 [ext_resource type="Script" uid="uid://da0x5fj84s4pr" path="res://ShaderCastleForGodot/Tutorials/ImplementationTutorials/River/RiverWaypoint.gd" id="3_rtv0s"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rtv0s"]
@@ -24,7 +24,7 @@ as_normal_map = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rc1sc"]
 render_priority = 0
-shader = ExtResource("1_n3hdr")
+shader = ExtResource("1_rtv0s")
 shader_parameter/albedo = Color(0.05, 0.3, 0.5, 1)
 shader_parameter/foam_color = Color(0.8, 0.9, 1, 1)
 shader_parameter/wave_noise_normal = SubResource("NoiseTexture2D_m3v6y")
@@ -36,6 +36,8 @@ shader_parameter/surface_roughness = 0.1
 shader_parameter/ripple_blend = 0.29600001406
 shader_parameter/depth_fade_distance = 0.25100000866262
 shader_parameter/depth_falloff_power = 0.27900000999262
+shader_parameter/waterfall_steepness = 0.0
+shader_parameter/waterfall_foam_amount = 1.0
 
 [sub_resource type="Curve" id="Curve_rtv0s"]
 _data = [Vector2(0, 1), 0.0, -2.6945624, 0, 0, Vector2(1, 0.111940265), 0.13971795, 0.0, 0, 0]
