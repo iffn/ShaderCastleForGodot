@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 @export var linkedMultipMesh: MultiMeshInstance3D
@@ -7,6 +8,10 @@ extends Node
 @export var side_length: float = 2.0
 @export var min_size = 1.0;
 @export var max_size = 1.0;
+
+@export var generate_mesh: bool = false:
+	set(val):
+		spread_meshes()
 
 @export_group("Transform Options")
 @export var mesh_scale: Vector3 = Vector3.ONE
